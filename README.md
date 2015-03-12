@@ -1,3 +1,1 @@
-# sportsVenue
-
-a [Sails](http://sailsjs.org) application
+Sports Venue
