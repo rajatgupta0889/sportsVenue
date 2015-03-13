@@ -41,8 +41,28 @@ module.exports.routes = {
   'post /loginUser' : 'UserController.login',
   'post /signUpUser' : 'UserController.signUp',
   'get /isLoggedIn' : 'UserController.isLoggedIn',
+  // '/': {
+  //   view: 'homepage'
+  // }
+
   '/': {
-    view: 'homepage'
+    view: 'index'
+  },
+  
+  '/home': {
+    view: 'index'
+  },
+
+  '/grounds': {
+    view: 'ground_search'
+  },
+
+  '/ground_details': {
+    view: 'ground_details'
+  },
+
+  '/sign_in': {
+    view: 'SignIn'
   }
 
   /***************************************************************************

@@ -38,7 +38,7 @@ module.exports = {
 		        	req.session.authenticated = true;
 		          	req.session.user = user;
 		          	res.json(user);
-		          	ElasticService.search();
+		          	//ElasticService.search();
 		        }		
 			});
 		}

@@ -1,0 +1,934 @@
+@import url('base-styles-reset.css');
+
+@backColor : #000000;
+
+@boxBorderGroundDetails : 2px solid #bebebe;
+
+.textCentralizedLogo{
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.selectHeadingText{
+	font-size: 22pt;
+	font-weight: normal;
+}
+
+.appearanceClear{
+	-webkit-appearance : none;
+	-moz-appearance : none;
+}
+
+.FixedMargin{
+	width: 95%;
+	margin: 0 auto;
+}
+
+.BoxMarginGroundDetails{
+	width: 80%;
+	margin: 3% auto;
+}
+
+@font-face{
+	font-family: BloggerSansRegular;
+	src : url('../fonts/Blogger_Sans.eot');
+	src : url('../fonts/Blogger_Sans.otf');
+	src : url('../fonts/Blogger_Sans.svg');
+	src : url('../fonts/Blogger_Sans.ttf');
+	src : url('../fonts/Blogger_Sans.woff');
+	src : url('../fonts/Blogger_Sans.woff2');
+}
+
+@font-face{
+	font-family: BloggerSansLight;
+	src : url('../fonts/Blogger_Sans-Light.eot');
+	src : url('../fonts/Blogger_Sans-Light.otf');
+	src : url('../fonts/Blogger_Sans-Light.svg');
+	src : url('../fonts/Blogger_Sans-Light.ttf');
+	src : url('../fonts/Blogger_Sans-Light.woff');
+	src : url('../fonts/Blogger_Sans-Light.woff2');
+}
+
+.hide{
+	display: none !important;
+}
+
+span{
+	color: #3588e5;
+}
+
+.header{
+	background: @backColor;
+
+	.nav-bar{
+		.FixedMargin;
+		padding: 22px 0;
+
+		.logo-name{
+			display: inline-block;
+			.logo-image{
+				.textCentralizedLogo;
+			}
+			.logo-text{
+				.textCentralizedLogo;
+				a{
+					text-decoration: none;
+					p{
+						display: inline-block;
+						font-family: BloggerSansRegular;
+						color:#b2c54e;
+						font-size: 40pt;
+						margin-left: 10px;
+					}
+				}	
+			}
+		}
+
+		.social-contact{
+			display: inline-block;
+			margin-left: 60%;
+			margin-top: 0.5%;
+
+			.sign-in{
+				display: inline-block;
+				font-family: BloggerSansRegular;
+				font-size: 20pt;
+
+				a{
+					text-decoration: none;					
+					color:#b2c54e;
+				}
+			}
+			.fb-link, .tw-link{
+				.textCentralizedLogo;
+				a{
+					margin-left: 30px;
+				}
+			}
+		}
+	}
+}
+
+//----------------------------------------------------//
+//
+//------Styles for index page start here--------------//
+//
+//----------------------------------------------------//
+
+.search-section{
+	background: url('../images/background-banner.png') no-repeat;
+	background-size: cover;
+	font-family: BloggerSansRegular;
+	.search-bar{
+		width: 85%;
+		margin: 0 auto;	
+		padding: 24% 0;
+
+		.locations, .sports, .search-button{
+			display: inline-block;
+			text-align: center;
+			width: 33%;
+
+			.select-heading{
+				.selectHeadingText;
+				color:white;
+			}
+
+			.selection-divs{
+				
+				.location-select, .sport-select{
+					.appearanceClear;
+					cursor : pointer;
+					width: 90%;
+					margin-top: 5%;
+					font-size: 19px;
+					height: 66px;
+					padding: 0 12% 0 8%;
+					border-radius: 8px;	
+					background: #fff url('../images/dropdown-arrow.png') no-repeat left 95% center;
+
+					option{
+						padding: 4px 0;
+						text-align: center;
+						margin-left: 10px;
+					}
+				}
+
+				img{
+					display: inline-block;
+				}
+			}
+		}
+
+		.sports, .search-button{
+			margin-left: 0%;
+		}
+
+		.venue-search{
+			width: 66%;
+			display: inline-block;
+
+			input{
+				width: 92%;
+				padding: 20px;
+				font-size: 19px;
+				border-radius: 8px;
+				-webkit-appearance : none;
+				-moz-appearance : none;
+			}
+		}
+		
+		.search-button{
+			.selectHeadingText;
+			margin-left: 2%;
+			color: white;
+			width: 30%;
+			background: #94a633;
+			border-radius: 8px;
+			cursor : pointer;
+
+			p{
+				padding: 5% 0;
+			}
+		}
+		
+		.adv-search{
+			float: right;
+			width: 14%; 
+			margin-right: 8%;
+			font-size: 16pt;
+			margin-top: 2%;
+			text-decoration: none;
+
+			a{
+				text-decoration: none;
+				color: #e5e5e5;
+			}
+		}	
+	}
+}
+
+.intro-section{
+	font-family: BloggerSansRegular;
+
+	.heading{
+		width: 85%;
+		margin : 2% auto;
+		
+		p{
+			font-size: 28pt;
+			text-align: center;
+			line-height: 40pt;
+			font-weight: normal;
+			color: black;
+		}
+	}
+
+	.grnd-img{
+		margin: 5% 0;
+		text-align: center
+	}
+}
+
+.user-speaks{
+	background: #f1f1f1;
+	
+	h2{
+		font-size:30pt;
+		text-align: center;
+		padding: 5% 0;
+		font-family: BloggerSansRegular;
+	}
+
+	.users-bar{
+		width: 90%;
+		margin: 0 auto;
+		font-family: BloggerSansLight;
+		
+		.users{
+			.user-one{
+				width: 49%;
+				margin: 0 0 4%;
+				display: inline-block;
+				
+				.user-image{
+					display: inline-block;
+				}
+				.about-user{
+					width: 66%;
+					display: inline-block;
+					vertical-align: top;
+					margin-left: 5%;
+					background: #f7f7f7;
+					box-shadow: 2px 2px 2px #d3d3d3;
+					border: 1px solid #d3d3d3;
+
+					.user-desc{
+						width: 90%;
+						margin: 0 auto;
+
+						.user-desc-header{
+							color: #467cae;
+							border-bottom: 1px dashed #666666;
+
+							p{
+								margin : 4% 0;
+							}
+
+							.user-name{
+								display: inline-block;
+							}
+
+							.user-type{
+								display: inline-block;
+								float: right;
+								clear: both;
+							}
+						}
+
+						.user-desc-text{
+							margin: 4% 0 6%;
+							color: black;
+							line-height: 18pt;
+						}
+					}
+				}
+			}
+
+			.arrow_box {
+				position: relative;
+				background: #f7f7f7;
+				border: 4px solid #f7f7f7;
+			}
+			.arrow_box:after, .arrow_box:before {
+				right: 100%;
+				top: 50%;
+				border: solid transparent;
+				content: " ";
+				height: 0;
+				width: 0;
+				position: absolute;
+				pointer-events: none;
+			}
+
+			.arrow_box:after {
+				border-color: rgba(136, 183, 213, 0);
+				border-right-color: #f7f7f7;
+				border-width: 19px;
+				margin-top: -19px;
+			}
+			.arrow_box:before {
+				border-color: rgba(194, 225, 245, 0);
+				border-right-color: #d3d3d3;
+				border-width: 21px;
+				margin-top: -21px;
+			}
+		}
+
+		.image-bullets{
+			text-align: center;
+			padding-bottom: 2%;
+		}
+	}
+}
+
+//----------------------------------------------------//
+//
+//------Styles for index page end here----------------//
+//
+//----------------------------------------------------//
+
+
+//----------------------------------------------------//
+//
+//------Styles for search-results start here----------//
+//
+//----------------------------------------------------//
+
+.search-criteria{
+	background: white;
+	font-family: BloggerSansLight;
+
+	.criteria-container{
+		width: 90%;
+		margin: 2% auto;
+		font-size: 20pt;
+
+		.location-criteria, .sport-criteria, .selected-date{
+			display: inline-block;
+		}
+		
+		.sport-criteria{
+			margin-left: 26%;
+		}
+
+		.selected-date{
+			width: 20%;
+			margin-left: 24%;
+
+			p{
+				display: inline-block;
+			}
+			img{
+				display: inline-block;
+				margin-left: 8%;
+			}
+		}
+	}
+}
+
+.results-count{
+	background: #f1f1f1;
+
+	.count-container{
+		.FixedMargin;
+		padding: 2% 0;
+
+		.res-number{
+			.textCentralizedLogo;
+			p{
+				font-family: BloggerSansRegular;				
+				font-size: 18pt;
+			}
+		}
+
+		.search-box{
+			.textCentralizedLogo;
+			width: 15%;
+			margin-left: 70%;
+
+			input{
+				.appearanceClear;
+				width: 100%;
+				font-size: 15pt;
+				font-family: BloggerSansLight;
+				border-radius: 5px;
+				background: #f1f1f1;
+				border: 1px solid #aeaeae;
+				padding: 10px;
+			}
+		}
+	}
+}
+
+.results{
+
+	.individual-result{
+		padding-bottom: 20px;
+		border-bottom: 10px solid #f1f1f1;
+
+
+		.res-container{
+			.FixedMargin;
+
+			.res-header{
+				margin: 2% 0;
+				font-family: BloggerSansRegular;
+				font-size: 20pt;
+
+				a{
+					text-decoration: none;
+					color: black;
+				}
+			}
+			
+			.res-details{
+				width: 100%;
+
+				.res-image, .res-desc-short, .res-contact-details{
+					display: inline-block;
+				}
+
+				.res-desc-short{
+					width: 35%;
+					vertical-align: top;
+					margin-left: 5%;
+
+					h3{
+						font-family: BloggerSansRegular;
+						font-size: 18pt;
+					}
+
+					p{
+						font-family: BloggerSansLight;
+						font-size: 15pt;
+						margin-top: 5%;
+						line-height: 35px;
+					}
+				}
+
+				.res-contact-details{
+					width: 18%;
+					vertical-align: top;
+					margin-left: 18%;
+
+					h3{
+						font-family: BloggerSansRegular;
+						font-size: 17pt;
+						margin-bottom: 3%;
+					}
+
+					p{
+						font-family: BloggerSansLight;
+						font-size: 13pt;
+						line-height: 20px;
+						margin-bottom: 3%;
+					}
+				}
+			}
+
+			.res-footer{
+
+				.res-ground-details{
+					display: inline-block;
+					width: 40%;
+					margin-top: 1%;
+
+					.avail{
+						display: inline-block;
+
+						h3{
+							font-family: BloggerSansRegular;
+							font-size: 15pt;
+						}
+					}
+
+					.rating{
+						margin-left: 10%;
+						display: inline-block;
+						width: 50%;
+
+						h3{
+							display: inline-block;
+							font-family: BloggerSansRegular;
+							font-size: 15pt;
+						}
+
+						.rating-stars{
+							display: inline-block;
+							margin-left: 8%;
+						}
+					}
+				}
+
+				.res-ground-options{
+					display: inline-block;
+					width: 25%;
+					margin-left: 34%;
+
+					p{
+						display: inline-block;
+						font-family: BloggerSansLight;
+						font-size: 15pt;
+						margin:0 5%;
+					}
+				}
+			}
+		}
+	}
+}
+
+
+//----------------------------------------------------//
+//
+//------Styles for search-results end here------------//
+//
+//----------------------------------------------------//
+
+//----------------------------------------------------//
+//
+//------Styles for single ground start here-----------//
+//
+//----------------------------------------------------//
+
+.ground-name{
+	background: #f1f1f1;
+	border-bottom: @boxBorderGroundDetails;
+
+	p{
+		font-family: BloggerSansRegular;
+		font-size: 20pt;
+		padding: 30px 20px;
+	}
+}
+
+.ground-content{
+	border-bottom: @boxBorderGroundDetails;
+
+	.left-section{
+		width: 58%;
+		display: inline-block;
+		border-right: @boxBorderGroundDetails;
+
+		.ground-images{
+			border-bottom: @boxBorderGroundDetails;
+
+			img{
+				margin: 6% 0 6% 10%;
+			}
+		}
+
+		.ground-sport-info{
+			border-bottom: @boxBorderGroundDetails;
+
+			.ground-sport-info-container{
+				.BoxMarginGroundDetails;
+
+				h3{
+					font-size: 17pt;
+					margin-bottom: 2%;
+					font-family: BloggerSansRegular;
+				}
+
+				p{
+					font-size:15pt;
+					line-height: 30px;
+					font-family: BloggerSansLight;
+				}
+			}
+		}
+
+		.ground-location{
+			border-bottom: @boxBorderGroundDetails;
+
+			.ground-location-container{
+				.BoxMarginGroundDetails;
+
+				h3{
+					font-size: 17pt;
+					margin-bottom: 2%;
+					font-family: BloggerSansRegular;
+				}
+
+				.ground-address{
+					width: 35%;
+					display: inline-block;
+					// vertical-align: middle;
+
+					p{
+						font-size:15pt;
+						line-height: 25px;
+						font-family: BloggerSansLight;
+					}
+				}
+
+				.ground-contact{
+					width: 20%;
+					display: inline-block;
+					margin-left: 42%;
+					font-family: BloggerSansLight;
+					font-size: 15pt;
+
+					p:first-child{
+						margin-bottom: 10%;
+						font-size: 18pt;
+						font-family: BloggerSansRegular;
+					}
+				}
+			}
+		}
+
+		.ground-share{
+			.ground-share-container{
+				.BoxMarginGroundDetails;
+
+				h3{
+					font-size: 17pt;
+					margin-bottom: 4%;
+					font-family: BloggerSansRegular;
+				}
+
+				.sharing-icons{
+					text-align: center;
+
+					img{
+						margin-left: 5%;
+					}
+				}
+			}
+		}
+	}
+
+	.right-section{
+		width: 41%;
+		display: inline-block;
+		vertical-align: top;
+
+		.ground-desc{
+			border-bottom: @boxBorderGroundDetails;
+
+			.ground-desc-container{
+				width: 90%;
+				margin: 4% auto;
+
+				h3{
+					font-size: 17pt;
+					margin-bottom: 4%;
+					font-family: BloggerSansRegular;
+				}
+
+				p{
+					font-size:15pt;
+					line-height: 25px;
+					font-family: BloggerSansLight;
+				}
+			}
+		}
+
+		.ground-events{
+			border-bottom: @boxBorderGroundDetails;
+
+			.ground-events-container{
+				width: 90%;
+				margin: 4% auto;
+
+				.events-header{
+					margin-bottom: 4%;
+
+					.event-header-title{
+						.textCentralizedLogo;
+						font-size: 17pt;
+						font-family: BloggerSansRegular;
+					}
+
+					.calendar-img{
+						margin-left: 64%;
+						.textCentralizedLogo;
+					}
+				}
+
+				.event-list{
+					margin-bottom: 4%;
+
+					.individual-event{
+						border: 1px solid #bebebe;
+						border-radius: 4px;
+						margin-bottom: 2%;
+
+						.event-date, .event-name{
+						 	padding: 15px;
+						 	display: inline-block;
+						 	font-size: 15pt;
+						 	font-family: BloggerSansLight;
+						 }
+
+					 	.event-date{
+					 		width: 15%;
+					 		border-right: 1px solid #bebebe;
+					 	}
+					}
+				}
+
+				.no-events{
+					text-align: center;
+					font-size: 12pt;
+					font-family: BloggerSansLight;
+					color: silver;
+				}
+			}
+		}
+
+		.ground-reviews{
+			.reviews-container{
+				width: 90%;
+				margin: 4% auto;
+
+				h3{
+					font-size: 17pt;
+					margin-bottom: 4%;
+					font-family: BloggerSansRegular;
+				}
+
+				.rating{
+					display: inline-block;
+					width: 50%;
+
+					h3{
+						display: inline-block;
+						font-family: BloggerSansRegular;
+						font-size: 15pt;
+					}
+
+					.rating-stars{
+						display: inline-block;
+						margin-left: 8%;
+					}
+				}
+
+				.individual-review{
+					background: #f1f1f1;
+					border-radius: 4px;
+					margin-top: 2%;
+
+					.individual-review-container{
+						width: 97%;
+						margin: 0 auto;
+						padding: 8px 0 5px 0;
+
+						.user-pic{
+							display: inline-block;
+						}
+
+						.review-detail{
+							display: inline-block;
+							width: 89%;
+							vertical-align: top;
+
+							.review-detail-header{
+								h4{
+									display: inline-block;
+									font-size: 15pt;
+									margin-bottom: 2%;
+									font-family: BloggerSansRegular;
+								}
+
+								p{
+									display: inline-block;
+									font-size: 12pt;
+									margin-left: 75%;
+									margin-bottom: 2%;
+									font-family: BloggerSansLight;
+									color:silver;
+								}
+							}
+
+							.review-desc{
+								font-size: 13pt;
+								font-family: BloggerSansLight;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.ground-map{
+	h3{
+		margin: 2%;
+		font-size: 17pt;
+		font-family: BloggerSansRegular;
+	}
+}
+
+//----------------------------------------------------//
+//
+//------Styles for single ground end here-------------//
+//
+//----------------------------------------------------//
+
+//----------------------------------------------------//
+//
+//------Styles for sign in popup start here-----------//
+//
+//----------------------------------------------------//
+
+.signup-popup{
+	background: rgba(255,255,255, 0.5);
+	// opacity: 0.5;
+
+	.header{
+		margin: 5% 0 5% 90%;
+		background: white;
+
+		img{
+			cursor: pointer;
+		}
+	}
+
+	.content{
+		width: 40%;
+		margin: 0 auto;
+
+		.emailid-input, .password-input{
+			margin: 5% 0;
+			width: 100%;
+			overflow: hidden;
+
+			input{
+				.appearanceClear;
+				background: url('../images/sign-up-mail-icon.png') no-repeat;
+				background-position: left 2% center;
+				padding: 10px 10px 10px 60px;
+				font-family: BloggerSansLight;
+				font-size: 20pt;
+				border: none;
+				width: 90%;
+				border-bottom: 1px solid #bebebe;
+
+			}
+		}
+
+		.password-input{
+			input{
+				background: url('../images/password-signup-icon.png') no-repeat;
+				background-position: left 2.5% center;
+			}
+		}
+
+		.signup-button{
+			margin-top: 10%; 
+			width: 100%;
+			background: #adc04c;
+			text-align: center;
+			padding: 25px 0;
+			border-radius: 8px;
+			cursor: pointer;
+			font-size: 20pt;
+			font-family: BloggerSansLight;
+			color: white;
+			border-bottom: 4px solid #80902b;
+		}
+
+		p{
+			text-align: center;
+			margin: 5% 0;
+			font-family: BloggerSansLight;
+			font-size: 14pt;
+		}
+
+		.fb-button{
+			background: #43609f;
+			padding: 10px 15px;
+			text-align: center;
+			font-size: 16pt;
+			width: 30%;
+			font-family: BloggerSansLight;
+			border-radius: 6px;
+			margin: 0 auto;
+			color: white;
+		}
+	}
+}
+
+//----------------------------------------------------//
+//
+//------Styles for sign in popup end here-------------//
+//
+//----------------------------------------------------//
+
+.footer{
+	.FixedMargin;
+	font-family: BloggerSansRegular;
+
+	.footer-content{
+		margin: 2% 0;
+
+		.foot-text{
+			font-size: 16pt;
+			display: inline-block;
+		}
+
+		.footer-nav{
+			display: inline-block;
+			margin-left: 60%;
+
+			a{
+				text-decoration: none;
+				color: black;
+				font-size: 16pt;
+			}
+		}
+	}
+}
