@@ -4,8 +4,7 @@
 * @description :: TODO: You might write a short summary of how this model works and what it represents here.
 * @docs        :: http://sailsjs.org/#!documentation/models
 */
-var crypto     = require('crypto');
-var random 	   = require("random-js")();
+
 
 module.exports = {
   types: {
@@ -51,10 +50,13 @@ module.exports = {
 		ratingCount : {
 			type: 'integer',
 			defaultsTo: 0
+		},
+		phoneNum : {
+			type: ' integer'
 		}
 
-  },
-  list: function(cb){
+	},
+	list: function(cb){
   		Ground.find().exec(function(err, grounds){
   			grounds = _.map(grounds, function(ground){
   				return ground;
@@ -66,7 +68,7 @@ module.exports = {
   		});
   	},
   	groundCreate : function(opts, cb){
-  		Ground.findOne({groundName: opts.groundName}).exec(function(err, ground){
+  		Ground.findOne({groundName: opts.groundName, sport: opts.sports, area: opts.area}).exec(function(err, ground){
 	  		if(err){
 	  			cb(err);
 	  		}
@@ -86,18 +88,20 @@ module.exports = {
 	  	});
   	},
   	searchGroundAdvanced : function(opts,cb){
+  		//http://stackoverflow.com/questions/3305561/how-to-query-mongodb-with-like
 		Ground.find({area : opts.area, sport : opts.sport }).exec(function(err, grounds){
 	  			grounds = _.map(grounds, function(ground){
 	  				return ground;
 	  			});
 	  			if(err)
 	  				cb(err);
-	  			else
+	  			else{
+	  				
 	  				cb(null, grounds);
+	  			}
 	  		});
   	},
   	groundAvgRating : function(opts,cb){
-  		console.log(opts);
   		Ground.findOne({ id: opts.groundId}).exec(function(err, ground){
 	  		if(err){
 	  			console.log(err)
@@ -118,12 +122,71 @@ module.exports = {
 			  		}
 	  			});
 
-	  			cb(null,newRating)
+	  			// cb(null,newRating);
 	  		}
 	      else{
 	        cb("Ground detail is not available");
 	      }		
 	  	});
+  	},
+  	groundUpdate:function(opts,cb){
+  		Ground.findOne({ id: opts.groundId }).exec(function(err,ground){
+  			if(err){
+  				console.log(err);
+  				cb(err);
+  			}else if(ground){
+  				var newSports = opts.sport || ground.sport;
+  				var newGroundInfo = opts.groundInfo || ground.groundInfo;
+  				var newGroundName = opts.groundName || ground.groundName;
+  				var newGroundAddress = opts.address || ground.address;
+  				var newCity = opts.city || ground.city;
+  				var newArea = opts.area || ground.area;
+  				var newLocationX = opts.location.x || ground.location.x;
+  				var newLocationY = opts.location.y || ground.location.y;
+
+  				Ground.update({
+  					id: opts.groundId
+  				},{
+  					sport : newSports,
+  					groundInfo : newGroundInfo,
+  					groundName : newGroundName,
+  					address : newGroundAddress,
+  					city : newCity,
+  					area : newArea,
+  					location : { x: newLocationX, y: newLocationY }
+  				}).exec(function(err,ground){
+  					if(err){
+			  			console.log(err);
+			  			cb(err);
+			  		}
+			  		else{
+			  			cb(null,ground);
+			  		}
+  				});
+  			}else{
+  				cb('Update not possible');
+  			}
+  		});
+  	},
+
+  	groundDelete : function(opts,cb){
+  		Ground.findOne({ id : opts}).exec(function(err,ground){
+  			if(err){
+  				console.log(err);
+  				cb(err);
+  			}else if(ground){
+				Ground.destroy({id: opts}).exec(function(err){
+					if(err){
+						console.log(err);
+						cb(err);
+					}else{
+						cb(null,'Ground deleted successfully')
+					}
+			});
+  			}else{
+  				console.log('Unable to delete this ground');
+  			}
+  		})
   	}
 
 };

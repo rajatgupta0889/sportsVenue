@@ -14,7 +14,7 @@
 		</div>
 		<div class="social-contact">
 			<div class="sign-in">
-				<a href="/sign_in">Sign In</a>
+				<a href="#" data-toggle="modal" data-target="#signupModal">Sign In</a>
 			</div>
 			<div class="fb-link">
 				<a href="https://www.facebook.com/mantralabs">
@@ -35,8 +35,8 @@
 			<p class="select-heading">Where you want to be ?</p>
 			<div class="selection-divs">
 				<select class="location-select">
-					<option>Location</option>
-					<option>Bangalore</option>
+					<option selected="selected">Location</option>
+					<option>Karnataka</option>
 					<option>Delhi</option>
 					<option>Kolkata</option>
 					<option>Barcelona</option>
@@ -48,7 +48,7 @@
 			<p class="select-heading">Type of sport ?</p>
 			<div class="selection-divs">
 				<select class="sport-select">
-					<option>Sports</option>
+					<option selected="selected">Sports</option>
 					<option>Cricket</option>
 					<option>Football</option>
 					<option>Volleyball</option>
@@ -81,7 +81,7 @@
 </div>
 <div class="user-speaks">
 	<h2>What Our Users say</h2>
-	<div class="users-bar">
+	<div class="users-bar bxslider">
 		<div class="users">
 			<div class="user-one">
 				<div class="user-image">
@@ -116,10 +116,73 @@
 				</div>
 			</div>
 		</div>
-		<div class="image-bullets">
-			<a href="javascript:"><img src="images/light-bullet.png" alt="lb"/></a>
-			<a href="javascript:"><img src="images/normal-bullet.png" alt="nb"/></a>
-			<a href="javascript:"><img src="images/dark-bullet.png" alt="db"/></a>
+		<div class="users">
+			<div class="user-one">
+				<div class="user-image">
+					<img src="images/user-1.png">
+				</div>
+				<div class="about-user arrow_box">
+					<div class="user-desc">
+						<div class="user-desc-header">
+							<p class="user-name">- Staciya Trollie</p>
+							<p class="user-type">User</p>
+						</div>
+						<div class="user-desc-text">
+							Lorem Ipsum is simply dummy text of the printing and industry. Lorem Ipsum has been the industry.
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="user-one">
+				<div class="user-image">
+					<img src="images/user-2.png">
+				</div>
+				<div class="about-user arrow_box">
+					<div class="user-desc">
+						<div class="user-desc-header">
+							<p class="user-name">- David Soul</p>
+							<p class="user-type">User</p>
+						</div>
+						<div class="user-desc-text">
+							Lorem Ipsum is simply dummy text of the printing and industry. Lorem Ipsum has been the industry.
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="users">
+			<div class="user-one">
+				<div class="user-image">
+					<img src="images/user-1.png">
+				</div>
+				<div class="about-user arrow_box">
+					<div class="user-desc">
+						<div class="user-desc-header">
+							<p class="user-name">- Staciya Trollie</p>
+							<p class="user-type">User</p>
+						</div>
+						<div class="user-desc-text">
+							Lorem Ipsum is simply dummy text of the printing and industry. Lorem Ipsum has been the industry.
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="user-one">
+				<div class="user-image">
+					<img src="images/user-2.png">
+				</div>
+				<div class="about-user arrow_box">
+					<div class="user-desc">
+						<div class="user-desc-header">
+							<p class="user-name">- David Soul</p>
+							<p class="user-type">User</p>
+						</div>
+						<div class="user-desc-text">
+							Lorem Ipsum is simply dummy text of the printing and industry. Lorem Ipsum has been the industry.
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -134,4 +197,31 @@
 			<a href="http://www.mantralabsglobal.com/contactus">Contact Us</a>
 		</div>
 	</div>
+</div>
+<div class="modal fade hide" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">
+  	<div class="modal-dialog">
+    	<div class="modal-content signup-popup">
+	      	<div class="modal-header header">
+	       		<!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+	        	<img src="images/close-icon.png" data-dismiss="modal" aria-label="Close" alt="close"/>
+	        	<!-- <h4 class="modal-title">Modal title</h4> -->
+	      	</div>
+	      	<div class="modal-body content">
+		      	<div class="emailid-input">
+					<input type="text" placeholder="Email address:"/>
+				</div>
+				<div class="password-input">
+					<input type="text" placeholder="Password:"/>
+				</div>
+				<div class="signup-button">
+					Create Account
+				</div>
+				<p>Or, Sign in with</p>
+				<div class="fb-button">
+					Facebook
+				</div>
+	        	<!-- <p>One fine body&hellip;</p> -->
+		    </div>
+    	</div><!-- /.modal-content -->
+  	</div><!-- /.modal-dialog -->
 </div>

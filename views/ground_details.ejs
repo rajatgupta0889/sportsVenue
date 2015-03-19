@@ -14,7 +14,7 @@
 		</div>
 		<div class="social-contact">
 			<div class="sign-in">
-				<a href="/sign_in">Sign In</a>
+				<a href="javascript:" data-toggle="modal" data-target="#signupModal">Sign In</a>
 			</div>
 			<div class="fb-link">
 				<a href="https://www.facebook.com/mantralabs">
@@ -170,7 +170,7 @@
 </div>
 <div class="ground-map">
 	<h3><span>Map</span></h3>
-	<div id="googleMap" style="width:1370px;height:300px;border: 10px solid #f1f1f1;"></div>
+	<div id="googleMap" style="width:1375px;height:300px;border: 10px solid #f1f1f1;"></div>
 </div>
 <div class="footer">
 	<div class="footer-content">
@@ -183,6 +183,33 @@
 			<a href="http://www.mantralabsglobal.com/contactus">Contact Us</a>
 		</div>
 	</div>
+</div>
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">
+  	<div class="modal-dialog">
+    	<div class="modal-content signup-popup">
+	      	<div class="modal-header header">
+	       		<!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+	        	<img src="images/close-icon.png" data-dismiss="modal" aria-label="Close" alt="close"/>
+	        	<!-- <h4 class="modal-title">Modal title</h4> -->
+	      	</div>
+	      	<div class="modal-body content">
+		      	<div class="emailid-input">
+					<input type="text" placeholder="Email address:"/>
+				</div>
+				<div class="password-input">
+					<input type="text" placeholder="Password:"/>
+				</div>
+				<div class="signup-button">
+					Create Account
+				</div>
+				<p>Or, Sign in with</p>
+				<div class="fb-button">
+					Facebook
+				</div>
+	        	<!-- <p>One fine body&hellip;</p> -->
+		    </div>
+    	</div><!-- /.modal-content -->
+  	</div><!-- /.modal-dialog -->
 </div>
 <script src="http://maps.googleapis.com/maps/api/js"></script>
 <script>

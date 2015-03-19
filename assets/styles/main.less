@@ -1,5 +1,11 @@
 @import url('base-styles-reset.css');
 
+@import url('jquery.bxslider.css');
+
+@import url('bootstrap.min.css');
+
+@import url('bootstrap-responsive.min.css');
+
 @backColor : #000000;
 
 @boxBorderGroundDetails : 2px solid #bebebe;
@@ -123,6 +129,7 @@ span{
 		width: 85%;
 		margin: 0 auto;	
 		padding: 24% 0;
+		//padding 21% 0; when in advanced search
 
 		.locations, .sports, .search-button{
 			display: inline-block;
@@ -142,7 +149,7 @@ span{
 					width: 90%;
 					margin-top: 5%;
 					font-size: 19px;
-					height: 66px;
+					height: 60px;
 					padding: 0 12% 0 8%;
 					border-radius: 8px;	
 					background: #fff url('../images/dropdown-arrow.png') no-repeat left 95% center;
@@ -170,7 +177,7 @@ span{
 
 			input{
 				width: 92%;
-				padding: 20px;
+				padding: 18px;
 				font-size: 19px;
 				border-radius: 8px;
 				-webkit-appearance : none;
@@ -186,15 +193,21 @@ span{
 			background: #94a633;
 			border-radius: 8px;
 			cursor : pointer;
+			vertical-align: middle;
+			position: relative;
+			top: -5px;
 
 			p{
-				padding: 5% 0;
+				padding: 3% 0;
+				margin-top: 2%;
 			}
 		}
 		
 		.adv-search{
 			float: right;
+			// width: 17%; when in advanced search
 			width: 14%; 
+			// margin-right: 7%;
 			margin-right: 8%;
 			font-size: 16pt;
 			margin-top: 2%;
@@ -266,6 +279,7 @@ span{
 					.user-desc{
 						width: 90%;
 						margin: 0 auto;
+						font-size: 13pt;
 
 						.user-desc-header{
 							color: #467cae;
@@ -287,7 +301,7 @@ span{
 						}
 
 						.user-desc-text{
-							margin: 4% 0 6%;
+							margin: 2% 0 4%;
 							color: black;
 							line-height: 18pt;
 						}
@@ -324,11 +338,11 @@ span{
 				margin-top: -21px;
 			}
 		}
+	}
 
-		.image-bullets{
-			text-align: center;
-			padding-bottom: 2%;
-		}
+	.image-bullets{
+		text-align: center;
+		padding-bottom: 2%;
 	}
 }
 
@@ -358,13 +372,34 @@ span{
 			display: inline-block;
 		}
 		
+		.location-criteria, .sport-criteria{
+			width: 20%;
+			select{
+				.appearanceClear;
+				cursor : pointer;
+				width: 100%;
+				margin-top: 5%;
+				font-size: 19px;
+				height: 50px;
+				padding: 0 12% 0 8%;
+				border-radius: 8px;	
+				background: #fff url('../images/dropdown-arrow.png') no-repeat left 95% center;
+
+				option{
+					padding: 4px 0;
+					text-align: center;
+					margin-left: 10px;
+				}
+			}
+		}
+
 		.sport-criteria{
-			margin-left: 26%;
+			margin-left: 20%;
 		}
 
 		.selected-date{
 			width: 20%;
-			margin-left: 24%;
+			margin-left: 18%;
 
 			p{
 				display: inline-block;
@@ -425,11 +460,6 @@ span{
 				margin: 2% 0;
 				font-family: BloggerSansRegular;
 				font-size: 20pt;
-
-				a{
-					text-decoration: none;
-					color: black;
-				}
 			}
 			
 			.res-details{
@@ -824,80 +854,98 @@ span{
 //
 //----------------------------------------------------//
 
-.signup-popup{
-	background: rgba(255,255,255, 0.5);
-	// opacity: 0.5;
+.modal{
+	left:0;
+	width: 70%;
+	margin-left: 15%;
+	background: white;
 
-	.header{
-		margin: 5% 0 5% 90%;
-		background: white;
 
-		img{
-			cursor: pointer;
+	.signup-popup{
+		background: rgba(255,255,255, 0.5);
+		// opacity: 0.5;
+
+		.header{
+			margin: 3% 0 0 90%;
+			background: white;
+			border: none;
+
+			img{
+				cursor: pointer;
+			}
 		}
-	}
 
-	.content{
-		width: 40%;
-		margin: 0 auto;
+		.content{
+			width: 60%;
+			margin: 0 auto 5%;
 
-		.emailid-input, .password-input{
-			margin: 5% 0;
-			width: 100%;
-			overflow: hidden;
+			.emailid-input, .password-input{
+				margin: 5% 0;
+				width: 100%;
+				overflow: hidden;
 
-			input{
-				.appearanceClear;
-				background: url('../images/sign-up-mail-icon.png') no-repeat;
-				background-position: left 2% center;
-				padding: 10px 10px 10px 60px;
-				font-family: BloggerSansLight;
+				input{
+					.appearanceClear;
+					background: url('../images/sign-up-mail-icon.png') no-repeat;
+					background-position: left 2% center;
+					padding: 10px 10px 10px 60px;
+					font-family: BloggerSansLight;
+					font-size: 20pt;
+					border: none;
+					width: 90%;
+					border-bottom: 1px solid #bebebe;
+					line-height: normal;
+					-webkit-box-shadow: none;
+					box-shadow: none;
+					-moz-box-shadow:none;
+
+				}
+			}
+
+			.password-input{
+				input{
+					background: url('../images/password-signup-icon.png') no-repeat;
+					background-position: left 2.5% center;
+					line-height: normal;
+					-webkit-box-shadow: none;
+					box-shadow: none;
+					-moz-box-shadow:none;
+				}
+			}
+
+			.signup-button{
+				margin-top: 10%; 
+				width: 100%;
+				background: #adc04c;
+				text-align: center;
+				padding: 25px 0;
+				border-radius: 8px;
+				cursor: pointer;
 				font-size: 20pt;
-				border: none;
-				width: 90%;
-				border-bottom: 1px solid #bebebe;
-
+				font-family: BloggerSansLight;
+				color: white;
+				border-bottom: 4px solid #80902b;
 			}
-		}
 
-		.password-input{
-			input{
-				background: url('../images/password-signup-icon.png') no-repeat;
-				background-position: left 2.5% center;
+			p{
+				text-align: center;
+				margin: 5% 0;
+				font-family: BloggerSansLight;
+				font-size: 14pt;
 			}
-		}
 
-		.signup-button{
-			margin-top: 10%; 
-			width: 100%;
-			background: #adc04c;
-			text-align: center;
-			padding: 25px 0;
-			border-radius: 8px;
-			cursor: pointer;
-			font-size: 20pt;
-			font-family: BloggerSansLight;
-			color: white;
-			border-bottom: 4px solid #80902b;
-		}
-
-		p{
-			text-align: center;
-			margin: 5% 0;
-			font-family: BloggerSansLight;
-			font-size: 14pt;
-		}
-
-		.fb-button{
-			background: #43609f;
-			padding: 10px 15px;
-			text-align: center;
-			font-size: 16pt;
-			width: 30%;
-			font-family: BloggerSansLight;
-			border-radius: 6px;
-			margin: 0 auto;
-			color: white;
+			.fb-button{
+				background: #43609f;
+				padding: 10px 15px;
+				text-align: center;
+				font-size: 16pt;
+				width: 30%;
+				font-family: BloggerSansLight;
+				border-radius: 6px;
+				margin: 0 auto;
+				color: white;
+				cursor: pointer;
+			}
 		}
 	}
 }
@@ -931,4 +979,21 @@ span{
 			}
 		}
 	}
+}
+
+//miscellaneous slides
+
+.bx-viewport{
+	-webkit-box-shadow : none !important;
+	-moz-box-shadow : none !important;
+	box-shadow: none !important;
+	border:none !important;
+	margin-left: 3% !important;
+	background: #f1f1f1 !important;
+	left: 0 !important;
+}
+
+.bx-pager{
+	background: #f1f1f1 !important;
+	padding-bottom: 20px !important;
 }

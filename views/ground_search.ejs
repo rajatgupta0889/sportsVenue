@@ -14,7 +14,7 @@
 		</div>
 		<div class="social-contact">
 			<div class="sign-in">
-				<a href="/sign_in">Sign In</a>
+				<a href="javascript:" data-toggle="modal" data-target="#signupModal">Sign In</a>
 			</div>
 			<div class="fb-link">
 				<a href="https://www.facebook.com/mantralabs">
@@ -33,9 +33,21 @@
 	<div class="criteria-container">
 		<div class="location-criteria" title="Click here to change">
 			<p>Location: Bangalore</p>
+			<select class="hide">
+				<option>Bangalore</option>
+				<option>Mumbai</option>
+				<option>Pune</option>
+				<option>NCR</option>
+				<option>Chennai</option>
+			</select>
 		</div>
 		<div class="sport-criteria" title="Click here to change">
 			<p>Type: Football</p>
+			<select class="hide">
+				<option>Cricket</option>
+				<option>Football</option>
+				<option>Athletics</option>
+			</select>
 		</div>
 		<div class="selected-date" title="Click here to change">
 			<p>Date: 10 Mar 2015</p>
@@ -46,7 +58,7 @@
 <div class="results-count">
 	<div class="count-container">
 		<div class="res-number">
-			<p>3 Results Found</p>
+			<p>N Results Found</p>
 		</div>
 		<div class="search-box">
 			<input type="text" placeholder="Search"/>
@@ -57,7 +69,7 @@
 	<div class="individual-result">
 		<div class="res-container">
 			<div class="res-header">
-				<a href="/ground_details">Bangalore Football Stadium</a>
+				<a href="/ground_details">Ground Name here</a>
 			</div>
 			<div class="res-details">
 				<div class="res-image">
@@ -65,11 +77,12 @@
 				</div>
 				<div class="res-desc-short">
 					<h3>Description :</h3>
-					<p>The stadium will reportedly have a capacity between 25,000 to 45,000. <span>Read More</span></p>
+					<p>Ground Info here<span> Read More</span></p>
 				</div>
 				<div class="res-contact-details">
 					<h3>Address :</h3>
 					<p>Ashok Nagar, Xavier Layout, Bengaluru, Karnataka.</p>
+					<p>Ground address here</p>
 					<div class="contact-number">
 						<h3>Contact :</h3><p> 9876543210</p>
 					</div>
@@ -99,7 +112,7 @@
 			</div>
 		</div>
 	</div>
-	<div id="googleMap" style="width:1390px;height:400px;border: 10px solid #f1f1f1;"></div>
+	<div id="googleMap" style="width:1375px;height:400px;border: 10px solid #f1f1f1;"></div>
 	<div class="individual-result">
 		<div class="res-container">
 			<div class="res-header">
@@ -203,8 +216,34 @@
 		</div>
 	</div>
 </div>
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">
+  	<div class="modal-dialog">
+    	<div class="modal-content signup-popup">
+	      	<div class="modal-header header">
+	        	<img src="images/close-icon.png" data-dismiss="modal" aria-label="Close" alt="close"/>
+	      	</div>
+	      	<div class="modal-body content">
+		      	<div class="emailid-input">
+					<input type="text" placeholder="Email address:"/>
+				</div>
+				<div class="password-input">
+					<input type="text" placeholder="Password:"/>
+				</div>
+				<div class="signup-button">
+					Create Account
+				</div>
+				<p>Or, Sign in with</p>
+				<div class="fb-button">
+					Facebook
+				</div>
+		    </div>
+    	</div><!-- /.modal-content -->
+  	</div><!-- /.modal-dialog -->
+</div>
 <script src="http://maps.googleapis.com/maps/api/js"></script>
 <script>
+var grnd = <%-JSON.stringify(ground)%>;
+console.log(grnd);
 function initialize() {
 	var mapCenter = new google.maps.LatLng(12.9715987,77.5945626);
   var mapProp = {

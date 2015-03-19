@@ -41,6 +41,10 @@ module.exports.routes = {
   'post /loginUser' : 'UserController.login',
   'post /signUpUser' : 'UserController.signUp',
   'get /isLoggedIn' : 'UserController.isLoggedIn',
+
+  'patch /update/:groundId' : 'GroundController.updateGround',
+  'get /grounds' : 'GroundController.listGrounds',
+  'delete /ground/:groundId' : 'GroundController.deleteGround',
   // '/': {
   //   view: 'homepage'
   // }
@@ -53,16 +57,15 @@ module.exports.routes = {
     view: 'index'
   },
 
-  '/grounds': {
-    view: 'ground_search'
+  // '/grounds': {
+  //   view: 'ground_search'
+  // },
+  '/searchAdvance':{
+    view : 'ground_search'
   },
 
   '/ground_details': {
     view: 'ground_details'
-  },
-
-  '/sign_in': {
-    view: 'SignIn'
   }
 
   /***************************************************************************

@@ -46,11 +46,58 @@ module.exports = {
 				if(err)
 					res.serverError(err);
 				else{
-					res.send(grounds);
-					console.log("Ground search");
+					// var grnd = <%-JSON.stringify(ground)%>;
+					// console.log(grnd);
+					// res.send(grounds);
+					console.log(grounds);
+					res.render('ground_search', { ground: grounds});
+					console.log("Grounds searched successfully");
 				}		
+			});
+		}
+	},
+	updateGround : function(req, res){
+		var groundId = req.param('groundId');
+		req.body.groundId = groundId;
+		if(!req.body || !req.body.sport || !req.body.groundName || !req.body.city){
+			res.badRequest(req.body.sport + req.body.groundName + req.body.city)
+		}
+		else{
+			Ground.groundUpdate(req.body, function(err,ground){
+				if(err)
+					res.serverError(err);
+				else{
+					res.send(ground);
+					console.log('Ground Successfully Updated');
+				}
+			});
+		}
+	},
+	listGrounds : function(req, res){
+		Ground.list(function(err,grounds){
+			if(err)
+				res.serverError(err);
+			else{
+				// res.send(grounds);
+				// res.view('ground_search', { ground: grounds});
+				console.log('Grounds Found successfully');
+			}
+		});
+	},
+	deleteGround : function(req, res){
+		var groundId = req.param('groundId');
+		if(!groundId){
+			res.badRequest(groundId)
+		}
+		else{
+			Ground.groundDelete(groundId, function(err,msg){
+				if(err){
+					res.serverError(err);
+				}else{
+					res.send(msg);
+					// console.log('Ground deleted successfully');
+				}
 			});
 		}
 	}
 };
-
