@@ -13,9 +13,22 @@
 			</div>
 		</div>
 		<div class="social-contact">
-			<div class="sign-in">
-				<a href="#" data-toggle="modal" data-target="#signupModal">Sign In</a>
+			<%if(req.session.user){%>
+			<div class="user-name">
+				<p><%=req.session.user.username%></p>
 			</div>
+			<div class="user-options" id="userOptions">
+				<a href="#" class="menu-option">Edit My Profile</a>
+				<a href="#" class="menu-option">Show My Reviews</a>
+				<a href="#" class="menu-option">Add a Ground</a>
+				<a href="/logout" class="menu-option">Logout</a>
+			</div>
+			<%}else{%>
+			<div class="sign-in">
+				<a href="#" id="signIn" data-toggle="modal" data-target="#signInModal">Sign In</a>&nbsp;|
+				<a href="#" id="signUp" data-toggle="modal" data-target="#signUpModal">Sign Up</a>
+			</div>
+			<%}%>
 			<div class="fb-link">
 				<a href="https://www.facebook.com/mantralabs">
 					<img src="images/fb-link-icon.png" alt="Fb Icon"/>
@@ -31,44 +44,45 @@
 </div>
 <div class="search-section">
 	<div class="search-bar">
-		<div class="locations hide">
-			<p class="select-heading">Where you want to be ?</p>
-			<div class="selection-divs">
-				<select class="location-select">
-					<option selected="selected">Location</option>
-					<option>Karnataka</option>
-					<option>Delhi</option>
-					<option>Kolkata</option>
-					<option>Barcelona</option>
-					<option>London</option>
-				</select>
+		<form action="/searchAdvance" method="POST" enctype="application/x-www-form-urlencoded">
+			<div class="locations hide">
+				<p class="select-heading">Where you want to be ?</p>
+				<div class="selection-divs">
+					<select class="location-select" name="area">
+						<option selected="selected" value="">Location</option>
+						<option value = "Karnataka">Karnataka</option>
+						<option value = "Delhi">Delhi</option>
+						<option value = "Kolkata">Kolkata</option>
+						<option value = "Barcelona">Barcelona</option>
+						<option value = "London">London</option>
+					</select>
+				</div>
 			</div>
-		</div>
-		<div class="sports hide">
-			<p class="select-heading">Type of sport ?</p>
-			<div class="selection-divs">
-				<select class="sport-select">
-					<option selected="selected">Sports</option>
-					<option>Cricket</option>
-					<option>Football</option>
-					<option>Volleyball</option>
-					<option>Swimming</option>
-					<option>Tennis</option>
-				</select>
+			<div class="sports hide">
+				<p class="select-heading">Type of sport ?</p>
+				<div class="selection-divs">
+					<select class="sport-select" name="sport">
+						<option selected="selected" value="">Sports</option>
+						<option value="Cricket">Cricket</option>
+						<option value="Football">Football</option>
+						<option value="Volleyball">Volleyball</option>
+						<option value="Swimming">Swimming</option>
+						<option value="Tennis">Tennis</option>
+					</select>
+				</div>
 			</div>
-		</div>
-		<div class="venue-search">
-			<input type="text" class="text-search" placeholder="Search Sports Venue"/>
-		</div>
-		<div class="search-button">
-			<p>Search</p>
-		</div>
-		<div class="adv-search" id="advancedSearch">
-			<a href="javascript:">Advanced Search</a>
-		</div>
-		<div class="adv-search hide" id="normalSearch">
-			<a href="javascript:">Back to Normal Search</a>
-		</div>
+			<div class="venue-search">
+				<input type="text" class="text-search" placeholder="Search Sports Venue"/>
+			</div>
+			<input type="submit" value="Search" class="search-button"/>
+
+			<div class="adv-search" id="advancedSearch">
+				<a href="javascript:">Advanced Search</a>
+			</div>
+			<div class="adv-search hide" id="normalSearch">
+				<a href="javascript:">Back to Normal Search</a>
+			</div>
+		</form>
 	</div>
 </div>
 <div class="intro-section">
@@ -198,7 +212,7 @@
 		</div>
 	</div>
 </div>
-<div class="modal fade hide" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">
+<div class="modal fade hide" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="signInModalLabel" aria-hidden="true">
   	<div class="modal-dialog">
     	<div class="modal-content signup-popup">
 	      	<div class="modal-header header">
@@ -207,20 +221,84 @@
 	        	<!-- <h4 class="modal-title">Modal title</h4> -->
 	      	</div>
 	      	<div class="modal-body content">
-		      	<div class="emailid-input">
-					<input type="text" placeholder="Email address:"/>
-				</div>
-				<div class="password-input">
-					<input type="text" placeholder="Password:"/>
-				</div>
-				<div class="signup-button">
-					Create Account
-				</div>
-				<p>Or, Sign in with</p>
+	      		<p class="heading-big">Sign In</p>
+	      		<form action="/loginUser" method="post" id="loginForm">
+			      	<div class="emailid-input">
+						<input type="text" name="email" id="eId" placeholder="Email address:"/>
+					</div>
+					<div class="password-input">
+						<input type="password" name="password" id="pwd" placeholder="Password:"/>
+					</div>
+					<!-- <div class="signup-button">
+						Sign In
+					</div> -->
+					<input type="submit" class="signup-button" value="Sign In"/>
+				</form>
+				<p class="paragraph-text">Or, Sign in with</p>
 				<div class="fb-button">
 					Facebook
 				</div>
 	        	<!-- <p>One fine body&hellip;</p> -->
+		    </div>
+    	</div><!-- /.modal-content -->
+  	</div><!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade hide" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModalLabel" aria-hidden="true">
+  	<div class="modal-dialog">
+    	<div class="modal-content signup-popup">
+	      	<div class="modal-header header">
+	        	<img src="images/close-icon.png" data-dismiss="modal" aria-label="Close" alt="close"/>
+	      	</div>
+	      	<div class="modal-body content">
+	      		<p class="heading-big">Sign Up</p>
+	      		<form action="/signUpUser" method="post" id="signUpForm">
+			      	<div class="email-input inputs">
+						<input type="text" name="email" id="emId" placeholder="Email address:"/>
+					</div>
+					<div class="name-input inputs">
+						<input type="text" name="username" id="uName" placeholder="Full Name:"/>
+					</div>
+					<!-- <div class="dob-input inputs">
+						<p>Date of Birth</p>
+						<div class="select-boxes">
+							<select name="day" id="dayDob"></select>
+							<select name="month" id="monthDob"></select>
+							<select name="year" id="yearDob"></select>
+						</div>
+					</div> -->
+					<!-- <div class="gender-input inputs">
+						<p>Gender</p>
+						<div class="gender-radio">
+							<input type="radio" name="gender" value="male">Male</input>
+							<input type="radio" name="gender" value="female">Female</input>
+						</div>
+					</div> -->
+					<!-- <div class="city-input inputs">
+						<p>City: </p>
+						<div class="city-select">
+							<select name="city">
+								<option value="NCR">NCR</option>
+								<option value="Bangalore">Bangalore</option>
+								<option value="Mumbai">Mumbai</option>
+								<option value="Pune">Pune</option>
+								<option value="Chennai">Chennai</option>
+							</select>
+						</div>
+					</div> -->
+					<!-- <div class="contact-input inputs">
+						<input type="text" name="contactNumber" id="contactNum" placeholder="Phone Number:"/>
+					</div> -->
+					<!-- <div class="input-password inputs">
+						<input type="password" name="password" id="pwdOrig" placeholder="Password:"/>
+						<input type="password" id="pwdCopy" placeholder="Reenter Password:"/>
+					</div> -->
+					<input type="submit" class="signup-button" value="Register"/>
+				</form>
+				<p class="paragraph-text">Or, Sign up with</p>
+				<div class="fb-button">
+					Facebook
+				</div>
 		    </div>
     	</div><!-- /.modal-content -->
   	</div><!-- /.modal-dialog -->

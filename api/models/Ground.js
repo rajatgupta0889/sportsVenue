@@ -44,15 +44,16 @@ module.exports = {
 		availability: {
 		    	type: 'boolean'
 		},
-		area : {
+		area: {
 			type: 'string'
 		},
-		ratingCount : {
+		ratingCount: {
 			type: 'integer',
 			defaultsTo: 0
 		},
-		phoneNum : {
-			type: ' integer'
+		phoneNum: {
+			type: ' integer',
+			defaultsTo : null
 		}
 
 	},
@@ -164,7 +165,7 @@ module.exports = {
 			  		}
   				});
   			}else{
-  				cb('Update not possible');
+  				cb('Ground Update not possible');
   			}
   		});
   	},
@@ -185,6 +186,17 @@ module.exports = {
 			});
   			}else{
   				console.log('Unable to delete this ground');
+  			}
+  		});
+  	},
+
+  	getSingleGround: function(groundId, cb){
+  		Ground.find({ id : groundId }).exec(function(err, ground){
+  			if(err){
+  				console.log(err);
+  				cb(err,null);
+  			}else{
+  				cb(null,ground);
   			}
   		})
   	}

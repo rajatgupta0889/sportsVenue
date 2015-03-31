@@ -1,0 +1,136 @@
+<div class="header">
+	<div class="nav-bar">
+		<div class="logo-name">
+			<div class="logo-image">
+				<a href="/home">
+					<img src="images/logo.png" alt="SportsVenue"/>
+				</a>
+			</div>
+			<div class="logo-text">
+				<a href="/home">
+					<p>sports venue</p>
+				</a>
+			</div>
+		</div>
+		<div class="social-contact">
+			<div class="sign-in">
+				<a href="#" id="signIn" data-toggle="modal" data-target="#signInModal">Sign In</a>&nbsp;|
+				<a href="#" id="signUp" data-toggle="modal" data-target="#signUpModal">Sign Up</a>
+			</div>
+			<div class="fb-link">
+				<a href="https://www.facebook.com/mantralabs">
+					<img src="images/fb-link-icon.png" alt="Fb Icon"/>
+				</a>
+			</div>
+			<div class="tw-link">
+				<a href="https://www.twitter.com">
+					<img src="images/tw-link-icon.png" alt="Tw Icon"/>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- <div class="post-signup">
+	<div class="signup-container">
+		<img src="images/thumbsup.png" alt="thumbs_up"/>
+		<div class="signup-desc">
+			<p class="heading-big">Sign up Successfull!</p>
+			<p class="heading-small">Thank you for signing up and accepting to help us improve ourselves further!</p>
+			<p class="desc-text">We have sent you an email containing the necessary information about your account activation. Please check your mail inbox and connect with us as soon as possible.</p>
+			<p class="heading-small">We will be waiting for you!</p>
+		</div>
+	</div>
+</div> -->
+<div class="post-signup-content">
+	<div class="signup-container">
+		<p class="head-message">Thank you for registering. We have sent you a mail containing your account information. Please sign in using that information. We are waiting for you.</p>
+		<form action="/loginUser" method="post" id="loginForm">
+			<p class="heading-big">Sign In</p>
+		  	<div class="emailid-input">
+				<input type="text" name="email" id="eId" placeholder="Email address:"/>
+			</div>
+			<div class="password-input">
+				<input type="password" name="password" id="pwd" placeholder="Password:"/>
+			</div>
+			<!-- <div class="signup-button">
+				Sign In
+			</div> -->
+			<input type="submit" class="signup-button" value="Login"/>
+		</form>
+		<p class="paragraph-text">Or, Sign in with</p>
+		<div class="fb-button">
+			Facebook
+		</div>
+	</div>
+	<!-- <p>One fine body&hellip;</p> -->
+</div>
+<div class="footer">
+	<div class="footer-content">
+		<div class="foot-text">
+			&copy; 2014 All Rights Reserved.
+		</div>
+		<div class="footer-nav">
+			<a href="http://www.mantralabsglobal.com">About</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="http://www.mantralabsglobal.com">Blog</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="http://www.mantralabsglobal.com/contactus">Contact Us</a>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade hide" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="signInModalLabel" aria-hidden="true">
+  	<div class="modal-dialog">
+    	<div class="modal-content signup-popup">
+	      	<div class="modal-header header">
+	       		<!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+	        	<img src="images/close-icon.png" data-dismiss="modal" aria-label="Close" alt="close"/>
+	        	<!-- <h4 class="modal-title">Modal title</h4> -->
+	      	</div>
+	      	<div class="modal-body content">
+	      		<p class="heading-big">Sign In</p>
+	      		<form action="/loginUser" method="post" id="loginForm">
+			      	<div class="emailid-input">
+						<input type="text" name="email" id="eId" placeholder="Email address:"/>
+					</div>
+					<div class="password-input">
+						<input type="password" name="password" id="pwd" placeholder="Password:"/>
+					</div>
+					<!-- <div class="signup-button">
+						Sign In
+					</div> -->
+					<input type="submit" class="signup-button" value="Sign In"/>
+				</form>
+				<p class="paragraph-text">Or, Sign in with</p>
+				<div class="fb-button">
+					Facebook
+				</div>
+	        	<!-- <p>One fine body&hellip;</p> -->
+		    </div>
+    	</div><!-- /.modal-content -->
+  	</div><!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade hide" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModalLabel" aria-hidden="true">
+  	<div class="modal-dialog">
+    	<div class="modal-content signup-popup">
+	      	<div class="modal-header header">
+	        	<img src="images/close-icon.png" data-dismiss="modal" aria-label="Close" alt="close"/>
+	      	</div>
+	      	<div class="modal-body content">
+	      		<p class="heading-big">Sign Up</p>
+	      		<form action="/signUpUser" method="post" id="signUpForm">
+			      	<div class="email-input inputs">
+						<input type="text" name="email" id="emId" placeholder="Email address:"/>
+					</div>
+					<div class="name-input inputs">
+						<input type="text" name="username" id="uName" placeholder="Full Name:"/>
+					</div>
+					<input type="submit" class="signup-button" value="Register"/>
+				</form>
+				<p class="paragraph-text">Or, Sign up with</p>
+				<div class="fb-button">
+					Facebook
+				</div>
+		    </div>
+    	</div><!-- /.modal-content -->
+  	</div><!-- /.modal-dialog -->
+</div>

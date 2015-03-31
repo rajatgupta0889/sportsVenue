@@ -35,6 +35,24 @@
 	margin: 3% auto;
 }
 
+.NoBoxShadow{
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	-moz-box-shadow:none;
+}
+
+.CommonInputBoxStyles{
+	.appearanceClear;
+	padding: 10px;
+	font-family: BloggerSansLight;
+	font-size: 20pt;
+	border: none;
+	width: 96%;
+	border-bottom: 1px solid #bebebe;
+	line-height: normal;
+	.NoBoxShadow;
+}
+
 @font-face{
 	font-family: BloggerSansRegular;
 	src : url('../fonts/Blogger_Sans.eot');
@@ -92,13 +110,53 @@ span{
 
 		.social-contact{
 			display: inline-block;
-			margin-left: 60%;
+			// margin-left: 60%;
+			margin-left:50%;
 			margin-top: 0.5%;
+			color:#b2c54e;
+
+			.user-name{
+				display: inline-block;
+				color: white;
+				color:#b2c54e;
+				font-family: BloggerSansRegular;
+				font-size: 20pt;
+				margin-right: 10px;
+				// position: absolute;
+
+				p{
+					cursor: pointer;
+				}
+			}
+
+			#userOptions{
+				display:none;
+				z-index: 99999;
+				position: absolute;
+				width: 200px;
+				border-top: none;
+
+				a{
+					font-family: BloggerSansRegular;
+					font-size: 15pt;
+					display: block;
+					border-bottom: 3px solid white;
+					padding: 15px 10px;
+					text-decoration: none;
+					color: #b2c54e;
+					background: linear-gradient(to right,rgba(0,0,0,1),rgba(255,255,255,0));
+				}
+				
+				a:hover{
+					color: white;
+				}
+			}
 
 			.sign-in{
 				display: inline-block;
 				font-family: BloggerSansRegular;
 				font-size: 20pt;
+				margin-left: 30px;
 
 				a{
 					text-decoration: none;					
@@ -196,9 +254,12 @@ span{
 			vertical-align: middle;
 			position: relative;
 			top: -5px;
+			padding: 1.5% 0;
+			border: none;
+			font-family: BloggerSansRegular;
 
 			p{
-				padding: 3% 0;
+				// padding: 3% 0;
 				margin-top: 2%;
 			}
 		}
@@ -257,6 +318,7 @@ span{
 		width: 90%;
 		margin: 0 auto;
 		font-family: BloggerSansLight;
+		margin-left: 3%;
 		
 		.users{
 			.user-one{
@@ -417,7 +479,7 @@ span{
 
 	.count-container{
 		.FixedMargin;
-		padding: 2% 0;
+		padding: 10px 0;
 
 		.res-number{
 			.textCentralizedLogo;
@@ -431,6 +493,7 @@ span{
 			.textCentralizedLogo;
 			width: 15%;
 			margin-left: 70%;
+			margin-top: 10px;
 
 			input{
 				.appearanceClear;
@@ -449,7 +512,7 @@ span{
 .results{
 
 	.individual-result{
-		padding-bottom: 20px;
+		// padding-bottom: 20px;
 		border-bottom: 10px solid #f1f1f1;
 
 
@@ -460,6 +523,14 @@ span{
 				margin: 2% 0;
 				font-family: BloggerSansRegular;
 				font-size: 20pt;
+
+				a{
+					text-decoration: none;
+				}
+
+				a:hover{
+					color:#08c;
+				}
 			}
 			
 			.res-details{
@@ -482,8 +553,13 @@ span{
 					p{
 						font-family: BloggerSansLight;
 						font-size: 15pt;
-						margin-top: 5%;
+						// margin-top: 5%;
 						line-height: 35px;
+					}
+
+					a:hover{
+						text-decoration: none;
+						color: #3588e5;
 					}
 				}
 
@@ -508,11 +584,12 @@ span{
 			}
 
 			.res-footer{
+				margin-top: 2%;
 
 				.res-ground-details{
 					display: inline-block;
 					width: 40%;
-					margin-top: 1%;
+					// margin-top: 1%;
 
 					.avail{
 						display: inline-block;
@@ -722,7 +799,7 @@ span{
 					}
 
 					.calendar-img{
-						margin-left: 64%;
+						margin-left: 60%;
 						.textCentralizedLogo;
 					}
 				}
@@ -740,6 +817,10 @@ span{
 						 	display: inline-block;
 						 	font-size: 15pt;
 						 	font-family: BloggerSansLight;
+
+						 	p{
+						 		margin: 0;
+						 	}
 						 }
 
 					 	.event-date{
@@ -836,7 +917,7 @@ span{
 
 .ground-map{
 	h3{
-		margin: 2%;
+		margin: 10px 25px 10px !important;
 		font-size: 17pt;
 		font-family: BloggerSansRegular;
 	}
@@ -850,7 +931,7 @@ span{
 
 //----------------------------------------------------//
 //
-//------Styles for sign in popup start here-----------//
+//------Styles for sign in/up popup start here--------//
 //
 //----------------------------------------------------//
 
@@ -862,7 +943,7 @@ span{
 
 
 	.signup-popup{
-		background: rgba(255,255,255, 0.5);
+		background: white;
 		// opacity: 0.5;
 
 		.header{
@@ -879,8 +960,15 @@ span{
 			width: 60%;
 			margin: 0 auto 5%;
 
+			.heading-big{
+				font-size:25pt;
+				font-family: BloggerSansRegular;
+				text-align: center;
+				margin-bottom: 5%;
+			}
+
 			.emailid-input, .password-input{
-				margin: 5% 0;
+				margin: 0% 0 5%;
 				width: 100%;
 				overflow: hidden;
 
@@ -895,10 +983,7 @@ span{
 					width: 90%;
 					border-bottom: 1px solid #bebebe;
 					line-height: normal;
-					-webkit-box-shadow: none;
-					box-shadow: none;
-					-moz-box-shadow:none;
-
+					.NoBoxShadow;
 				}
 			}
 
@@ -907,14 +992,120 @@ span{
 					background: url('../images/password-signup-icon.png') no-repeat;
 					background-position: left 2.5% center;
 					line-height: normal;
-					-webkit-box-shadow: none;
-					box-shadow: none;
-					-moz-box-shadow:none;
+					.NoBoxShadow;
+				}
+			}
+
+			.inputs{
+				margin: 5% 0;
+				width: 100%;
+				overflow: hidden;
+
+				input{
+					.CommonInputBoxStyles;
+				}
+			}
+
+			.dob-input{
+				p{
+					display: inline-block;
+					// margin: 0 !important;
+					vertical-align: middle ;
+					font-size: 15pt;
+					font-family: BloggerSansLight;
+				}
+				
+				.select-boxes{
+					display: inline-block;
+					vertical-align: middle;
+					width: 80%;
+
+					select{
+						.appearanceClear;
+						display: inline-block;
+						width: 25%;
+						margin-left: 20px;
+						height: 50px;
+						font-family: BloggerSansLight;
+						font-size: 15pt;
+						padding: 0 15px;
+					}
+
+					select:first-child{
+						margin-left: 15px;
+					}
+				}
+			}
+
+			.gender-input{
+				font-size: 15pt;
+				font-family: BloggerSansLight;
+				p{
+					display: inline-block;
+					// vertical-align: middle;
+					margin-bottom: 0;
+				}
+				.gender-radio{
+					display: inline-block;
+					// vertical-align: middle;
+
+					input{
+						-webkit-appearance:radio;
+						-moz-appearance:radio;
+						width: 20px;
+						padding: 0;
+						height: 20px;
+						margin:0 ;
+					}
+				}
+			}
+
+			.city-input{
+				font-size: 15pt;
+				font-family: BloggerSansLight;
+
+				p{
+					display: inline-block;
+					
+				}
+
+				.city-select{
+					display: inline-block;
+					margin-left: 15px;
+
+					select{
+						.appearanceClear;
+						// width: 100%;
+						margin-left: 20px;
+						height: 50px;
+						font-family: BloggerSansLight;
+						font-size: 15pt;
+						padding: 0 15px;
+					}
+
+				}
+			}
+
+			.contact-input{
+				margin-bottom: 0px !important;
+
+				input{
+					margin-bottom: 0;
+				}
+			}
+
+			.input-password{
+				input:first-child{
+					margin-bottom: 5%;
+				}
+
+				input:last-child{
+					margin-bottom: 0;
 				}
 			}
 
 			.signup-button{
-				margin-top: 10%; 
+				// margin-top: 5%; 
 				width: 100%;
 				background: #adc04c;
 				text-align: center;
@@ -927,7 +1118,7 @@ span{
 				border-bottom: 4px solid #80902b;
 			}
 
-			p{
+			.paragraph-text{
 				text-align: center;
 				margin: 5% 0;
 				font-family: BloggerSansLight;
@@ -981,6 +1172,134 @@ span{
 	}
 }
 
+//----------------------------------------------------//
+//
+//------Styles for post sign up page end here---------//
+//
+//----------------------------------------------------//
+
+.post-signup-content{
+	border-bottom: 2px solid black;
+
+	.signup-container{
+		width: 60%;
+		margin: 5% auto 5%;
+		text-align: center;
+		
+		.head-message{
+			font-size: 16pt;
+			font-family: BloggerSansLight;
+			color: green;
+			border: 1px solid green;
+			background: #CFF0D2;
+			line-height: 30px;
+			border-radius: 8px;
+		}
+
+		.heading-big{
+			margin-top: 5%;
+			font-size: 30pt;
+			font-family: BloggerSansRegular;
+			margin-bottom: 5%;
+		}
+
+		.emailid-input, .password-input{
+			margin: 0% 0 5%;
+			width: 100%;
+			overflow: hidden;
+
+			input{
+				.appearanceClear;
+				background: url('../images/sign-up-mail-icon.png') no-repeat;
+				background-position: left 2% center;
+				padding: 10px 10px 10px 60px;
+				font-family: BloggerSansLight;
+				font-size: 20pt;
+				border: none;
+				width: 90%;
+				border-bottom: 1px solid #bebebe;
+				line-height: normal;
+				.NoBoxShadow;
+			}
+		}
+
+		.password-input{
+			input{
+				background: url('../images/password-signup-icon.png') no-repeat;
+				background-position: left 2.5% center;
+				line-height: normal;
+				.NoBoxShadow;
+			}
+		}
+
+		.signup-button{
+			// margin-top: 5%; 
+			width: 100%;
+			background: #adc04c;
+			text-align: center;
+			padding: 25px 0;
+			border-radius: 8px;
+			cursor: pointer;
+			font-size: 20pt;
+			font-family: BloggerSansLight;
+			color: white;
+			border-bottom: 4px solid #80902b;
+		}
+
+		.paragraph-text{
+			text-align: center;
+			margin: 5% 0;
+			font-family: BloggerSansLight;
+			font-size: 14pt;
+		}
+
+		.fb-button{
+			background: #43609f;
+			padding: 10px 15px;
+			text-align: center;
+			font-size: 16pt;
+			width: 30%;
+			font-family: BloggerSansLight;
+			border-radius: 6px;
+			margin: 0 auto;
+			color: white;
+			cursor: pointer;
+		}
+		
+		// .signup-desc{
+		// 	margin-top: 5%;
+
+		// 	.heading-big{
+		// 		font-size: 30pt;
+		// 		font-family: BloggerSansRegular;
+		// 		// margin-bottom: 5%;
+		// 	}
+
+		// 	.heading-small{
+		// 		margin: 40px 0 20px;
+		// 		font-size: 17pt;
+		// 		font-family: BloggerSansRegular;
+		// 	}
+
+		// 	.heading-small:last-child{
+		// 		margin-top:20px;
+		// 	}
+
+		// 	.desc-text{
+		// 		font-size: 15pt;
+		// 		font-family: BloggerSansLight;
+		// 	}
+		// }
+	}
+}
+
+
+//----------------------------------------------------//
+//
+//------Styles for post sign up page end here---------//
+//
+//----------------------------------------------------//
+
 //miscellaneous slides
 
 .bx-viewport{
@@ -988,7 +1307,7 @@ span{
 	-moz-box-shadow : none !important;
 	box-shadow: none !important;
 	border:none !important;
-	margin-left: 3% !important;
+	// margin-left: 3% !important;
 	background: #f1f1f1 !important;
 	left: 0 !important;
 }
@@ -996,4 +1315,12 @@ span{
 .bx-pager{
 	background: #f1f1f1 !important;
 	padding-bottom: 20px !important;
+}
+
+.change-cursor{
+	cursor: pointer;
+}
+
+h3{
+	margin-top: 0 !important;
 }

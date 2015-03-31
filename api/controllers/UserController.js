@@ -34,10 +34,12 @@ module.exports = {
 				if(err)
 					res.serverError(err);
 		      	else{
-		      		console.log(user)
 		        	req.session.authenticated = true;
 		          	req.session.user = user;
-		          	res.json(user);
+		          	// res.json(user);
+		          	console.log(req.session);
+		          	// res.view('index',{user : req.session.user});
+		          	res.redirect('/home');
 		          	//ElasticService.search();
 		        }		
 			});
@@ -48,33 +50,127 @@ module.exports = {
 		User.list(function(err, users){
 			if(err)
 				res.serverError(err);
-			else
+			else{
 				res.json(users);
+				console.log('users found successfully');
+			}
 		});
 	},
 
 	signUp : function(req, res){
-		if(!req.body || !req.body.email || !req.body.password)
-			res.badRequest('Email or password missing in request');
+		var that= this;
+		if(!req.body || !req.body.email || !req.body.username)
+			res.badRequest('Email or username missing in request');
 		else{
+			req.body.password = that.generatePassword();
+			req.body.userPwd = req.body.password;
 			User.signUp(req.body, function(err, user){
 				if(err)
 					res.serverError(err);
 		      	else{
 		        	// req.session.authenticated = true;
 		           	// req.session.user = user;
-		          	res.json(user);
+		           	console.log('signed up successfully!');
+		          	that.sendEmailToUser(req.body,res);
 		        }		
 			});
 		}
 	},
+
+
 	isLoggedIn : function(req,res){
 		sails.log.debug(req.session);
 	    if(req.session && req.session.authenticated && req.session.user){
 	        res.json(req.session.user);
 	    } else{
 	        res.json(false);
-	       }
+	    }
+	},
+
+	sendEmailToUser: function(req,res){
+		mailService.send(req,function(err, response){
+			if(err)
+				console.log(err);
+			else
+				console.log('mail sent successfully'+response);
+				res.redirect('/postsignup');
+		});
+	},
+
+	deleteUser: function(req, res){
+		var userId = req.param('userId');
+		if(!userId){
+			req.badRequest('no userId specified to delete. Please specify one');
+		}else{
+			User.userDelete(userId, function(err,message){
+				if(err)
+					res.serverError(err);
+				else
+					res.send(message);
+			});
+		}
+	},
+
+	updateUser : function(req, res){
+		var userId = req.param('userId');
+		if(userId === '' || userId === null || userId === undefined){
+			res.badRequest('please specify a userid to update');
+		}else{
+			req.body.userId = userId;
+			User.userUpdate(req.body,function(err,user){
+				if(err)
+					res.serverError(err);
+				else{
+					res.send(user);
+					console.log('User updated successfully');
+				}
+			});
+		}
+	},
+
+	singleUser: function(req, res){
+		var userId = req.param('userId');
+		if(userId === '' || userId === null || userId === undefined){
+			res.badRequest('please specify a userid to update');
+		}else{
+			req.body.userId = userId;
+			User.getSingleUser(req.body, function(err, user){
+				if(err)
+					res.serverError(err);
+				else{
+					res.send(user);
+					console.log('Found this user successfully');
+				}
+			});
+		}
+	},
+
+	generatePassword: function(){
+	    var text = "";
+	    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+	    for( var i=0; i < 5; i++ )
+	        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+	    return text;
+	},
+
+	userLogout: function(req, res){
+		if(!req.session.user){
+			res.badRequest('No logged in user found');
+		}else{
+			req.session.authenticated = false;
+		    // req.session = null;
+		    req.session.destroy();
+		    res.redirect('/home');
+		}
+	},
+
+	showHomePage: function(req, res){		
+		res.view('index');
+	},
+
+	postSignUp: function(req, res){
+		res.view('post_signup');
 	}
-  
 };

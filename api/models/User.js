@@ -28,7 +28,7 @@ module.exports = {
 
 
   	attributes: {
-	  	name: {
+	  	username: {
 		    type: 'string',
 		    required : true
 	    },
@@ -38,7 +38,8 @@ module.exports = {
 	    	required:true
 	    },
 	    fbUserId: {
-	    	type: 'string'
+	    	type: 'string',
+        defaultsTo: null
 	    },
 	    dob:{
 	    	type: 'date',
@@ -53,9 +54,15 @@ module.exports = {
 	    },
 	    password: {
 	    	type: 'string',
-	    	required:true
-	    }
-	    
+	    	// required:true
+	    },
+      accountStatus: {
+        type:'string',
+        in: ['Pending', 'Active']
+      },
+      contactNumber: {
+        type: 'integer'
+      }
   	},
 
   	list: function(cb){
@@ -117,21 +124,96 @@ module.exports = {
 	  			saltAndHash(opts.password,function(hash){
 	  				opts.password = hash;
 	  				User.create(opts, function(err, user){
-					if(err)
-						cb(err);
-	  				else{
+					   if(err)
+						  cb(err);
+	  				 else{
 	  					delete user['password'];
 	  					cb(null, user);
-	  				}
+	  				 }
+	  			  });
 	  			});
-	  			})
-	  			
 	  		}
 	      else{
 	        cb("User Already exists", null);
 	      }		
 	  	});
-  	}
+  	},
+
+    userDelete : function(opts,cb){
+      User.findOne({ id : opts}).exec(function(err,user){
+        if(err){
+          console.log(err);
+          cb(err);
+        }else if(user){
+          User.destroy({id: opts}).exec(function(err){
+            if(err){
+              console.log(err);
+              cb(err);
+            }else{
+              cb(null,'User removed successfully')
+            }
+          });
+        }else{
+          console.log('Unable to remove this user');
+          cb(null,'Unable to remove this user');
+        }
+      });
+    },
+
+    userUpdate: function(opts, cb){
+      User.findOne({ id : opts.userId }).exec(function(err,user){
+        if(err){
+          console.log(err);
+          cb(err);
+        }else if(user){
+          var newName = opts.username || user.username;
+          var newEmail = opts.email || user.email;
+          var newFBUserId = opts.fbUserId || user.fbUserId;
+          var newDOB = opts.dob || user.dob;
+          var newGender = opts.gender || user.gender;
+          var newCity = opts.city || user.city;
+          var newAcctStatus = opts.accountStatus || user.accountStatus;
+          var newContactNumber = opts.contactNumber || user.contactNumber;
+          var oldPassword = user.password;
+
+          User.update({
+            id: opts.userId
+          },
+          {
+            username : newName,
+            email : newEmail,
+            fbUserId : newFBUserId,
+            dob : newDOB,
+            gender : newGender,
+            city : newCity,
+            accountStatus : newAcctStatus,
+            contactNumber : newContactNumber,
+            password : oldPassword
+          }).exec(function(err,user){
+            if(err){
+              console.log(err);
+              cb(err);
+            }
+            else{
+              cb(null,user);
+            }
+          });
+        }else{
+          cb('User Update not possible');
+        }
+      });
+    },
+
+    getSingleUser: function(opts, cb){
+      User.find({id : opts.userId}).exec(function(err,user){
+        if(err){
+          console.log(err);
+          cb(err,null);
+        }else{
+          cb(null,user);
+        }
+      });
+    }
 
   	// addImage: function(opts, cb){
   	// 	sails.log.debug(opts);

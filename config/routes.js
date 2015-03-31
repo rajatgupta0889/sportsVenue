@@ -32,7 +32,7 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
   'post /create' : 'GroundController.createGround',
-  'post /searchAdvance' : 'GroundController.groundSearchAdvance',
+  '/searchAdvance' : 'GroundController.groundSearchAdvance',
 
   'post /createReview' : 'ReviewController.createReview',
   'get /userReviews/:userId': 'ReviewController.listOfReviewsByUser',
@@ -44,29 +44,41 @@ module.exports.routes = {
 
   'patch /update/:groundId' : 'GroundController.updateGround',
   'get /grounds' : 'GroundController.listGrounds',
+  'get /ground/:groundId' : 'GroundController.singleGround',
   'delete /ground/:groundId' : 'GroundController.deleteGround',
+
+  'get /users' : 'UserController.list',
+  'get /user/:userId' : 'UserController.singleUser',
+  'delete /user/:userId' : 'UserController.deleteUser',
+  'patch /user/:userId' : 'UserController.updateUser',
+
+  '/logout' : 'UserController.userLogout',
+
+  '/home' : 'UserController.showHomePage',
+
+  '/' : 'UserController.showHomePage',
+
+  '/postsignup' : 'UserController.postSignUp',
+
+  // '/': {
+  //   view: 'index'
+  // },
+  
+  // '/home': {
+  //   view: 'index'
+  // },
+
+  // '/ground_details': {
+  //   view: 'ground_details'
+  // },
+
+  // '/postsignup': {
+  //   view: 'post_signup'
+  // }
+
   // '/': {
   //   view: 'homepage'
   // }
-
-  '/': {
-    view: 'index'
-  },
-  
-  '/home': {
-    view: 'index'
-  },
-
-  // '/grounds': {
-  //   view: 'ground_search'
-  // },
-  '/searchAdvance':{
-    view : 'ground_search'
-  },
-
-  '/ground_details': {
-    view: 'ground_details'
-  }
 
   /***************************************************************************
   *                                                                          *

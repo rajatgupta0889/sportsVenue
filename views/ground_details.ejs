@@ -3,7 +3,7 @@
 		<div class="logo-name">
 			<div class="logo-image">
 				<a href="/home">
-					<img src="images/logo.png" alt="SportsVenue"/>
+					<img src="/images/logo.png" alt="SportsVenue"/>
 				</a>
 			</div>
 			<div class="logo-text">
@@ -13,17 +13,30 @@
 			</div>
 		</div>
 		<div class="social-contact">
-			<div class="sign-in">
-				<a href="javascript:" data-toggle="modal" data-target="#signupModal">Sign In</a>
+			<%if(req.session.user){%>
+			<div class="user-name">
+				<p><%=req.session.user.username%></p>
 			</div>
+			<div class="user-options" id="userOptions">
+				<a href="#" class="menu-option">Edit My Profile</a>
+				<a href="#" class="menu-option">Show My Reviews</a>
+				<a href="#" class="menu-option">Add a Ground</a>
+				<a href="/logout" class="menu-option">Logout</a>
+			</div>
+			<%}else{%>
+			<div class="sign-in">
+				<a href="#" id="signIn" data-toggle="modal" data-target="#signInModal">Sign In</a>&nbsp;|
+				<a href="#" id="signUp" data-toggle="modal" data-target="#signUpModal">Sign Up</a>
+			</div>
+			<%}%>
 			<div class="fb-link">
 				<a href="https://www.facebook.com/mantralabs">
-					<img src="images/fb-link-icon.png" alt="Fb Icon"/>
+					<img src="/images/fb-link-icon.png" alt="Fb Icon"/>
 				</a>
 			</div>
 			<div class="tw-link">
 				<a href="https://www.twitter.com">
-					<img src="images/tw-link-icon.png" alt="Tw Icon"/>
+					<img src="/images/tw-link-icon.png" alt="Tw Icon"/>
 				</a>
 			</div>
 		</div>
@@ -32,30 +45,43 @@
 <div class="search-criteria">
 	<div class="criteria-container">
 		<div class="location-criteria">
-			<p>Location: Bangalore</p>
+			<p>Location: <%=ground[0].city%></p>
+			<select class="hide">
+				<option>Bangalore</option>
+				<option>Mumbai</option>
+				<option>Pune</option>
+				<option>NCR</option>
+				<option>Chennai</option>
+			</select>
 		</div>
 		<div class="sport-criteria">
-			<p>Type: Football</p>
+			<p>Type: <%=ground[0].sport%></p>
+			<select class="hide">
+				<option>Cricket</option>
+				<option>Football</option>
+				<option>Athletics</option>
+			</select>
 		</div>
 		<div class="selected-date">
 			<p>Date: 10 Mar 2015</p>
-			<img src="images/calendar-icon.png" alt="calendar"/>
+			<img src="/images/calendar-icon.png" alt="calendar"/>
 		</div>
 	</div>
 </div>
 <div class="ground-name">
-	<p>Bangalore Football Stadium</p>
+	<!-- <p>Bangalore Football Stadium</p> -->
+	<p><%=ground[0].groundName%></p>
 </div>
 <div class="ground-content">
 	<div class="left-section">
 		<div class="ground-images">
-			<img src="images/ground-big.png" alt="ground-pic"/>
-			<img src="images/ground-big.png" alt="ground-pic"/>
+			<img src="/images/ground-big.png" alt="ground-pic"/>
+			<img src="/images/ground-big.png" alt="ground-pic"/>
 		</div>
 		<div class="ground-sport-info">
 			<div class="ground-sport-info-container">
 				<h3><span>Suitable For</span></h3>
-				<p>Mainly : Football Cricket</p>
+				<p>Mainly : <%=ground[0].sport%></p>
 				<p>Ocassionally used for conducting some big events.</p>	
 			</div>
 		</div>
@@ -63,7 +89,7 @@
 			<div class="ground-location-container">
 				<h3><span>Address</span></h3>
 				<div class="ground-address">
-					<p>Ashok Nagar, Xavier Layout, Bengaluru, Karnataka.</p>
+					<p><%=ground[0].address%></p>
 				</div>
 				<div class="ground-contact">
 					<p>Contact: </p><p>9876543210</p>
@@ -74,9 +100,9 @@
 			<div class="ground-share-container">
 				<h3><span>Share</span></h3>
 				<div class="sharing-icons">
-					<a href="https://www.facebook.com/Estadio.CampNou"><img src="images/facebook-icon.png" alt="fb"/></a>
-					<a href="https://twitter.com/campnou_indo"><img src="images/twitter-icon.png" alt="tw"/></a>
-					<a href="http://mail.google.com"><img src="images/mail-icon.png" alt="ml"/></a>
+					<a href="https://www.facebook.com/Estadio.CampNou"><img src="/images/facebook-icon.png" alt="fb"/></a>
+					<a href="https://twitter.com/campnou_indo"><img src="/images/twitter-icon.png" alt="tw"/></a>
+					<a href="http://mail.google.com"><img src="/images/mail-icon.png" alt="ml"/></a>
 				</div>
 			</div>
 		</div>
@@ -85,7 +111,8 @@
 		<div class="ground-desc">
 			<div class="ground-desc-container">
 				<h3><span>About<span></h3>
-				<p>The Bangalore Football Stadium is a multi-purpose stadium in Bangalore, Karnataka, India, which hosts mainly football matches. It was a venue in three editions of the I-League, the top-tier football league in the country and the home of Bengaluru FC for one season when they won the I-League trophy on their first attempt.</p>
+				<!-- <p>The Bangalore Football Stadium is a multi-purpose stadium in Bangalore, Karnataka, India, which hosts mainly football matches. It was a venue in three editions of the I-League, the top-tier football league in the country and the home of Bengaluru FC for one season when they won the I-League trophy on their first attempt.</p> -->
+				<p><%=ground[0].groundInfo%></p>
 			</div>
 		</div>
 		<div class="ground-events">
@@ -95,7 +122,7 @@
 						<h3><span>Upcoming Events</span></h3>
 					</div>
 					<div class="calendar-img">
-						<img src="images/calendar-icon-blue.png" alt="calendar"/>
+						<img src="/images/calendar-icon-blue.png" alt="calendar"/>
 					</div>
 				</div>
 				<div class="event-list">
@@ -125,14 +152,32 @@
 				<div class="rating">
 						<h3>Rating : </h3>
 						<div class="rating-stars">
+							<%for(var i=0;i<ground[0].rating;i++){%>
+							<img src="/images/star-marked.png" alt="marked"/>
+							<%}%>
+							<!-- <img src="images/star-marked.png" alt="marked"/>
 							<img src="images/star-marked.png" alt="marked"/>
-							<img src="images/star-marked.png" alt="marked"/>
-							<img src="images/star-marked.png" alt="marked"/>
-							<img src="images/star-marked.png" alt="marked"/>
-							<img src="images/star-unmarked.png" alt="marked"/>
+							<img src="images/star-marked.png" alt="marked"/> -->
+							<!-- <img src="images/star-unmarked.png" alt="marked"/> -->
 						</div>
 					</div>
 				<div class="individual-review">
+					<div class="individual-review-container">
+						<div class="user-pic">
+							<img src="/images/review-user-pic.png" alt="user"/>
+						</div>
+						<div class="review-detail">
+							<div class="review-detail-header">
+								<h4>Ajith</h4>
+								<p>2 days ago</p>
+							</div>
+							<div class="review-desc">
+								<p>One of the best stadiums. Exceptionally Beautiful</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- <div class="individual-review">
 					<div class="individual-review-container">
 						<div class="user-pic">
 							<img src="images/review-user-pic.png" alt="user"/>
@@ -147,23 +192,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="individual-review">
-					<div class="individual-review-container">
-						<div class="user-pic">
-							<img src="images/review-user-pic.png" alt="user"/>
-						</div>
-						<div class="review-detail">
-							<div class="review-detail-header">
-								<h4>Ajith</h4>
-								<p>2 days ago</p>
-							</div>
-							<div class="review-desc">
-								<p>One of the best stadiums. Exceptionally Beautiful</p>
-							</div>
-						</div>
-					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>
@@ -184,25 +213,29 @@
 		</div>
 	</div>
 </div>
-<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">
+<div class="modal fade hide" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="signInModalLabel" aria-hidden="true">
   	<div class="modal-dialog">
     	<div class="modal-content signup-popup">
 	      	<div class="modal-header header">
 	       		<!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
-	        	<img src="images/close-icon.png" data-dismiss="modal" aria-label="Close" alt="close"/>
+	        	<img src="/images/close-icon.png" data-dismiss="modal" aria-label="Close" alt="close"/>
 	        	<!-- <h4 class="modal-title">Modal title</h4> -->
 	      	</div>
 	      	<div class="modal-body content">
-		      	<div class="emailid-input">
-					<input type="text" placeholder="Email address:"/>
-				</div>
-				<div class="password-input">
-					<input type="text" placeholder="Password:"/>
-				</div>
-				<div class="signup-button">
-					Create Account
-				</div>
-				<p>Or, Sign in with</p>
+	      		<p class="heading-big">Sign In</p>
+	      		<form action="/loginUser" method="post" id="loginForm">
+			      	<div class="emailid-input">
+						<input type="text" name="email" id="eId" placeholder="Email address:"/>
+					</div>
+					<div class="password-input">
+						<input type="password" name="password" id="pwd" placeholder="Password:"/>
+					</div>
+					<!-- <div class="signup-button">
+						Sign In
+					</div> -->
+					<input type="submit" class="signup-button" value="Sign In"/>
+				</form>
+				<p class="paragraph-text">Or, Sign in with</p>
 				<div class="fb-button">
 					Facebook
 				</div>
@@ -211,10 +244,38 @@
     	</div><!-- /.modal-content -->
   	</div><!-- /.modal-dialog -->
 </div>
+
+<div class="modal fade hide" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModalLabel" aria-hidden="true">
+  	<div class="modal-dialog">
+    	<div class="modal-content signup-popup">
+	      	<div class="modal-header header">
+	        	<img src="/images/close-icon.png" data-dismiss="modal" aria-label="Close" alt="close"/>
+	      	</div>
+	      	<div class="modal-body content">
+	      		<p class="heading-big">Sign Up</p>
+	      		<form action="/signUpUser" method="post" id="signUpForm">
+			      	<div class="email-input inputs">
+						<input type="text" name="email" id="emId" placeholder="Email address:"/>
+					</div>
+					<div class="name-input inputs">
+						<input type="text" name="username" id="uName" placeholder="Full Name:"/>
+					</div>
+					<input type="submit" class="signup-button" value="Register"/>
+				</form>
+				<p class="paragraph-text">Or, Sign up with</p>
+				<div class="fb-button">
+					Facebook
+				</div>
+		    </div>
+    	</div><!-- /.modal-content -->
+  	</div><!-- /.modal-dialog -->
+</div>
 <script src="http://maps.googleapis.com/maps/api/js"></script>
 <script>
+var grnd = <%-JSON.stringify(ground)%>;
 function initialize() {
-	var mapCenter = new google.maps.LatLng(12.968866, 77.611585);
+	// var mapCenter = new google.maps.LatLng(12.968866, 77.611585);
+	var mapCenter = new google.maps.LatLng(grnd[0].location.x, grnd[0].location.y);
   var mapProp = {
     center:mapCenter,
     zoom:15,

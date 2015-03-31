@@ -38,31 +38,29 @@ module.exports = {
 		}
 	},
 	groundSearchAdvance : function(req,res){
-		if(!req.body|| !req.body.sport || !req.body.area){
-			res.badRequest("No data");	
-		}
-		else{
+		if(!req.body || !req.body.sport || !req.body.area){
+			// res.badRequest("No data");
+			res.redirect('/home');	
+		}else{
 			Ground.searchGroundAdvanced(req.body, function(err, grounds){
 				if(err)
 					res.serverError(err);
 				else{
-					// var grnd = <%-JSON.stringify(ground)%>;
-					// console.log(grnd);
-					// res.send(grounds);
-					console.log(grounds);
-					res.render('ground_search', { ground: grounds});
+					// sails.log.debug(grounds);
 					console.log("Grounds searched successfully");
+					res.view('ground_search', {grounds: grounds});
+					//res.send(grounds);
 				}		
 			});
 		}
 	},
 	updateGround : function(req, res){
 		var groundId = req.param('groundId');
-		req.body.groundId = groundId;
-		if(!req.body || !req.body.sport || !req.body.groundName || !req.body.city){
-			res.badRequest(req.body.sport + req.body.groundName + req.body.city)
+		if(groundId === '' || groundId === null || groundId === undefined){
+			res.badRequest('please specify the goundid to update');
 		}
 		else{
+			req.body.groundId = groundId;
 			Ground.groundUpdate(req.body, function(err,ground){
 				if(err)
 					res.serverError(err);
@@ -78,8 +76,8 @@ module.exports = {
 			if(err)
 				res.serverError(err);
 			else{
-				// res.send(grounds);
-				// res.view('ground_search', { ground: grounds});
+				res.send(grounds);
+				// res.view('ground_search', { grounds : grounds});
 				console.log('Grounds Found successfully');
 			}
 		});
@@ -96,6 +94,24 @@ module.exports = {
 				}else{
 					res.send(msg);
 					// console.log('Ground deleted successfully');
+				}
+			});
+		}
+	},
+
+	singleGround: function(req, res){
+		var groundId = req.param('groundId');
+		if(!groundId){
+			res.badRequest(groundId);
+		}else{
+			// req.body.groundId = groundId;
+			Ground.getSingleGround(groundId, function(err, ground){
+				if(err){
+					res.serverError(err);
+				}else{
+					// res.send(ground);
+					res.view('ground_details',{ground : ground});
+					console.log('Found this ground successfully');
 				}
 			});
 		}
