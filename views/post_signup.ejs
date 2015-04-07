@@ -43,7 +43,11 @@
 </div> -->
 <div class="post-signup-content">
 	<div class="signup-container">
-		<p class="head-message">Thank you for registering. We have sent you a mail containing your account information. Please sign in using that information. We are waiting for you.</p>
+		<%if(msg.successMessage){%>
+		<p class="success-message"><%=msg.successMessage%></p>
+		<%}else if(msg.errorMessage){%>
+		<p class="error-message"><%=msg.errorMessage%></p>
+		<%}%>
 		<form action="/loginUser" method="post" id="loginForm">
 			<p class="heading-big">Sign In</p>
 		  	<div class="emailid-input">
@@ -134,3 +138,7 @@
     	</div><!-- /.modal-content -->
   	</div><!-- /.modal-dialog -->
 </div>
+<script type="text/javascript">
+	var m = <%-JSON.stringify(msg)%>;
+	console.log(m);
+</script>

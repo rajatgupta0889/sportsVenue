@@ -57,7 +57,7 @@ module.exports = {
 	updateGround : function(req, res){
 		var groundId = req.param('groundId');
 		if(groundId === '' || groundId === null || groundId === undefined){
-			res.badRequest('please specify the goundid to update');
+			res.badRequest('please specify the groundId to update');
 		}
 		else{
 			req.body.groundId = groundId;

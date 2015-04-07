@@ -6,6 +6,8 @@
 
 @import url('bootstrap-responsive.min.css');
 
+@import url('jsDatePick_ltr.min.css');
+
 @backColor : #000000;
 
 @boxBorderGroundDetails : 2px solid #bebebe;
@@ -51,6 +53,13 @@
 	border-bottom: 1px solid #bebebe;
 	line-height: normal;
 	.NoBoxShadow;
+}
+
+.MsgProperties{
+	font-size: 16pt;
+	font-family: BloggerSansLight;
+	line-height: 30px;
+	border-radius: 8px;
 }
 
 @font-face{
@@ -460,11 +469,12 @@ span{
 		}
 
 		.selected-date{
-			width: 20%;
-			margin-left: 18%;
+			width: 18%;
+			margin-left: 20%;
 
 			p{
 				display: inline-block;
+				color:black;
 			}
 			img{
 				display: inline-block;
@@ -1123,6 +1133,15 @@ span{
 				margin: 5% 0;
 				font-family: BloggerSansLight;
 				font-size: 14pt;
+
+				a{
+					color:black;
+					text-decoration: none;
+				}
+				a:hover{
+					color:#08c;
+					text-decoration: none;
+				}
 			}
 
 			.fb-button{
@@ -1186,14 +1205,18 @@ span{
 		margin: 5% auto 5%;
 		text-align: center;
 		
-		.head-message{
-			font-size: 16pt;
-			font-family: BloggerSansLight;
+		.success-message{
+			.MsgProperties;
 			color: green;
 			border: 1px solid green;
 			background: #CFF0D2;
-			line-height: 30px;
-			border-radius: 8px;
+		}
+
+		.error-message{
+			.MsgProperties;
+			color: red;
+			border: 1px solid red;
+			background: #F0CFCF;
 		}
 
 		.heading-big{

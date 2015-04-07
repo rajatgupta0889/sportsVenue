@@ -8,24 +8,23 @@
 module.exports = {
 
   attributes: {
-  	userId: {
+	  	userId: {
 	  		type: 'string',
 			required : true
 	  	},
-	groundId: {
+		groundId: {
 	  		type: 'string',
 		    required:true
 	  	},
-	review: {
+		review: {
 	  		type: 'string'
 	  	},
-	 rating: {
-	 		type: 'float'
-	 }
-	
-  },
+		rating: {
+		 	type: 'float'
+		}
+  	},
 
-  list: function(cb){
+  	list: function(cb){
   		Review.find().exec(function(err, reviews){
   			reviews = _.map(reviews, function(review){
   				return review;

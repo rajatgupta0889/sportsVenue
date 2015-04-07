@@ -56,12 +56,13 @@ module.exports = {
 	    	type: 'string',
 	    	// required:true
 	    },
-      accountStatus: {
-        type:'string',
-        in: ['Pending', 'Active']
-      },
       contactNumber: {
         type: 'integer'
+      },
+      permission: {
+        type: 'string',
+        defaultsTo: 'normal',
+        in: ['super', 'normal']
       }
   	},
 
@@ -123,11 +124,13 @@ module.exports = {
 	  		else if(!user){
 	  			saltAndHash(opts.password,function(hash){
 	  				opts.password = hash;
+            var userPassword = opts.userPwd;
 	  				User.create(opts, function(err, user){
 					   if(err)
 						  cb(err);
 	  				 else{
 	  					delete user['password'];
+              delete user['userPwd'];
 	  					cb(null, user);
 	  				 }
 	  			  });
@@ -172,7 +175,7 @@ module.exports = {
           var newDOB = opts.dob || user.dob;
           var newGender = opts.gender || user.gender;
           var newCity = opts.city || user.city;
-          var newAcctStatus = opts.accountStatus || user.accountStatus;
+          // var newAcctStatus = opts.accountStatus || user.accountStatus;
           var newContactNumber = opts.contactNumber || user.contactNumber;
           var oldPassword = user.password;
 
@@ -186,7 +189,8 @@ module.exports = {
             dob : newDOB,
             gender : newGender,
             city : newCity,
-            accountStatus : newAcctStatus,
+            permission: user.permission,
+            // accountStatus : newAcctStatus,
             contactNumber : newContactNumber,
             password : oldPassword
           }).exec(function(err,user){
@@ -211,6 +215,47 @@ module.exports = {
           cb(err,null);
         }else{
           cb(null,user);
+        }
+      });
+    },
+
+    setNewPassword: function(opts, cb){
+      User.findOne({where:{email:opts.email}}).exec(function(err, user){
+        if(err)
+          cb(err, null);
+        else if(user){
+          saltAndHash(opts.password,function(hash){
+            opts.password = hash;
+            User.update(
+            {
+              email:opts.email
+            },
+            {
+              username : user.username,
+              email : user.email,
+              fbUserId : user.fbUserId,
+              dob : user.dob,
+              gender : user.gender,
+              city : user.city,
+              permission : user.permission,
+              // accountStatus : newAcctStatus,
+              contactNumber : user.contactNumber,
+              password : opts.password
+            }).exec(function(err,user){
+              if(err){
+                console.log(err);
+                cb(err);
+              }
+              else{
+                if(user.userPwd)
+                  delete user['userPwd'];
+                cb(null,user);
+              }
+            });
+          });
+        }
+        else{
+          cb(null, 'Email id not found');
         }
       });
     }

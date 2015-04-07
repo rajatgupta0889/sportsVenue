@@ -63,8 +63,8 @@
 			</select>
 		</div>
 		<div class="selected-date" title="Click here to change">
-			<p>Date: 10 Mar 2015</p>
-			<img src="images/calendar-icon.png" alt="calendar" title="Click here to change"/>
+			Date:&nbsp;&nbsp;<p id="selectedDate">10 Mar 2015</p>
+			<!-- <img src="images/calendar-icon.png" id="showCal" alt="calendar" title="Click here to change"/> -->
 		</div>
 	</div>
 </div>
@@ -92,7 +92,7 @@
 			</div>
 			<div class="res-details">
 				<div class="res-image">
-					<a href="/ground_details"><img src="images/stadium-small.png" alt="ground-image"/></a>
+					<a href="/ground/<%=ground.id%>"><img src="images/stadium-small.png" alt="ground-image"/></a>
 				</div>
 				<div class="res-desc-short">
 					<h3>Description :</h3>
@@ -127,14 +127,17 @@
 					</div>
 				</div>
 				<div class="res-ground-options">
-					<p><span class="change-cursor">Reviews</span></p>|
+					<p><span class="change-cursor" id="reviewSlider">Reviews</span></p>|
 					<p><span class="change-cursor">Share</span></p>|
-					<p><span class="change-cursor">Map</span></p>
+					<p id="toggleMap"><span class="change-cursor">Map</span></p>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- <div id="googleMap" style="width:1375px;height:400px;border: 10px solid #f1f1f1;"></div> -->
+	<!-- <div id="groundReviews">
+		
+	</div> -->
+	<div id="googleMap" style="width:1375px;height:400px;border: 10px solid #f1f1f1;display:none;" data-loc-x=<%=ground.location.x%> data-loc-y=<%=ground.location.y%>></div>
 	<%});%>
 </div>
 <%}%>
@@ -201,22 +204,49 @@
 </div>
 <script src="http://maps.googleapis.com/maps/api/js"></script>
 <script>
-// var grounds = <%- JSON.stringify(grounds)%>;
-// console.log(grounds);
+
 // bangalore = 12.9715987,77.5945626
-function initialize() {
-	var mapCenter = new google.maps.LatLng(ground);
-  var mapProp = {
-    center:mapCenter,
-    zoom:12,
-    mapTypeId:google.maps.MapTypeId.ROADMAP
-  };
-  var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-  
-  var marker = new google.maps.Marker({
-  	position:mapCenter,
-  });
-  marker.setMap(map);
-}
-google.maps.event.addDomListener(window, 'load', initialize);
+// google.maps.event.addDomListener(window, 'load', initialize);
+window.onload = function(){
+		g_globalObject = new JsDatePick({
+			useMode:2,
+			isStripped:true,
+			target:"selectedDate"
+			/*selectedDate:{				This is an example of what the full configuration offers.
+				day:5,						For full documentation about these settings please see the full version of the code.
+				month:9,
+				year:2006
+			},
+			yearsRange:[1978,2020],
+			limitToToday:false,
+			cellColorScheme:"beige",
+			dateFormat:"%m-%d-%Y",
+			imgPath:"img/",
+			weekStartDay:1*/
+		});
+		$('.JsDatePickBox').css({'top':'30px','background':'white','border':'1px solid black','border-radius':'5px'});
+		$('.boxMainInner').css('margin','5px 0 10px 7px');
+		g_globalObject.setOnSelectedDelegate(function(){
+			var obj = g_globalObject.getSelectedDay();
+			var months = [
+				{ num:1, name:"Jan" },
+				{ num:2, name:"Feb"},
+				{ num:3, name:"Mar"},
+				{ num:4, name:"Apr"},
+				{ num:5, name:"May"},
+				{ num:6, name:"June"},
+				{ num:7, name:"July"},
+				{ num:8, name:"Aug"},
+				{ num:9, name:"Sept"},
+				{ num:10, name:"Oct"},
+				{ num:11, name:"Nov"},
+				{ num:12, name:"Dec"}
+			];
+			for(var i=0;i<months.length;i++){
+				if(obj.month === months[i].num)
+					obj.month = months[i].name;
+			}
+			document.getElementById("selectedDate").innerHTML = obj.day + "&nbsp;" + obj.month + "&nbsp;" + obj.year;
+		});
+	};
 </script>

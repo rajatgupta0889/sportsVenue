@@ -220,6 +220,52 @@ $('#signUpForm').submit(function(event){
 	// }
 });
 
+$('#searchArea').submit(function(event){
+	if(!$('.locations').hasClass('hide')){
+		var selectedArea = $.trim($('.location-select option:selected').val());
+		var selectedSport = $.trim($('.sport-select option:selected').val());
+
+		if($.trim($('.location-select option:selected').val()) === "location"){
+			event.preventDefault();	
+		}else if($.trim($('.sport-select option:selected').val()) === "sports"){
+			event.preventDefault();
+		}
+	}else{
+		event.preventDefault();
+	}
+});
+
+$('#toggleMap').click(function(){
+	var thisMap = $(this).parents('.individual-result').siblings('#googleMap');
+	console.log($(this).parents('.individual-result').siblings('#googleMap'));
+	var locX = $(this).parents('.individual-result').siblings('#googleMap').data('loc-x');
+	var locY = $(this).parents('.individual-result').siblings('#googleMap').data('loc-y');
+	$(this).parents('.individual-result').siblings('#googleMap').slideToggle(400);
+	initialize(locX,locY,thisMap);
+});
+
+function initialize(x,y, onThisMap) {
+	var mapCenter = new google.maps.LatLng(x,y);
+  	var mapProp = {
+	    center:mapCenter,
+	    zoom:12,
+	    mapTypeId:google.maps.MapTypeId.ROADMAP
+	};
+  	var map=new google.maps.Map(document.getElementById('googleMap'),mapProp);
+  
+  	var marker = new google.maps.Marker({
+  		position:mapCenter,
+  	});
+  	marker.setMap(map);
+}
+
+$('#resetPwd').click(function(event){
+	$('#signInModal').modal('hide');
+	// $('#resetModal').modal('show');
+	$('#resetModal').removeClass('hide');
+	// $('#signInModal').modal('hide').done($('#resetModal').modal('show'));
+});
+
 // $('body').click(function(){
 // 	if($('#userOptions').hasClass('open'))
 // 		$('#userOptions').slideUp(200);

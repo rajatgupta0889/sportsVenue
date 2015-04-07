@@ -17,9 +17,6 @@
 
 module.exports = {
     
-  
-
-
   /**
    * Overrides for the settings in `config/controllers.js`
    * (specific to UserController)
@@ -27,17 +24,20 @@ module.exports = {
 	_config: {},
 
 	login : function(req, res){
+		var that = this;
 		if(!req.body || !req.body.email || !req.body.password)
 			res.badRequest('Email or password missing in request');
 		else{
 			User.login(req.body, function(err, user){
-				if(err)
-					res.serverError(err);
+				if(err){
+					// res.serverError(err);
+					req.body.errorMessage = "The email or password you entered is incorrect."
+					that.postSignUp(req, res);
+				}
 		      	else{
 		        	req.session.authenticated = true;
 		          	req.session.user = user;
 		          	// res.json(user);
-		          	console.log(req.session);
 		          	// res.view('index',{user : req.session.user});
 		          	res.redirect('/home');
 		          	//ElasticService.search();
@@ -71,12 +71,29 @@ module.exports = {
 		        	// req.session.authenticated = true;
 		           	// req.session.user = user;
 		           	console.log('signed up successfully!');
-		          	that.sendEmailToUser(req.body,res);
+		          	that.sendSignUpEmailToUser(req.body,res);
 		        }		
 			});
 		}
 	},
 
+	resetPassword: function(req, res){
+		var that= this;
+		if(!req.body || !req.body.email){
+			res.badRequest('Please enter an email address');
+		}else{
+			req.body.password = that.generatePassword();
+			req.body.userPwd = req.body.password;
+			User.setNewPassword(req.body, function(err, user){
+				if(err){
+					res.serverError(err);
+				}else{
+					console.log('Password reset successfully');
+					that.sendPasswordResetEmailToUser(req.body,res);
+				}
+			});
+		}
+	},
 
 	isLoggedIn : function(req,res){
 		sails.log.debug(req.session);
@@ -87,13 +104,31 @@ module.exports = {
 	    }
 	},
 
-	sendEmailToUser: function(req,res){
-		mailService.send(req,function(err, response){
+	sendSignUpEmailToUser: function(req,res){
+		var that = this;
+		mailService.sendSignUpMail(req,function(err, response){
 			if(err)
 				console.log(err);
-			else
+			else{
 				console.log('mail sent successfully'+response);
-				res.redirect('/postsignup');
+				// res.redirect('/postsignup');
+				req.successMessage = "Thank you for registering. We have sent you a mail containing your account information. Please sign in using that information. We are waiting for you.";
+				that.postSignUp(req, res);
+			}
+		});
+	},
+
+	sendPasswordResetEmailToUser: function(req, res){
+		var that = this;
+		mailService.sendResetMail(req,function(err, response){
+			if(err)
+				console.log(err);
+			else{
+				console.log('mail sent successfully'+response);
+				// res.redirect('/postsignup');
+				req.successMessage = "It was our pleasure helping you. We have sent a new password to your email. Please use it to login.";
+				that.postSignUp(req, res);
+			}
 		});
 	},
 
@@ -171,6 +206,6 @@ module.exports = {
 	},
 
 	postSignUp: function(req, res){
-		res.view('post_signup');
+		res.view('post_signup',{msg : req});
 	}
 };

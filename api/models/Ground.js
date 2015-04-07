@@ -42,7 +42,7 @@ module.exports = {
 		   	point: true
 		},
 		availability: {
-		    	type: 'boolean'
+		    type: 'string'
 		},
 		area: {
 			type: 'string'
@@ -52,7 +52,7 @@ module.exports = {
 			defaultsTo: 0
 		},
 		phoneNum: {
-			type: ' integer',
+			type: 'integer',
 			defaultsTo : null
 		}
 
@@ -144,6 +144,9 @@ module.exports = {
   				var newArea = opts.area || ground.area;
   				var newLocationX = opts.location.x || ground.location.x;
   				var newLocationY = opts.location.y || ground.location.y;
+  				var newNum = opts.phoneNum || ground.phoneNum;
+  				var newArea = opts.area || ground.area;
+  				var newAvailability = opts.availability || ground.availability;
 
   				Ground.update({
   					id: opts.groundId
@@ -154,7 +157,10 @@ module.exports = {
   					address : newGroundAddress,
   					city : newCity,
   					area : newArea,
-  					location : { x: newLocationX, y: newLocationY }
+  					location : { x: newLocationX, y: newLocationY },
+  					phoneNum : newNum,
+  					area : newArea,
+  					availability : newAvailability
   				}).exec(function(err,ground){
   					if(err){
 			  			console.log(err);

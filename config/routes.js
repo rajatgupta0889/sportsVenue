@@ -60,6 +60,8 @@ module.exports.routes = {
 
   '/postsignup' : 'UserController.postSignUp',
 
+  'post /passwordreset' : 'UserController.resetPassword'
+
   // '/': {
   //   view: 'index'
   // },

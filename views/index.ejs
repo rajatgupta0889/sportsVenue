@@ -44,12 +44,12 @@
 </div>
 <div class="search-section">
 	<div class="search-bar">
-		<form action="/searchAdvance" method="POST" enctype="application/x-www-form-urlencoded">
+		<form action="/searchAdvance" method="POST" id="searchArea" enctype="application/x-www-form-urlencoded">
 			<div class="locations hide">
 				<p class="select-heading">Where you want to be ?</p>
 				<div class="selection-divs">
 					<select class="location-select" name="area">
-						<option selected="selected" value="">Location</option>
+						<option selected="selected" value="location">Location</option>
 						<option value = "Karnataka">Karnataka</option>
 						<option value = "Delhi">Delhi</option>
 						<option value = "Kolkata">Kolkata</option>
@@ -62,7 +62,7 @@
 				<p class="select-heading">Type of sport ?</p>
 				<div class="selection-divs">
 					<select class="sport-select" name="sport">
-						<option selected="selected" value="">Sports</option>
+						<option selected="selected" value="sports">Sports</option>
 						<option value="Cricket">Cricket</option>
 						<option value="Football">Football</option>
 						<option value="Volleyball">Volleyball</option>
@@ -234,6 +234,9 @@
 					</div> -->
 					<input type="submit" class="signup-button" value="Sign In"/>
 				</form>
+				<div class="paragraph-text">
+					<a href="#" id="resetPwd" data-toggle="modal" data-target="#resetModal">Forgot Password??</a>
+				</div>
 				<p class="paragraph-text">Or, Sign in with</p>
 				<div class="fb-button">
 					Facebook
@@ -299,6 +302,26 @@
 				<div class="fb-button">
 					Facebook
 				</div>
+		    </div>
+    	</div><!-- /.modal-content -->
+  	</div><!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade hide" id="resetModal" tabindex="-1" role="dialog" aria-labelledby="resetModalLabel" aria-hidden="true">
+  	<div class="modal-dialog">
+    	<div class="modal-content signup-popup">
+	      	<div class="modal-header header">
+	        	<img src="images/close-icon.png" data-dismiss="modal" aria-label="Close" alt="close"/>
+	      	</div>
+	      	<div class="modal-body content">
+	      		<p class="heading-big">Reset Password</p>
+	      		<p class="paragraph-text">Enter your registered email id and we will send you a new password!</p>
+	      		<form action="/passwordreset" method="post" id="resetForm">
+			      	<div class="emailid-input">
+						<input type="text" name="email" id="eId" placeholder="Email address:"/>
+					</div>
+					<input type="submit" class="signup-button" value="Reset Password"/>
+				</form>
 		    </div>
     	</div><!-- /.modal-content -->
   	</div><!-- /.modal-dialog -->
