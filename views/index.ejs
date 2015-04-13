@@ -1,0 +1,327 @@
+<div class="header">
+	<div class="nav-bar">
+		<span class="glyphicon glyphicon-menu-hamburger"></span>
+		<div class="logo-name">
+			<div class="logo-image">
+				<a href="/home">
+					<img src="images/logo.png" alt="SportsVenue"/>
+				</a>
+			</div>
+			<div class="logo-text">
+				<a href="/home">
+					<p>sports venue</p>
+				</a>
+			</div>
+		</div>
+		<div class="social-contact">
+			<%if(req.session.user){%>
+			<div class="user-name">
+				<p><%=req.session.user.username%></p>
+			</div>
+			<div class="user-options" id="userOptions">
+				<a href="#" class="menu-option">Edit My Profile</a>
+				<a href="#" class="menu-option">Show My Reviews</a>
+				<a href="#" class="menu-option">Add a Ground</a>
+				<a href="/logout" class="menu-option">Logout</a>
+			</div>
+			<%}else{%>
+			<div class="sign-in">
+				<a href="#" id="signIn" data-controls-modal="modal-from-dom" data-backdrop="static" data-keyboard="true" data-toggle="modal" data-target="#signInModal">Sign In</a>&nbsp;|
+				<a href="#" id="signUp" data-toggle="modal" data-target="#signUpModal">Sign Up</a>
+			</div>
+			<%}%>
+			<div class="fb-link">
+				<a href="https://www.facebook.com/mantralabs">
+					<img src="images/fb-link-icon.png" alt="Fb Icon"/>
+				</a>
+			</div>
+			<div class="tw-link">
+				<a href="https://www.twitter.com">
+					<img src="images/tw-link-icon.png" alt="Tw Icon"/>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="search-section">
+	<div class="search-bar">
+		<form action="/searchAdvance" method="POST" id="searchArea" enctype="application/x-www-form-urlencoded">
+			<div class="locations hide">
+				<p class="select-heading">Where you want to be ?</p>
+				<div class="selection-divs">
+					<select class="location-select" name="area">
+						<option selected="selected" value="location">Location</option>
+						<option value = "Bangalore">Bangalore</option>
+						<!-- <option value = "Store">Store</option> -->
+					</select>
+				</div>
+			</div>
+			<div class="sports hide">
+				<p class="select-heading">Type of sport ?</p>
+				<div class="selection-divs">
+					<select class="sport-select" name="sport">
+						<option selected="selected" value="sports">Sports</option>
+						<option value="Cricket">Cricket</option>
+						<option value="Football">Football</option>
+						<option value="Volleyball">Volleyball</option>
+						<option value="Swimming">Swimming</option>
+						<option value="Tennis">Tennis</option>
+						<option value="Decathlon">Decathlon</option>
+					</select>
+				</div>
+			</div>
+			<div class="venue-search">
+				<input type="text" class="text-search" placeholder="Search Sports Venue"/>
+			</div>
+			<input type="submit" value="Search" class="search-button"/>
+
+			<div class="adv-search" id="advancedSearch">
+				<a href="javascript:">Advanced Search</a>
+			</div>
+			<div class="adv-search hide" id="normalSearch">
+				<a href="javascript:">Back to Normal Search</a>
+			</div>
+		</form>
+	</div>
+</div>
+<div class="intro-section">
+	<div class="heading">
+		<p>Popular football grounds in Bangalore</p>
+	</div>
+	<div class="grnd-img">
+		<img src="images/football-ground.png" alt="computer"/>
+	</div>
+</div>
+<div class="user-speaks">
+	<h2>What Our Users say</h2>
+	<div class="users-bar bxslider">
+		<div class="users">
+			<div class="user-one">
+				<div class="user-image">
+					<img src="images/user-1.png">
+				</div>
+				<div class="about-user arrow_box">
+					<div class="user-desc">
+						<div class="user-desc-header">
+							<p class="user-name">- Staciya Trollie</p>
+							<p class="user-type">User</p>
+						</div>
+						<div class="user-desc-text">
+							Lorem Ipsum is simply dummy text of the printing and industry. Lorem Ipsum has been the industry.
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="user-one">
+				<div class="user-image">
+					<img src="images/user-2.png">
+				</div>
+				<div class="about-user arrow_box">
+					<div class="user-desc">
+						<div class="user-desc-header">
+							<p class="user-name">- David Soul</p>
+							<p class="user-type">User</p>
+						</div>
+						<div class="user-desc-text">
+							Lorem Ipsum is simply dummy text of the printing and industry. Lorem Ipsum has been the industry.
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="users">
+			<div class="user-one">
+				<div class="user-image">
+					<img src="images/user-1.png">
+				</div>
+				<div class="about-user arrow_box">
+					<div class="user-desc">
+						<div class="user-desc-header">
+							<p class="user-name">- Staciya Trollie</p>
+							<p class="user-type">User</p>
+						</div>
+						<div class="user-desc-text">
+							Lorem Ipsum is simply dummy text of the printing and industry. Lorem Ipsum has been the industry.
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="user-one">
+				<div class="user-image">
+					<img src="images/user-2.png">
+				</div>
+				<div class="about-user arrow_box">
+					<div class="user-desc">
+						<div class="user-desc-header">
+							<p class="user-name">- David Soul</p>
+							<p class="user-type">User</p>
+						</div>
+						<div class="user-desc-text">
+							Lorem Ipsum is simply dummy text of the printing and industry. Lorem Ipsum has been the industry.
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="users">
+			<div class="user-one">
+				<div class="user-image">
+					<img src="images/user-1.png">
+				</div>
+				<div class="about-user arrow_box">
+					<div class="user-desc">
+						<div class="user-desc-header">
+							<p class="user-name">- Staciya Trollie</p>
+							<p class="user-type">User</p>
+						</div>
+						<div class="user-desc-text">
+							Lorem Ipsum is simply dummy text of the printing and industry. Lorem Ipsum has been the industry.
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="user-one">
+				<div class="user-image">
+					<img src="images/user-2.png">
+				</div>
+				<div class="about-user arrow_box">
+					<div class="user-desc">
+						<div class="user-desc-header">
+							<p class="user-name">- David Soul</p>
+							<p class="user-type">User</p>
+						</div>
+						<div class="user-desc-text">
+							Lorem Ipsum is simply dummy text of the printing and industry. Lorem Ipsum has been the industry.
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="footer">
+	<div class="footer-content">
+		<div class="foot-text">
+			&copy; 2014 All Rights Reserved.
+		</div>
+		<div class="footer-nav">
+			<a href="http://www.mantralabsglobal.com">About</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="http://www.mantralabsglobal.com">Blog</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="http://www.mantralabsglobal.com/contactus">Contact Us</a>
+		</div>
+	</div>
+</div>
+<div class="modal hide" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="signInModalLabel" aria-hidden="true">
+  	<div class="modal-dialog">
+    	<div class="modal-content signup-popup">
+	      	<div class="modal-header header">
+	       		<!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+	        	<img src="images/close-icon.png" data-dismiss="modal" aria-label="Close" alt="close" class="close-popup"/>
+	        	<!-- <h4 class="modal-title">Modal title</h4> -->
+	      	</div>
+	      	<div class="modal-body content">
+	      		<p class="heading-big">Sign In</p>
+	      		<form action="/loginUser" method="post" id="loginForm">
+			      	<div class="emailid-input">
+						<input type="text" name="email" id="eId" placeholder="Email address:"/>
+					</div>
+					<div class="password-input">
+						<input type="password" name="password" id="pwd" placeholder="Password:"/>
+					</div>
+					<!-- <div class="signup-button">
+						Sign In
+					</div> -->
+					<input type="submit" class="signup-button" value="Sign In"/>
+				</form>
+				<div class="paragraph-text">
+					<a href="#" id="resetPwd" data-toggle="modal" data-target="#resetModal">Forgot Password??</a>
+				</div>
+				<p class="paragraph-text">Or, Sign in with</p>
+				<div class="fb-button">
+					Facebook
+				</div>
+	        	<!-- <p>One fine body&hellip;</p> -->
+		    </div>
+    	</div><!-- /.modal-content -->
+  	</div><!-- /.modal-dialog -->
+</div>
+
+<div class="modal hide" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModalLabel" aria-hidden="true"> <!-- fade class can be added but gives problems in opening-->
+  	<div class="modal-dialog">
+    	<div class="modal-content signup-popup">
+	      	<div class="modal-header header">
+	        	<img src="images/close-icon.png" class="close-popup" data-dismiss="modal" aria-label="Close" alt="close"/>
+	      	</div>
+	      	<div class="modal-body content">
+	      		<p class="heading-big">Sign Up</p>
+	      		<form action="/signUpUser" method="post" id="signUpForm">
+			      	<div class="email-input inputs">
+						<input type="text" name="email" id="emId" placeholder="Email address:"/>
+					</div>
+					<div class="name-input inputs">
+						<input type="text" name="username" id="uName" placeholder="Full Name:"/>
+					</div>
+					<!-- <div class="dob-input inputs">
+						<p>Date of Birth</p>
+						<div class="select-boxes">
+							<select name="day" id="dayDob"></select>
+							<select name="month" id="monthDob"></select>
+							<select name="year" id="yearDob"></select>
+						</div>
+					</div> -->
+					<!-- <div class="gender-input inputs">
+						<p>Gender</p>
+						<div class="gender-radio">
+							<input type="radio" name="gender" value="male">Male</input>
+							<input type="radio" name="gender" value="female">Female</input>
+						</div>
+					</div> -->
+					<!-- <div class="city-input inputs">
+						<p>City: </p>
+						<div class="city-select">
+							<select name="city">
+								<option value="NCR">NCR</option>
+								<option value="Bangalore">Bangalore</option>
+								<option value="Mumbai">Mumbai</option>
+								<option value="Pune">Pune</option>
+								<option value="Chennai">Chennai</option>
+							</select>
+						</div>
+					</div> -->
+					<!-- <div class="contact-input inputs">
+						<input type="text" name="contactNumber" id="contactNum" placeholder="Phone Number:"/>
+					</div> -->
+					<!-- <div class="input-password inputs">
+						<input type="password" name="password" id="pwdOrig" placeholder="Password:"/>
+						<input type="password" id="pwdCopy" placeholder="Reenter Password:"/>
+					</div> -->
+					<input type="submit" class="signup-button" value="Register"/>
+				</form>
+				<p class="paragraph-text">Or, Sign up with</p>
+				<div class="fb-button">
+					Facebook
+				</div>
+		    </div>
+    	</div><!-- /.modal-content -->
+  	</div><!-- /.modal-dialog -->
+</div>
+
+<div class="modal hide" id="resetModal" tabindex="-1" role="dialog" aria-labelledby="resetModalLabel" aria-hidden="true">
+  	<div class="modal-dialog">
+    	<div class="modal-content signup-popup">
+	      	<div class="modal-header header">
+	        	<img src="images/close-icon.png" class="close-popup" data-dismiss="modal" aria-label="Close" alt="close"/>
+	      	</div>
+	      	<div class="modal-body content">
+	      		<p class="heading-big">Reset Password</p>
+	      		<p class="paragraph-text">Enter your registered email id and we will send you a new password!</p>
+	      		<form action="/passwordreset" method="post" id="resetForm">
+			      	<div class="emailid-input">
+						<input type="text" name="email" id="eId" placeholder="Email address:"/>
+					</div>
+					<input type="submit" class="signup-button" value="Reset Password"/>
+				</form>
+		    </div>
+    	</div><!-- /.modal-content -->
+  	</div><!-- /.modal-dialog -->
+</div>

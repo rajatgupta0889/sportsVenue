@@ -1,0 +1,280 @@
+<div class="header">
+	<div class="nav-bar">
+		<div class="logo-name">
+			<div class="logo-image">
+				<a href="/home">
+					<img src="images/logo.png" alt="SportsVenue"/>
+				</a>
+			</div>
+			<div class="logo-text">
+				<a href="/home">
+					<p>sports venue</p>
+				</a>
+			</div>
+		</div>
+		<div class="social-contact">
+			<%if(req.session.user){%>
+			<div class="user-name">
+				<p><%=req.session.user.username%></p>
+			</div>
+			<div class="user-options" id="userOptions">
+				<a href="#" class="menu-option">Edit My Profile</a>
+				<a href="#" class="menu-option">Show My Reviews</a>
+				<a href="#" class="menu-option">Add a Ground</a>
+				<a href="/logout" class="menu-option">Logout</a>
+			</div>
+			<%}else{%>
+			<div class="sign-in">
+				<a href="#" id="signIn" data-toggle="modal" data-target="#signInModal">Sign In</a>&nbsp;|
+				<a href="#" id="signUp" data-toggle="modal" data-target="#signUpModal">Sign Up</a>
+			</div>
+			<%}%>
+			<div class="fb-link">
+				<a href="https://www.facebook.com/mantralabs">
+					<img src="images/fb-link-icon.png" alt="Fb Icon"/>
+				</a>
+			</div>
+			<div class="tw-link">
+				<a href="https://www.twitter.com">
+					<img src="images/tw-link-icon.png" alt="Tw Icon"/>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="search-criteria">
+	<div class="criteria-container">
+		<div class="location-criteria" title="Click here to change">
+			<p>Location: Bangalore</p>
+			<select class="hide">
+				<option>Bangalore</option>
+				<option>Mumbai</option>
+				<option>Pune</option>
+				<option>NCR</option>
+				<option>Chennai</option>
+			</select>
+		</div>
+		<div class="sport-criteria" title="Click here to change">
+			<p>Type: Football</p>
+			<select class="hide">
+				<option>Cricket</option>
+				<option>Football</option>
+				<option>Athletics</option>
+			</select>
+		</div>
+		<div class="selected-date" title="Click here to change">
+			Date:&nbsp;&nbsp;<p id="selectedDate">10 Mar 2015</p>
+			<!-- <img src="images/calendar-icon.png" id="showCal" alt="calendar" title="Click here to change"/> -->
+		</div>
+	</div>
+</div>
+<div class="results-count">
+	<div class="count-container">
+		<div class="res-number">
+			<%if(grounds.length > 0){%>
+			<p><%=grounds.length%> Results Found</p>
+			<%}else{%>
+			<p>No results found</p>
+			<%}%>
+		</div>
+		<div class="search-box">
+			<input type="text" placeholder="Search"/>
+		</div>
+	</div>
+</div>
+<%if(grounds.length>0){%>
+<div class="results">
+	<%_.each(grounds,function(ground){%>
+	<div class="individual-result">
+		<div class="res-container">
+			<div class="res-header">
+				<a href="/ground/<%=ground.id%>"><%=ground.groundName%></a>
+			</div>
+			<div class="res-details">
+				<div class="res-image">
+					<a href="/ground/<%=ground.id%>"><img src="images/stadium-small.png" alt="ground-image"/></a>
+				</div>
+				<div class="res-desc-short">
+					<h3>Description :</h3>
+					<%if(ground.groundInfo.length > 90){%>
+					<p><%=ground.groundInfo.substring(0,90)%>...<span class="change-cursor"><a href="/ground/<%=ground.id%>"> Read More</a></span></p>
+					<%}else{%>
+					<p><%=ground.groundInfo%><span class="change-cursor"><a href="/ground/<%=ground.id%>"> Read More</a></span></p>
+					<%}%>
+				</div>
+				<div class="res-contact-details">
+					<h3>Address :</h3>
+					<!-- <p>Ashok Nagar, Xavier Layout, Bengaluru, Karnataka.</p> -->
+					<p><%=ground.address%></p>
+					<div class="contact-number">
+						<h3>Contact :</h3><p> 9876543210</p>
+					</div>
+				</div>
+			</div>
+			<div class="res-footer">
+				<div class="res-ground-details">
+					<div class="avail">
+						<%if(ground.availibility === true){%>
+						<h3>Availability : Checked</h3>
+						<%}else{%>
+						<h3>Availability : Unchecked</h3>
+						<%}%>
+					</div>
+					<div class="rating">
+						<h3>Rating : </h3>
+						<div class="rating-stars">
+							<%for(var i=0; i<ground.rating; i++){%>
+							<img src="images/star-marked.png" alt="marked"/>
+							<%}%>
+							<!-- <img src="images/star-unmarked.png" alt="marked"/> -->
+						</div>
+					</div>
+				</div>
+				<div class="res-ground-options">
+					<p><span class="change-cursor" id="reviewSlider">Reviews</span></p>|
+					<p><span class="change-cursor">Share</span></p>|
+					<p id="toggleMap"><span class="change-cursor">Map</span></p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- <div id="groundReviews">
+		
+	</div> -->
+	<div id="googleMap" style="width:1375px;height:400px;border: 10px solid #f1f1f1;display:none;" data-loc-x=<%=ground.location.x%> data-loc-y=<%=ground.location.y%>></div>
+	<%});%>
+</div>
+<%}%>
+<div class="footer">
+	<div class="footer-content">
+		<div class="foot-text">
+			&copy; 2014 All Rights Reserved.
+		</div>
+		<div class="footer-nav">
+			<a href="http://www.mantralabsglobal.com">About</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="http://www.mantralabsglobal.com">Blog</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="http://www.mantralabsglobal.com/contactus">Contact Us</a>
+		</div>
+	</div>
+</div>
+<div class="modal hide" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="signInModalLabel" aria-hidden="true">
+  	<div class="modal-dialog">
+    	<div class="modal-content signup-popup">
+	      	<div class="modal-header header">
+	        	<img src="images/close-icon.png" data-dismiss="modal" aria-label="Close" alt="close"/>
+	      	</div>
+	      	<div class="modal-body content">
+	      		<p class="heading-big">Sign In</p>
+	      		<form action="/loginUser" method="post" id="loginForm">
+			      	<div class="emailid-input">
+						<input type="text" name="email" id="eId" placeholder="Email address:"/>
+					</div>
+					<div class="password-input">
+						<input type="password" name="password" id="pwd" placeholder="Password:"/>
+					</div>
+					<input type="submit" class="signup-button" value="Sign In"/>
+				</form>
+				<div class="paragraph-text">
+					<a href="#" id="resetPwd" data-toggle="modal" data-target="#resetModal">Forgot Password??</a>
+				</div>
+				<p class="paragraph-text">Or, Sign in with</p>
+				<div class="fb-button">
+					Facebook
+				</div>
+	        	<!-- <p>One fine body&hellip;</p> -->
+		    </div>
+    	</div><!-- /.modal-content -->
+  	</div><!-- /.modal-dialog -->
+</div>
+<div class="modal hide" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModalLabel" aria-hidden="true">
+  	<div class="modal-dialog">
+    	<div class="modal-content signup-popup">
+	      	<div class="modal-header header">
+	        	<img src="images/close-icon.png" data-dismiss="modal" aria-label="Close" alt="close"/>
+	      	</div>
+	      	<div class="modal-body content">
+	      		<p class="heading-big">Sign Up</p>
+	      		<form action="/signUpUser" method="post" id="signUpForm">
+			      	<div class="email-input inputs">
+						<input type="text" name="email" id="emId" placeholder="Email address:"/>
+					</div>
+					<div class="name-input inputs">
+						<input type="text" name="username" id="uName" placeholder="Full Name:"/>
+					</div>
+					<input type="submit" class="signup-button" value="Register"/>
+				</form>
+				<p class="paragraph-text">Or, Sign up with</p>
+				<div class="fb-button">
+					Facebook
+				</div>
+		    </div>
+    	</div><!-- /.modal-content -->
+  	</div><!-- /.modal-dialog -->
+</div>
+<div class="modal hide" id="resetModal" tabindex="-1" role="dialog" aria-labelledby="resetModalLabel" aria-hidden="true">
+  	<div class="modal-dialog">
+    	<div class="modal-content signup-popup">
+	      	<div class="modal-header header">
+	        	<img src="images/close-icon.png" data-dismiss="modal" aria-label="Close" alt="close"/>
+	      	</div>
+	      	<div class="modal-body content">
+	      		<p class="heading-big">Reset Password</p>
+	      		<p class="paragraph-text">Enter your registered email id and we will send you a new password!</p>
+	      		<form action="/passwordreset" method="post" id="resetForm">
+			      	<div class="emailid-input">
+						<input type="text" name="email" id="eId" placeholder="Email address:"/>
+					</div>
+					<input type="submit" class="signup-button" value="Reset Password"/>
+				</form>
+		    </div>
+    	</div><!-- /.modal-content -->
+  	</div><!-- /.modal-dialog -->
+</div>
+<script src="http://maps.googleapis.com/maps/api/js"></script>
+<script>
+
+// bangalore = 12.9715987,77.5945626
+// google.maps.event.addDomListener(window, 'load', initialize);
+window.onload = function(){
+		g_globalObject = new JsDatePick({
+			useMode:2,
+			isStripped:true,
+			target:"selectedDate"
+			/*selectedDate:{				This is an example of what the full configuration offers.
+				day:5,						For full documentation about these settings please see the full version of the code.
+				month:9,
+				year:2006
+			},
+			yearsRange:[1978,2020],
+			limitToToday:false,
+			cellColorScheme:"beige",
+			dateFormat:"%m-%d-%Y",
+			imgPath:"img/",
+			weekStartDay:1*/
+		});
+		$('.JsDatePickBox').css({'top':'30px','background':'white','border':'1px solid black','border-radius':'5px'});
+		$('.boxMainInner').css('margin','5px 0 10px 7px');
+		g_globalObject.setOnSelectedDelegate(function(){
+			var obj = g_globalObject.getSelectedDay();
+			var months = [
+				{ num:1, name:"Jan" },
+				{ num:2, name:"Feb"},
+				{ num:3, name:"Mar"},
+				{ num:4, name:"Apr"},
+				{ num:5, name:"May"},
+				{ num:6, name:"June"},
+				{ num:7, name:"July"},
+				{ num:8, name:"Aug"},
+				{ num:9, name:"Sept"},
+				{ num:10, name:"Oct"},
+				{ num:11, name:"Nov"},
+				{ num:12, name:"Dec"}
+			];
+			for(var i=0;i<months.length;i++){
+				if(obj.month === months[i].num)
+					obj.month = months[i].name;
+			}
+			document.getElementById("selectedDate").innerHTML = obj.day + "&nbsp;" + obj.month + "&nbsp;" + obj.year;
+		});
+	};
+</script>
