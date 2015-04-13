@@ -7,7 +7,7 @@
  */
 
 var crypto     = require('crypto');
-var random 	   = require("random-js")();
+// var random 	   = require("random-js")();
 
 /**
 	var habits = {smoke: true, }

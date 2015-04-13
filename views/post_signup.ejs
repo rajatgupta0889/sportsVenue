@@ -47,6 +47,7 @@
 		<p class="success-message"><%=msg.successMessage%></p>
 		<%}else if(msg.errorMessage){%>
 		<p class="error-message"><%=msg.errorMessage%></p>
+		<%}else{%>
 		<%}%>
 		<form action="/loginUser" method="post" id="loginForm">
 			<p class="heading-big">Sign In</p>
@@ -160,7 +161,3 @@
     	</div><!-- /.modal-content -->
   	</div><!-- /.modal-dialog -->
 </div>
-<script type="text/javascript">
-	var m = <%-JSON.stringify(msg)%>;
-	console.log(m);
-</script>
