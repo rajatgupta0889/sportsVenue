@@ -1,0 +1,84 @@
+<div class="header">
+	<div class="nav-bar">
+		<span class="glyphicon glyphicon-menu-hamburger"></span>
+		<div class="logo-name">
+			<div class="logo-image">
+				<a href="/home">
+					<img src="images/logo.png" alt="SportsVenue"/>
+				</a>
+			</div>
+			<div class="logo-text">
+				<a href="/home">
+					<p>sports venue</p>
+				</a>
+			</div>
+		</div>
+		<div class="social-contact">
+			<%if(req.session.user){%>
+			<div class="user-name">
+				<p><%=req.session.user.username%></p>
+			</div>
+			<div class="user-options" id="userOptions">
+				<a href="#" class="menu-option">Edit My Profile</a>
+				<a href="#" class="menu-option">Show My Reviews</a>
+				<a href="#" class="menu-option">Add a Ground</a>
+				<a href="/logout" class="menu-option">Logout</a>
+			</div>
+			<%}else{%>
+			<div class="sign-in">
+				<a href="#" id="signIn" data-controls-modal="modal-from-dom" data-backdrop="static" data-keyboard="true" data-toggle="modal" data-target="#signInModal">Sign In</a>&nbsp;|
+				<a href="#" id="signUp" data-toggle="modal" data-target="#signUpModal">Sign Up</a>
+			</div>
+			<%}%>
+		</div>
+	</div>
+</div>
+<div class="nav-header">
+	<ul>
+		<li><a href="#" id="showGrounds">Grounds</a></li>
+		<li><a href="#" id="showUsers">Users</a></li>
+		<li><a href="#" id="pending">Pending</a></li>
+	</ul>
+</div>
+<div class="show-area">
+	<div class="left-info info-section">
+		<div class="inner-container">
+			<div class="admin-grounds">
+				<a href="/grounds">See all grounds</a>
+			</div>
+			<div class="admin-users hide">
+				<a href="/users">See all users</a>
+			</div>
+			<div class="pending-data hide">
+				<a href="#"><p>Pending reviews</p></a>
+				<a href="#"><p>Pending images</p></a>
+				<a href="#"><p>Pending grounds</p></a>
+				<a href="#"><p>Abuses reported</p></a>
+			</div>
+		</div>
+	</div>
+	<div class="right-info info-section">
+		<div class="inner-container">
+			<%if(grounds.length > 0){%>
+				<p style="color:black;font-size:20pt;"><%=grounds.length%> results found</p>
+				<%_.each(grounds, function(ground){%>
+					<hr>
+						<form action="/update/+<%=ground.id%>" method="patch">
+							<p title="click to modify">Sport= <%=ground.sport%></p>
+							<p title="click to modify">Ground Name= <%=ground.groundName%></p>
+							<p title="click to modify">Ground Info= <%=ground.groundInfo%></p>
+							<p title="click to modify">Address= <%=ground.adress%></p>
+							<p title="click to modify">Rating= <%=ground.rating%></p>
+							<p title="click to modify">City= <%=ground.city%></p>
+							<p title="click to modify">Availability= <%=ground.availablity%></p>
+							<p title="click to modify">Area= <%=ground.area%></p>
+							<p title="click to modify">Total Ratings= <%=ground.ratingCount%></p>
+							<p title="click to modify">Id= <%=ground.id%></p>
+							<input type="submit" value="update">
+						</form>
+					<hr>
+				<%})%>
+			<%}%>
+		</div>
+	</div>
+</div>

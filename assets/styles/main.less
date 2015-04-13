@@ -4,8 +4,6 @@
 
 @import url('bootstrap.min.css');
 
-@import url('bootstrap-responsive.min.css');
-
 @import url('jsDatePick_ltr.min.css');
 
 @backColor : #000000;
@@ -95,7 +93,11 @@ span{
 
 	.nav-bar{
 		.FixedMargin;
-		padding: 22px 0;
+		padding: 10px 0;
+
+		.glyphicon-menu-hamburger{
+			display: none;
+		}
 
 		.logo-name{
 			display: inline-block;
@@ -192,6 +194,8 @@ span{
 	background: url('../images/background-banner.png') no-repeat;
 	background-size: cover;
 	font-family: BloggerSansRegular;
+	background-size: 100% 100%;
+
 	.search-bar{
 		width: 85%;
 		margin: 0 auto;	
@@ -244,8 +248,8 @@ span{
 
 			input{
 				width: 92%;
-				padding: 18px;
-				font-size: 19px;
+				padding: 12px;
+				font-size: 28px;
 				border-radius: 8px;
 				-webkit-appearance : none;
 				-moz-appearance : none;
@@ -262,8 +266,8 @@ span{
 			cursor : pointer;
 			vertical-align: middle;
 			position: relative;
-			top: -5px;
-			padding: 1.5% 0;
+			top: -2px;
+			padding: 1% 0;
 			border: none;
 			font-family: BloggerSansRegular;
 
@@ -949,212 +953,215 @@ span{
 	left:0;
 	width: 70%;
 	margin-left: 15%;
-	background: white;
+	background: transparent;
 
+	.modal-dialog{
+		width: 100%;
 
-	.signup-popup{
-		background: white;
-		// opacity: 0.5;
-
-		.header{
-			margin: 3% 0 0 90%;
+		.signup-popup{
 			background: white;
-			border: none;
+			// opacity: 0.5;
 
-			img{
-				cursor: pointer;
-			}
-		}
+			.header{
+				margin: 3% 0 0 90%;
+				background: white;
+				border: none;
 
-		.content{
-			width: 60%;
-			margin: 0 auto 5%;
-
-			.heading-big{
-				font-size:25pt;
-				font-family: BloggerSansRegular;
-				text-align: center;
-				margin-bottom: 5%;
-			}
-
-			.emailid-input, .password-input{
-				margin: 0% 0 5%;
-				width: 100%;
-				overflow: hidden;
-
-				input{
-					.appearanceClear;
-					background: url('../images/sign-up-mail-icon.png') no-repeat;
-					background-position: left 2% center;
-					padding: 10px 10px 10px 60px;
-					font-family: BloggerSansLight;
-					font-size: 20pt;
-					border: none;
-					width: 90%;
-					border-bottom: 1px solid #bebebe;
-					line-height: normal;
-					.NoBoxShadow;
+				img{
+					cursor: pointer;
 				}
 			}
 
-			.password-input{
-				input{
-					background: url('../images/password-signup-icon.png') no-repeat;
-					background-position: left 2.5% center;
-					line-height: normal;
-					.NoBoxShadow;
-				}
-			}
+			.content{
+				width: 60%;
+				margin: 0 auto 5%;
 
-			.inputs{
-				margin: 5% 0;
-				width: 100%;
-				overflow: hidden;
-
-				input{
-					.CommonInputBoxStyles;
-				}
-			}
-
-			.dob-input{
-				p{
-					display: inline-block;
-					// margin: 0 !important;
-					vertical-align: middle ;
-					font-size: 15pt;
-					font-family: BloggerSansLight;
-				}
-				
-				.select-boxes{
-					display: inline-block;
-					vertical-align: middle;
-					width: 80%;
-
-					select{
-						.appearanceClear;
-						display: inline-block;
-						width: 25%;
-						margin-left: 20px;
-						height: 50px;
-						font-family: BloggerSansLight;
-						font-size: 15pt;
-						padding: 0 15px;
-					}
-
-					select:first-child{
-						margin-left: 15px;
-					}
-				}
-			}
-
-			.gender-input{
-				font-size: 15pt;
-				font-family: BloggerSansLight;
-				p{
-					display: inline-block;
-					// vertical-align: middle;
-					margin-bottom: 0;
-				}
-				.gender-radio{
-					display: inline-block;
-					// vertical-align: middle;
-
-					input{
-						-webkit-appearance:radio;
-						-moz-appearance:radio;
-						width: 20px;
-						padding: 0;
-						height: 20px;
-						margin:0 ;
-					}
-				}
-			}
-
-			.city-input{
-				font-size: 15pt;
-				font-family: BloggerSansLight;
-
-				p{
-					display: inline-block;
-					
-				}
-
-				.city-select{
-					display: inline-block;
-					margin-left: 15px;
-
-					select{
-						.appearanceClear;
-						// width: 100%;
-						margin-left: 20px;
-						height: 50px;
-						font-family: BloggerSansLight;
-						font-size: 15pt;
-						padding: 0 15px;
-					}
-
-				}
-			}
-
-			.contact-input{
-				margin-bottom: 0px !important;
-
-				input{
-					margin-bottom: 0;
-				}
-			}
-
-			.input-password{
-				input:first-child{
+				.heading-big{
+					font-size:25pt;
+					font-family: BloggerSansRegular;
+					text-align: center;
 					margin-bottom: 5%;
 				}
 
-				input:last-child{
-					margin-bottom: 0;
+				.emailid-input, .password-input{
+					margin: 0% 0 5%;
+					width: 100%;
+					overflow: hidden;
+
+					input{
+						.appearanceClear;
+						background: url('../images/sign-up-mail-icon.png') no-repeat;
+						background-position: left 2% center;
+						padding: 10px 10px 10px 60px;
+						font-family: BloggerSansLight;
+						font-size: 20pt;
+						border: none;
+						width: 100%;
+						border-bottom: 1px solid #bebebe;
+						line-height: normal;
+						.NoBoxShadow;
+					}
 				}
-			}
 
-			.signup-button{
-				// margin-top: 5%; 
-				width: 100%;
-				background: #adc04c;
-				text-align: center;
-				padding: 25px 0;
-				border-radius: 8px;
-				cursor: pointer;
-				font-size: 20pt;
-				font-family: BloggerSansLight;
-				color: white;
-				border-bottom: 4px solid #80902b;
-			}
-
-			.paragraph-text{
-				text-align: center;
-				margin: 5% 0;
-				font-family: BloggerSansLight;
-				font-size: 14pt;
-
-				a{
-					color:black;
-					text-decoration: none;
+				.password-input{
+					input{
+						background: url('../images/password-signup-icon.png') no-repeat;
+						background-position: left 2.5% center;
+						line-height: normal;
+						.NoBoxShadow;
+					}
 				}
-				a:hover{
-					color:#08c;
-					text-decoration: none;
-				}
-			}
 
-			.fb-button{
-				background: #43609f;
-				padding: 10px 15px;
-				text-align: center;
-				font-size: 16pt;
-				width: 30%;
-				font-family: BloggerSansLight;
-				border-radius: 6px;
-				margin: 0 auto;
-				color: white;
-				cursor: pointer;
+				.inputs{
+					margin: 5% 0;
+					width: 100%;
+					overflow: hidden;
+
+					input{
+						.CommonInputBoxStyles;
+					}
+				}
+
+				.dob-input{
+					p{
+						display: inline-block;
+						// margin: 0 !important;
+						vertical-align: middle ;
+						font-size: 15pt;
+						font-family: BloggerSansLight;
+					}
+					
+					.select-boxes{
+						display: inline-block;
+						vertical-align: middle;
+						width: 80%;
+
+						select{
+							.appearanceClear;
+							display: inline-block;
+							width: 25%;
+							margin-left: 20px;
+							height: 50px;
+							font-family: BloggerSansLight;
+							font-size: 15pt;
+							padding: 0 15px;
+						}
+
+						select:first-child{
+							margin-left: 15px;
+						}
+					}
+				}
+
+				.gender-input{
+					font-size: 15pt;
+					font-family: BloggerSansLight;
+					p{
+						display: inline-block;
+						// vertical-align: middle;
+						margin-bottom: 0;
+					}
+					.gender-radio{
+						display: inline-block;
+						// vertical-align: middle;
+
+						input{
+							-webkit-appearance:radio;
+							-moz-appearance:radio;
+							width: 20px;
+							padding: 0;
+							height: 20px;
+							margin:0 ;
+						}
+					}
+				}
+
+				.city-input{
+					font-size: 15pt;
+					font-family: BloggerSansLight;
+
+					p{
+						display: inline-block;
+						
+					}
+
+					.city-select{
+						display: inline-block;
+						margin-left: 15px;
+
+						select{
+							.appearanceClear;
+							// width: 100%;
+							margin-left: 20px;
+							height: 50px;
+							font-family: BloggerSansLight;
+							font-size: 15pt;
+							padding: 0 15px;
+						}
+
+					}
+				}
+
+				.contact-input{
+					margin-bottom: 0px !important;
+
+					input{
+						margin-bottom: 0;
+					}
+				}
+
+				.input-password{
+					input:first-child{
+						margin-bottom: 5%;
+					}
+
+					input:last-child{
+						margin-bottom: 0;
+					}
+				}
+
+				.signup-button{
+					// margin-top: 5%; 
+					width: 100%;
+					background: #adc04c;
+					text-align: center;
+					padding: 15px 0;
+					border-radius: 8px;
+					cursor: pointer;
+					font-size: 20pt;
+					font-family: BloggerSansLight;
+					color: white;
+					border-bottom: 4px solid #80902b;
+				}
+
+				.paragraph-text{
+					text-align: center;
+					margin: 5% 0;
+					font-family: BloggerSansLight;
+					font-size: 14pt;
+
+					a{
+						color:black;
+						text-decoration: none;
+					}
+					a:hover{
+						color:#08c;
+						text-decoration: none;
+					}
+				}
+
+				.fb-button{
+					background: #43609f;
+					padding: 10px 15px;
+					text-align: center;
+					font-size: 16pt;
+					width: 30%;
+					font-family: BloggerSansLight;
+					border-radius: 6px;
+					margin: 0 auto;
+					color: white;
+					cursor: pointer;
+				}
 			}
 		}
 	}
@@ -1323,7 +1330,72 @@ span{
 //
 //----------------------------------------------------//
 
-//miscellaneous slides
+//----------------------------------------------------//
+//
+//------Styles for admin home start end here----------//
+//
+//----------------------------------------------------//
+
+.nav-header{
+	background: #4B54D1;
+
+	ul{
+		padding: 10px 0;
+
+		li{
+			display: inline-block;
+			text-align: center;
+			margin-left: 21%;
+			color: white;
+				
+			a{
+				color: white;
+				font-size: 15pt;
+			}
+
+			a:hover{
+				color: white;
+			}
+		}
+	}
+}
+
+.show-area{
+	.info-section{
+		position: absolute;
+		// display: inline-block;
+		height: 550px;
+		width: 45%;
+		border: 1px solid black;
+		overflow: scroll;
+
+		.inner-container{
+			padding: 10px;
+
+			p{
+				margin:0;
+			}
+		}
+	}
+
+	.right-info{
+		margin-left: 50%;
+	}
+
+	.left-info{
+		margin-left: 5%;
+	}
+}
+
+
+//----------------------------------------------------//
+//
+//------Styles for admin home page end here-----------//
+//
+//----------------------------------------------------//
+
+
+//miscellaneous styles
 
 .bx-viewport{
 	-webkit-box-shadow : none !important;

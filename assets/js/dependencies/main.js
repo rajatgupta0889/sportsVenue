@@ -13,6 +13,7 @@ $(document).ready(function(){
 // });
 
 $('#advancedSearch').click(function(){
+	$('.search-bar').css('padding','20% 0 24%');
 	$('#advancedSearch').addClass('hide');
 	$('#normalSearch').removeClass('hide');
 	$('.locations').removeClass('hide');
@@ -24,11 +25,12 @@ $('#advancedSearch').click(function(){
 		// 'padding':'22% 0'
 	});
 	$('.search-button').css({
-		'top':'8px'
+		'top':'-2px'
 	});
 });
 
 $('#normalSearch').click(function(){
+	$('.search-bar').css('padding','24% 0');
 	$('#advancedSearch').removeClass('hide');
 	$('#normalSearch').addClass('hide');
 	$('.locations').addClass('hide');
@@ -68,18 +70,18 @@ $('.user-name').click(function(){
 
 $('#signUp').click(function(){
 	$('#signUpModal').removeClass('hide');
-	$('#dayDob').empty();
-	$('#monthDob').empty();
-	$('#yearDob').empty();
+	// $('#dayDob').empty();
+	// $('#monthDob').empty();
+	// $('#yearDob').empty();
 
-	for(var i=0;i<31;i++)
-		$('#dayDob').append('<option value='+(i+1)+'>'+(i+1)+'</option>');
+	// for(var i=0;i<31;i++)
+	// 	$('#dayDob').append('<option value='+(i+1)+'>'+(i+1)+'</option>');
 
-	for(i=0;i<12;i++)
-		$('#monthDob').append('<option value='+(i+1)+'>'+(i+1)+'</option>');
+	// for(i=0;i<12;i++)
+	// 	$('#monthDob').append('<option value='+(i+1)+'>'+(i+1)+'</option>');
 
-	for(i=1930;i<=2010;i++)
-		$('#yearDob').append('<option value='+(i+1)+'>'+(i+1)+'</option>');				
+	// for(i=1930;i<=2010;i++)
+	// 	$('#yearDob').append('<option value='+(i+1)+'>'+(i+1)+'</option>');				
 });
 
 
@@ -265,6 +267,33 @@ $('#resetPwd').click(function(event){
 	$('#resetModal').removeClass('hide');
 	// $('#signInModal').modal('hide').done($('#resetModal').modal('show'));
 });
+
+$('.close-popup').click(function(){
+	$('.modal-backdrop').remove();
+});
+
+$('#showGrounds').click(function(){
+	$('.admin-grounds').removeClass('hide');
+	$('.admin-users').addClass('hide');
+	$('.pending-data').addClass('hide');
+});
+
+$('#showUsers').click(function(){
+	$('.admin-grounds').addClass('hide');
+	$('.admin-users').removeClass('hide');
+	$('.pending-data').addClass('hide');
+});
+
+$('#pending').click(function(){
+	$('.admin-grounds').addClass('hide');
+	$('.admin-users').addClass('hide');
+	$('.pending-data').removeClass('hide');
+});
+// $('#signIn').click(function(event){
+// 	$("#signInModal").addClass('in');
+// 	// $('#signInModal').css('display',"block !important");
+// 	// event.stopPropagation();
+// });
 
 // $('body').click(function(){
 // 	if($('#userOptions').hasClass('open'))

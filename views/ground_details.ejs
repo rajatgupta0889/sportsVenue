@@ -55,7 +55,11 @@
 			</select>
 		</div>
 		<div class="sport-criteria">
+			<%if(ground[0].sport.length>10){%>
+			<p>Type: <%=ground[0].sport.split(" ",1)%></p>
+			<%}else{%>
 			<p>Type: <%=ground[0].sport%></p>
+			<%}%>
 			<select class="hide">
 				<option>Cricket</option>
 				<option>Football</option>
@@ -64,7 +68,7 @@
 		</div>
 		<div class="selected-date">
 			<p>Date: 10 Mar 2015</p>
-			<img src="/images/calendar-icon.png" alt="calendar"/>
+			<!-- <img src="/images/calendar-icon.png" alt="calendar"/> -->
 		</div>
 	</div>
 </div>
@@ -213,12 +217,12 @@
 		</div>
 	</div>
 </div>
-<div class="modal fade hide" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="signInModalLabel" aria-hidden="true">
+<div class="modal hide" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="signInModalLabel" aria-hidden="true">
   	<div class="modal-dialog">
     	<div class="modal-content signup-popup">
 	      	<div class="modal-header header">
 	       		<!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
-	        	<img src="/images/close-icon.png" data-dismiss="modal" aria-label="Close" alt="close"/>
+	        	<img src="images/close-icon.png" data-dismiss="modal" aria-label="Close" alt="close"/>
 	        	<!-- <h4 class="modal-title">Modal title</h4> -->
 	      	</div>
 	      	<div class="modal-body content">
@@ -235,6 +239,9 @@
 					</div> -->
 					<input type="submit" class="signup-button" value="Sign In"/>
 				</form>
+				<div class="paragraph-text">
+					<a href="#" id="resetPwd" data-toggle="modal" data-target="#resetModal">Forgot Password??</a>
+				</div>
 				<p class="paragraph-text">Or, Sign in with</p>
 				<div class="fb-button">
 					Facebook
@@ -245,7 +252,7 @@
   	</div><!-- /.modal-dialog -->
 </div>
 
-<div class="modal fade hide" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModalLabel" aria-hidden="true">
+<div class="modal hide" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModalLabel" aria-hidden="true">
   	<div class="modal-dialog">
     	<div class="modal-content signup-popup">
 	      	<div class="modal-header header">
@@ -266,6 +273,25 @@
 				<div class="fb-button">
 					Facebook
 				</div>
+		    </div>
+    	</div><!-- /.modal-content -->
+  	</div><!-- /.modal-dialog -->
+</div>
+<div class="modal hide" id="resetModal" tabindex="-1" role="dialog" aria-labelledby="resetModalLabel" aria-hidden="true">
+  	<div class="modal-dialog">
+    	<div class="modal-content signup-popup">
+	      	<div class="modal-header header">
+	        	<img src="images/close-icon.png" data-dismiss="modal" aria-label="Close" alt="close"/>
+	      	</div>
+	      	<div class="modal-body content">
+	      		<p class="heading-big">Reset Password</p>
+	      		<p class="paragraph-text">Enter your registered email id and we will send you a new password!</p>
+	      		<form action="/passwordreset" method="post" id="resetForm">
+			      	<div class="emailid-input">
+						<input type="text" name="email" id="eId" placeholder="Email address:"/>
+					</div>
+					<input type="submit" class="signup-button" value="Reset Password"/>
+				</form>
 		    </div>
     	</div><!-- /.modal-content -->
   	</div><!-- /.modal-dialog -->

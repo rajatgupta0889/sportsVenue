@@ -41,7 +41,7 @@ exports.sendResetMail = function(data, cb) {
 	    to: data.email, //'harsh@mantralabsglobal.com'
 	    subject: 'Sports Venue - New Password!', // Subject line
 	    text: '', // plaintext body
-	    html: "<p style='margin:0;font-weight:bold;font-size:12pt;'>Dear "+data.username+",</p><br><p style='margin:0;font-size:12pt;'>Looks like you forgot your old password.</p><p style='margin:0;font-size:12pt;'>This is your new password:<span style='margin:0;color:rgb(83,209,48);font-weight:bold;'>"+data.userPwd+"</span></p><br><p style='margin:0;font-size:10pt;'>Thanks,</p><p style='margin:0;font-size:10pt;'>SV Team</p>" // html body
+	    html: "<p style='margin:0;font-weight:bold;font-size:12pt;'>Dear user,</p><br><p style='margin:0;font-size:12pt;'>Looks like you forgot your old password.</p><p style='margin:0;font-size:12pt;'>This is your new password:<span style='margin:0;color:rgb(83,209,48);font-weight:bold;'>"+data.userPwd+"</span></p><br><p style='margin:0;font-size:10pt;'>Thanks,</p><p style='margin:0;font-size:10pt;'>SV Team</p>" // html body
 	};
 
 	// send mail with defined transport object

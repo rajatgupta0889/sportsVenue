@@ -96,7 +96,11 @@
 				</div>
 				<div class="res-desc-short">
 					<h3>Description :</h3>
+					<%if(ground.groundInfo.length > 90){%>
+					<p><%=ground.groundInfo.substring(0,90)%>...<span class="change-cursor"><a href="/ground/<%=ground.id%>"> Read More</a></span></p>
+					<%}else{%>
 					<p><%=ground.groundInfo%><span class="change-cursor"><a href="/ground/<%=ground.id%>"> Read More</a></span></p>
+					<%}%>
 				</div>
 				<div class="res-contact-details">
 					<h3>Address :</h3>
@@ -153,31 +157,36 @@
 		</div>
 	</div>
 </div>
-<div class="modal fade hide" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="signInModalLabel" aria-hidden="true">
+<div class="modal hide" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="signInModalLabel" aria-hidden="true">
   	<div class="modal-dialog">
     	<div class="modal-content signup-popup">
 	      	<div class="modal-header header">
 	        	<img src="images/close-icon.png" data-dismiss="modal" aria-label="Close" alt="close"/>
 	      	</div>
 	      	<div class="modal-body content">
-		      	<div class="emailid-input">
-					<input type="text" placeholder="Email address:"/>
+	      		<p class="heading-big">Sign In</p>
+	      		<form action="/loginUser" method="post" id="loginForm">
+			      	<div class="emailid-input">
+						<input type="text" name="email" id="eId" placeholder="Email address:"/>
+					</div>
+					<div class="password-input">
+						<input type="password" name="password" id="pwd" placeholder="Password:"/>
+					</div>
+					<input type="submit" class="signup-button" value="Sign In"/>
+				</form>
+				<div class="paragraph-text">
+					<a href="#" id="resetPwd" data-toggle="modal" data-target="#resetModal">Forgot Password??</a>
 				</div>
-				<div class="password-input">
-					<input type="password" placeholder="Password:"/>
-				</div>
-				<div class="signup-button">
-					Create Account
-				</div>
-				<p>Or, Sign in with</p>
+				<p class="paragraph-text">Or, Sign in with</p>
 				<div class="fb-button">
 					Facebook
 				</div>
+	        	<!-- <p>One fine body&hellip;</p> -->
 		    </div>
     	</div><!-- /.modal-content -->
   	</div><!-- /.modal-dialog -->
 </div>
-<div class="modal fade hide" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModalLabel" aria-hidden="true">
+<div class="modal hide" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModalLabel" aria-hidden="true">
   	<div class="modal-dialog">
     	<div class="modal-content signup-popup">
 	      	<div class="modal-header header">
@@ -198,6 +207,25 @@
 				<div class="fb-button">
 					Facebook
 				</div>
+		    </div>
+    	</div><!-- /.modal-content -->
+  	</div><!-- /.modal-dialog -->
+</div>
+<div class="modal hide" id="resetModal" tabindex="-1" role="dialog" aria-labelledby="resetModalLabel" aria-hidden="true">
+  	<div class="modal-dialog">
+    	<div class="modal-content signup-popup">
+	      	<div class="modal-header header">
+	        	<img src="images/close-icon.png" data-dismiss="modal" aria-label="Close" alt="close"/>
+	      	</div>
+	      	<div class="modal-body content">
+	      		<p class="heading-big">Reset Password</p>
+	      		<p class="paragraph-text">Enter your registered email id and we will send you a new password!</p>
+	      		<form action="/passwordreset" method="post" id="resetForm">
+			      	<div class="emailid-input">
+						<input type="text" name="email" id="eId" placeholder="Email address:"/>
+					</div>
+					<input type="submit" class="signup-button" value="Reset Password"/>
+				</form>
 		    </div>
     	</div><!-- /.modal-content -->
   	</div><!-- /.modal-dialog -->

@@ -1,5 +1,6 @@
 <div class="header">
 	<div class="nav-bar">
+		<span class="glyphicon glyphicon-menu-hamburger"></span>
 		<div class="logo-name">
 			<div class="logo-image">
 				<a href="/home">
@@ -25,7 +26,7 @@
 			</div>
 			<%}else{%>
 			<div class="sign-in">
-				<a href="#" id="signIn" data-toggle="modal" data-target="#signInModal">Sign In</a>&nbsp;|
+				<a href="#" id="signIn" data-controls-modal="modal-from-dom" data-backdrop="static" data-keyboard="true" data-toggle="modal" data-target="#signInModal">Sign In</a>&nbsp;|
 				<a href="#" id="signUp" data-toggle="modal" data-target="#signUpModal">Sign Up</a>
 			</div>
 			<%}%>
@@ -50,11 +51,8 @@
 				<div class="selection-divs">
 					<select class="location-select" name="area">
 						<option selected="selected" value="location">Location</option>
-						<option value = "Karnataka">Karnataka</option>
-						<option value = "Delhi">Delhi</option>
-						<option value = "Kolkata">Kolkata</option>
-						<option value = "Barcelona">Barcelona</option>
-						<option value = "London">London</option>
+						<option value = "Bangalore">Bangalore</option>
+						<!-- <option value = "Store">Store</option> -->
 					</select>
 				</div>
 			</div>
@@ -68,6 +66,7 @@
 						<option value="Volleyball">Volleyball</option>
 						<option value="Swimming">Swimming</option>
 						<option value="Tennis">Tennis</option>
+						<option value="Decathlon">Decathlon</option>
 					</select>
 				</div>
 			</div>
@@ -212,12 +211,12 @@
 		</div>
 	</div>
 </div>
-<div class="modal fade hide" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="signInModalLabel" aria-hidden="true">
+<div class="modal hide" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="signInModalLabel" aria-hidden="true">
   	<div class="modal-dialog">
     	<div class="modal-content signup-popup">
 	      	<div class="modal-header header">
 	       		<!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
-	        	<img src="images/close-icon.png" data-dismiss="modal" aria-label="Close" alt="close"/>
+	        	<img src="images/close-icon.png" data-dismiss="modal" aria-label="Close" alt="close" class="close-popup"/>
 	        	<!-- <h4 class="modal-title">Modal title</h4> -->
 	      	</div>
 	      	<div class="modal-body content">
@@ -247,11 +246,11 @@
   	</div><!-- /.modal-dialog -->
 </div>
 
-<div class="modal fade hide" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModalLabel" aria-hidden="true">
+<div class="modal hide" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModalLabel" aria-hidden="true"> <!-- fade class can be added but gives problems in opening-->
   	<div class="modal-dialog">
     	<div class="modal-content signup-popup">
 	      	<div class="modal-header header">
-	        	<img src="images/close-icon.png" data-dismiss="modal" aria-label="Close" alt="close"/>
+	        	<img src="images/close-icon.png" class="close-popup" data-dismiss="modal" aria-label="Close" alt="close"/>
 	      	</div>
 	      	<div class="modal-body content">
 	      		<p class="heading-big">Sign Up</p>
@@ -307,11 +306,11 @@
   	</div><!-- /.modal-dialog -->
 </div>
 
-<div class="modal fade hide" id="resetModal" tabindex="-1" role="dialog" aria-labelledby="resetModalLabel" aria-hidden="true">
+<div class="modal hide" id="resetModal" tabindex="-1" role="dialog" aria-labelledby="resetModalLabel" aria-hidden="true">
   	<div class="modal-dialog">
     	<div class="modal-content signup-popup">
 	      	<div class="modal-header header">
-	        	<img src="images/close-icon.png" data-dismiss="modal" aria-label="Close" alt="close"/>
+	        	<img src="images/close-icon.png" class="close-popup" data-dismiss="modal" aria-label="Close" alt="close"/>
 	      	</div>
 	      	<div class="modal-body content">
 	      		<p class="heading-big">Reset Password</p>

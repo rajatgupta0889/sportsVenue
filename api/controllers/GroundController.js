@@ -76,8 +76,8 @@ module.exports = {
 			if(err)
 				res.serverError(err);
 			else{
-				res.send(grounds);
-				// res.view('ground_search', { grounds : grounds});
+				// res.send(grounds);
+				res.view('admin/adminHome', {grounds : grounds});
 				console.log('Grounds Found successfully');
 			}
 		});

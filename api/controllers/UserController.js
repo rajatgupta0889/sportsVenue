@@ -52,7 +52,7 @@ module.exports = {
 				res.serverError(err);
 			else{
 				res.json(users);
-				console.log('users found successfully');
+				sails.log.debug('users found successfully');
 			}
 		});
 	},
@@ -70,7 +70,7 @@ module.exports = {
 		      	else{
 		        	// req.session.authenticated = true;
 		           	// req.session.user = user;
-		           	console.log('signed up successfully!');
+		           	sails.log.debug('signed up successfully!');
 		          	that.sendSignUpEmailToUser(req.body,res);
 		        }		
 			});
@@ -88,7 +88,7 @@ module.exports = {
 				if(err){
 					res.serverError(err);
 				}else{
-					console.log('Password reset successfully');
+					sails.log.debug('Password reset successfully');
 					that.sendPasswordResetEmailToUser(req.body,res);
 				}
 			});
@@ -108,9 +108,9 @@ module.exports = {
 		var that = this;
 		mailService.sendSignUpMail(req,function(err, response){
 			if(err)
-				console.log(err);
+				sails.log.debug(err);
 			else{
-				console.log('mail sent successfully'+response);
+				sails.log.debug('mail sent successfully'+response);
 				// res.redirect('/postsignup');
 				req.successMessage = "Thank you for registering. We have sent you a mail containing your account information. Please sign in using that information. We are waiting for you.";
 				that.postSignUp(req, res);
@@ -122,9 +122,9 @@ module.exports = {
 		var that = this;
 		mailService.sendResetMail(req,function(err, response){
 			if(err)
-				console.log(err);
+				sails.log.debug(err);
 			else{
-				console.log('mail sent successfully'+response);
+				sails.log.debug('mail sent successfully'+response);
 				// res.redirect('/postsignup');
 				req.successMessage = "It was our pleasure helping you. We have sent a new password to your email. Please use it to login.";
 				that.postSignUp(req, res);
@@ -157,7 +157,7 @@ module.exports = {
 					res.serverError(err);
 				else{
 					res.send(user);
-					console.log('User updated successfully');
+					sails.log.debug('User updated successfully');
 				}
 			});
 		}
@@ -174,7 +174,7 @@ module.exports = {
 					res.serverError(err);
 				else{
 					res.send(user);
-					console.log('Found this user successfully');
+					sails.log.debug('Found this user successfully');
 				}
 			});
 		}
@@ -197,6 +197,7 @@ module.exports = {
 			req.session.authenticated = false;
 		    // req.session = null;
 		    req.session.destroy();
+		    res.clearCookie('SV', { path: '/' });
 		    res.redirect('/home');
 		}
 	},

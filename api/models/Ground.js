@@ -9,8 +9,8 @@
 module.exports = {
   types: {
 	    point: function(latlng){
-	    	sails.log.debug("latlng.x : "+latlng.x);
-	    	sails.log.debug("latlng.y : "+latlng.y);
+	    	// sails.log.debug("latlng.x : "+latlng.x);
+	    	// sails.log.debug("latlng.y : "+latlng.y);
 	     return latlng.x && latlng.y
 	    }
 	},
@@ -89,15 +89,15 @@ module.exports = {
 	  	});
   	},
   	searchGroundAdvanced : function(opts,cb){
-  		//http://stackoverflow.com/questions/3305561/how-to-query-mongodb-with-like
-		Ground.find({area : opts.area, sport : opts.sport }).exec(function(err, grounds){
+  		var sportToSearch = new RegExp(opts.sport,"i");
+
+		Ground.find({area : opts.area, sport : sportToSearch }).exec(function(err, grounds){
 	  			grounds = _.map(grounds, function(ground){
 	  				return ground;
 	  			});
 	  			if(err)
 	  				cb(err);
 	  			else{
-	  				
 	  				cb(null, grounds);
 	  			}
 	  		});
@@ -142,8 +142,8 @@ module.exports = {
   				var newGroundAddress = opts.address || ground.address;
   				var newCity = opts.city || ground.city;
   				var newArea = opts.area || ground.area;
-  				var newLocationX = opts.location.x || ground.location.x;
-  				var newLocationY = opts.location.y || ground.location.y;
+  				var newLocationX = opts.x || ground.location.x;
+  				var newLocationY = opts.y || ground.location.y;
   				var newNum = opts.phoneNum || ground.phoneNum;
   				var newArea = opts.area || ground.area;
   				var newAvailability = opts.availability || ground.availability;
