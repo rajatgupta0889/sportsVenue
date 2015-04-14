@@ -34,8 +34,7 @@ module.exports = {
 	  		defaultsTo : 0
 	  	},
 		city: {
-		    type: 'string',
-		   	in: ['Bangalore', 'Mumbai', 'Pune', 'NCR', 'Chennai']
+		    type: 'string'
 		},
 		location: {
 		   	type: 'json',
