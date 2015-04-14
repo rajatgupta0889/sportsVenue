@@ -48,6 +48,8 @@ module.exports = {
 				else{
 					// sails.log.debug(grounds);
 					console.log("Grounds searched successfully");
+					grounds.area = req.body.area;
+					grounds.sport = req.body.sport;
 					res.view('ground_search', {grounds: grounds});
 					//res.send(grounds);
 				}		

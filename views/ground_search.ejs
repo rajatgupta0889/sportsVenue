@@ -45,21 +45,26 @@
 <div class="search-criteria">
 	<div class="criteria-container">
 		<div class="location-criteria" title="Click here to change">
-			<p>Location: Bangalore</p>
+			<p>Location: <%=grounds.area%></p>
 			<select class="hide">
-				<option>Bangalore</option>
-				<option>Mumbai</option>
-				<option>Pune</option>
-				<option>NCR</option>
-				<option>Chennai</option>
+				<option value = "Bangalore">Bangalore</option>
+				<option value = "Sarjapur">Sarjapur Road</option>
+				<option value="WhiteField">WhiteField</option>
+				<option value="Bannerghatta">Bannerghatta</option>
+				<option value="Mysore Road">Mysore Road</option>
+				<option value="Hosur Road">Hosur Road</option>
+				<option value="Bellari Road">New Airport Road</option>
 			</select>
 		</div>
 		<div class="sport-criteria" title="Click here to change">
-			<p>Type: Football</p>
+			<p>Type: <%=grounds.sport%></p>
 			<select class="hide">
-				<option>Cricket</option>
-				<option>Football</option>
-				<option>Athletics</option>
+				<option value="Cricket">Cricket</option>
+				<option value="Football">Football</option>
+				<option value="Volleyball">Volleyball</option>
+				<option value="Swimming">Swimming</option>
+				<option value="Tennis">Tennis</option>
+				<option value="Decathlon">Decathlon</option>
 			</select>
 		</div>
 		<div class="selected-date" title="Click here to change">
@@ -105,7 +110,11 @@
 				<div class="res-contact-details">
 					<h3>Address :</h3>
 					<!-- <p>Ashok Nagar, Xavier Layout, Bengaluru, Karnataka.</p> -->
+					<%if(ground.address.length > 45){%>
+					<p><%=ground.address.substr(0,45)%>..<span class="change-cursor"><a href="/ground/<%=ground.id%>"> Read More</a></span></p>
+					<%}else{%>
 					<p><%=ground.address%></p>
+					<%}%>
 					<div class="contact-number">
 						<h3>Contact :</h3><p> 9876543210</p>
 					</div>
@@ -123,10 +132,17 @@
 					<div class="rating">
 						<h3>Rating : </h3>
 						<div class="rating-stars">
-							<%for(var i=0; i<ground.rating; i++){%>
-							<img src="images/star-marked.png" alt="marked"/>
+							<%if(ground.rating > 0){%>
+								<%for(var i=0; i<ground.rating; i++){%>
+								<img src="images/star-marked.png" alt="marked"/>
+								<%}%>
+							<%}else{%>
+								<img src="images/star-unmarked.png" alt="marked"/>
+								<img src="images/star-unmarked.png" alt="marked"/>
+								<img src="images/star-unmarked.png" alt="marked"/>
+								<img src="images/star-unmarked.png" alt="marked"/>
+								<img src="images/star-unmarked.png" alt="marked"/>
 							<%}%>
-							<!-- <img src="images/star-unmarked.png" alt="marked"/> -->
 						</div>
 					</div>
 				</div>

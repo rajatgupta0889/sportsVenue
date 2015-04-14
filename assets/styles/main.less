@@ -124,7 +124,7 @@ span{
 			// margin-left: 60%;
 			// margin-left:50%;
 			float: right;
-			margin-top: 2%;
+			margin-top: 20px;
 			color:#b2c54e;
 
 			.user-name{
@@ -441,25 +441,30 @@ span{
 
 	.criteria-container{
 		width: 90%;
-		margin: 2% auto;
+		margin: 15px auto;
 		font-size: 20pt;
 
 		.location-criteria, .sport-criteria, .selected-date{
 			display: inline-block;
+
 		}
 		
 		.location-criteria, .sport-criteria{
 			width: 20%;
+
+			p{
+				cursor: pointer;
+			}
 			select{
 				.appearanceClear;
 				cursor : pointer;
 				width: 100%;
-				margin-top: 5%;
 				font-size: 19px;
 				height: 50px;
 				padding: 0 12% 0 8%;
 				border-radius: 8px;	
 				background: #fff url('../images/dropdown-arrow.png') no-repeat left 95% center;
+				cursor: pointer;
 
 				option{
 					padding: 4px 0;
@@ -480,10 +485,7 @@ span{
 			p{
 				display: inline-block;
 				color:black;
-			}
-			img{
-				display: inline-block;
-				margin-left: 8%;
+				cursor: pointer;
 			}
 		}
 	}
@@ -507,8 +509,8 @@ span{
 		.search-box{
 			.textCentralizedLogo;
 			width: 15%;
-			margin-left: 70%;
-			margin-top: 10px;
+			// margin-left: 70%;
+			float: right;
 
 			input{
 				.appearanceClear;
@@ -518,7 +520,7 @@ span{
 				border-radius: 5px;
 				background: #f1f1f1;
 				border: 1px solid #aeaeae;
-				padding: 10px;
+				padding: 7px;
 			}
 		}
 	}
@@ -535,7 +537,7 @@ span{
 			.FixedMargin;
 
 			.res-header{
-				margin: 2% 0;
+				margin: 15px 0;
 				font-family: BloggerSansRegular;
 				font-size: 20pt;
 
@@ -595,6 +597,11 @@ span{
 						line-height: 20px;
 						margin-bottom: 3%;
 					}
+
+					a:hover{
+						text-decoration: none;
+						color: #3588e5;
+					}
 				}
 			}
 
@@ -624,9 +631,12 @@ span{
 							display: inline-block;
 							font-family: BloggerSansRegular;
 							font-size: 15pt;
+							vertical-align: middle;
 						}
 
 						.rating-stars{
+							vertical-align: middle;
+							padding-bottom: 10px;
 							display: inline-block;
 							margin-left: 8%;
 						}
