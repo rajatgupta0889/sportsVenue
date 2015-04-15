@@ -203,7 +203,7 @@ module.exports = {
 	},
 
 	showHomePage: function(req, res){		
-		res.view('index');
+		res.view('index', {grounds : null});
 	},
 
 	postSignUp: function(req, res){

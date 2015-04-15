@@ -45,11 +45,11 @@
 </div>
 <div class="search-section">
 	<div class="search-bar">
-		<form action="/searchAdvance" method="POST" id="searchArea" enctype="application/x-www-form-urlencoded">
+		<form action="/textSearch" method="POST" id="searchArea" enctype="application/x-www-form-urlencoded">
 			<div class="locations hide">
 				<p class="select-heading">Where you want to be ?</p>
 				<div class="selection-divs">
-					<select class="location-select" name="area">
+					<select class="location-select">
 						<option selected="selected" value="location">Location</option>
 						<option value = "Bangalore">Bangalore</option>
 						<option value = "Sarjapur">Sarjapur Road</option>
@@ -65,19 +65,18 @@
 			<div class="sports hide">
 				<p class="select-heading">Type of sport ?</p>
 				<div class="selection-divs">
-					<select class="sport-select" name="sport">
+					<select class="sport-select">
 						<option selected="selected" value="sports">Sports</option>
 						<option value="Cricket">Cricket</option>
 						<option value="Football">Football</option>
-						<option value="Volleyball">Volleyball</option>
-						<option value="Swimming">Swimming</option>
 						<option value="Tennis">Tennis</option>
+						<option value="Basketball">Basketball</option>
 						<option value="Decathlon">Decathlon</option>
 					</select>
 				</div>
 			</div>
 			<div class="venue-search">
-				<input type="text" class="text-search" placeholder="Search Sports Venue"/>
+				<input type="text" name="searchString" class="text-search" id="textSearch" placeholder="Search Sports Venue"/>
 			</div>
 			<input type="submit" value="Search" class="search-button"/>
 
@@ -211,9 +210,9 @@
 			&copy; 2014 All Rights Reserved.
 		</div>
 		<div class="footer-nav">
-			<a href="http://www.mantralabsglobal.com">About</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<a href="http://www.mantralabsglobal.com">Blog</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<a href="http://www.mantralabsglobal.com/contactus">Contact Us</a>
+			<a href="javascript:">About</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="javascript:">Blog</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="javascript:">Contact Us</a>
 		</div>
 	</div>
 </div>
@@ -331,3 +330,8 @@
     	</div><!-- /.modal-content -->
   	</div><!-- /.modal-dialog -->
 </div>
+<%if(grounds && grounds.errorMsg){%>
+	<div class="alert-error-message">
+	<p><%=grounds.errorMsg%></p>
+	</div>
+<%}%>

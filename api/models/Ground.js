@@ -204,6 +204,29 @@ module.exports = {
   				cb(null,ground);
   			}
   		})
+  	},
+
+  	searchGround: function(opts, cb){
+  		var arrSearch = opts.searchString.split(" ");
+		var searchRegEx = new RegExp(arrSearch.join("|"),"gi"); 
+
+  		// {area : opts.area, sport : sportToSearch }
+
+  		Ground.find(
+  			{$and : [
+  				{area : searchRegEx},
+  				{sport : searchRegEx}
+  				]}
+  		).exec(function(err, grounds){
+  			grounds = _.map(grounds, function(ground){
+  				return ground;
+  			});
+  			if(err)
+  				cb(err);
+  			else{
+  				cb(null, grounds);
+  			}
+  		});
   	}
 
 };

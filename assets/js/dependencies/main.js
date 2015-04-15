@@ -5,6 +5,11 @@ $(document).ready(function(){
   	pause: 8000,
   	speed: 2000
   });
+
+  setTimeout(function(){
+  	$('.alert-error-message').fadeOut(500);
+  },5000);
+
 });
 
 //for getting all grounds on the click of search buttons without any criteria
@@ -13,6 +18,10 @@ $(document).ready(function(){
 // });
 
 $('#advancedSearch').click(function(){
+	$('#textSearch').removeAttr("name");
+	$('.location-select').attr("name","area");
+	$('.sport-select').attr("name","sport");
+
 	$('.search-bar').css('padding','20% 0 24%');
 	$('#advancedSearch').addClass('hide');
 	$('#normalSearch').removeClass('hide');
@@ -27,9 +36,15 @@ $('#advancedSearch').click(function(){
 	$('.search-button').css({
 		'top':'-2px'
 	});
+
+	$('#searchArea').attr("action","/searchAdvance");
 });
 
 $('#normalSearch').click(function(){
+	$('#textSearch').attr("name","searchString");
+	$('.location-select').removeAttr("name","area");
+	$('.sport-select').removeAttr("name","sport");
+
 	$('.search-bar').css('padding','24% 0');
 	$('#advancedSearch').removeClass('hide');
 	$('#normalSearch').addClass('hide');
@@ -44,6 +59,8 @@ $('#normalSearch').click(function(){
 	$('.search-button').css({
 		'top':'-4px'
 	});
+
+	$('#searchArea').attr("action","/textSearch");
 });
 
 $('.location-criteria').find('p').click(function(){
@@ -232,8 +249,13 @@ $('#searchArea').submit(function(event){
 		}else if($.trim($('.sport-select option:selected').val()) === "sports"){
 			event.preventDefault();
 		}
-	}else{
-		event.preventDefault();
+	}
+	if($('.locations').hasClass('hide')){
+
+		if($.trim($('#textSearch').val()) === ""){
+			alert('cannot be empty');
+			event.preventDefault();
+		}
 	}
 });
 
@@ -250,7 +272,7 @@ function initialize(x,y, onThisMap) {
 	var mapCenter = new google.maps.LatLng(x,y);
   	var mapProp = {
 	    center:mapCenter,
-	    zoom:12,
+	    zoom:16,
 	    mapTypeId:google.maps.MapTypeId.ROADMAP
 	};
   	var map=new google.maps.Map(document.getElementById('googleMap'),mapProp);
@@ -289,6 +311,8 @@ $('#pending').click(function(){
 	$('.admin-users').addClass('hide');
 	$('.pending-data').removeClass('hide');
 });
+
+$()
 // $('#signIn').click(function(event){
 // 	$("#signInModal").addClass('in');
 // 	// $('#signInModal').css('display',"block !important");

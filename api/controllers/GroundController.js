@@ -39,18 +39,26 @@ module.exports = {
 	},
 	groundSearchAdvance : function(req,res){
 		if(!req.body || !req.body.sport || !req.body.area){
-			// res.badRequest("No data");
-			res.redirect('/home');	
+			res.badRequest("No data");
 		}else{
 			Ground.searchGroundAdvanced(req.body, function(err, grounds){
-				if(err)
+				if(err){
 					res.serverError(err);
+					// req.errorMsg = "No results found with this search. Please use advanced search or redefine your text search."
+					// sails.log.debug(req);
+					// res.view('index', {msg : req});
+				}
 				else{
 					// sails.log.debug(grounds);
 					console.log("Grounds searched successfully");
-					grounds.area = req.body.area;
-					grounds.sport = req.body.sport;
-					res.view('ground_search', {grounds: grounds});
+					// grounds.area = req.body.area;
+					// grounds.sport = req.body.sport;
+					if(grounds.length > 0)
+						res.view('ground_search', {grounds: grounds});
+					else{
+						req.errorMsg = "No results found with this search. Please use advanced search or redefine your text search."
+						res.view('index', {grounds : req});	
+					}
 					//res.send(grounds);
 				}		
 			});
@@ -114,6 +122,28 @@ module.exports = {
 					// res.send(ground);
 					res.view('ground_details',{ground : ground});
 					console.log('Found this ground successfully');
+				}
+			});
+		}
+	},
+
+	groundSearch: function(req, res){
+		if(!req.body || !req.body.searchString){
+			res.redirect("/home");
+		}else{
+			Ground.searchGround(req.body, function(err, grounds){
+				if(err){
+					res.serverError(err);
+				}else{
+					// res.send(grounds);
+					if(grounds.length > 0)
+						// res.view('ground_search', {grounds: grounds});
+						res.view('ground_search', {grounds: grounds});
+					else{
+						req.errorMsg = "No results found with this search. Please use advanced search or redefine your text search."
+						res.view('index', {grounds : req});	
+					}
+					console.log('Found grounds using text search');
 				}
 			});
 		}

@@ -1184,12 +1184,21 @@ span{
 //
 //----------------------------------------------------//
 
+//----------------------------------------------------//
+//
+//------Styles for footer start here------------------//
+//
+//----------------------------------------------------//
+
 .footer{
-	.FixedMargin;
+	background: black;
+	color: #b2c54e;
 	font-family: BloggerSansRegular;
 
 	.footer-content{
-		margin: 2% 0;
+		width: 95%;
+		margin: 30px auto 0;
+		padding: 25px;
 
 		.foot-text{
 			font-size: 16pt;
@@ -1203,12 +1212,18 @@ span{
 
 			a{
 				text-decoration: none;
-				color: black;
+				color: #b2c54e;
 				font-size: 16pt;
 			}
 		}
 	}
 }
+
+//----------------------------------------------------//
+//
+//------Styles for footer end here--------------------//
+//
+//----------------------------------------------------//
 
 //----------------------------------------------------//
 //
@@ -1419,6 +1434,10 @@ span{
 	left: 0 !important;
 }
 
+.bx-wrapper{
+	margin: 0 !important;
+}
+
 .bx-pager{
 	background: #f1f1f1 !important;
 	padding-bottom: 20px !important;
@@ -1430,4 +1449,24 @@ span{
 
 h3{
 	margin-top: 0 !important;
+}
+
+.alert-error-message{
+	text-align: center;
+	position: absolute;
+	top: 40%;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	width: 60%;
+	color: red;
+	border: 1px solid red;
+	background: #F0CFCF;
+	border-radius: 10px;
+	font-family: BloggerSansRegular;
+	font-size: 15pt; 
+
+	p{
+		margin: 10px 0;
+	}
 }

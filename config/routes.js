@@ -33,6 +33,7 @@ module.exports.routes = {
   ***************************************************************************/
   'post /create' : 'GroundController.createGround',
   '/searchAdvance' : 'GroundController.groundSearchAdvance',
+  '/textSearch' : 'GroundController.groundSearch',
 
   'post /createReview' : 'ReviewController.createReview',
   'get /userReviews/:userId': 'ReviewController.listOfReviewsByUser',
