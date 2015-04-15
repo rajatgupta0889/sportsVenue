@@ -44,32 +44,34 @@
 </div>
 <div class="search-criteria">
 	<div class="criteria-container">
-		<div class="location-criteria">
-			<p>Location: <%=ground[0].city%></p>
-			<select class="hide">
-				<option>Bangalore</option>
-				<option>Mumbai</option>
-				<option>Pune</option>
-				<option>NCR</option>
-				<option>Chennai</option>
-			</select>
-		</div>
-		<div class="sport-criteria">
-			<%if(ground[0].sport.length>10){%>
-			<p>Type: <%=ground[0].sport.split(" ",1)%></p>
-			<%}else{%>
-			<p>Type: <%=ground[0].sport%></p>
-			<%}%>
-			<select class="hide">
-				<option>Cricket</option>
-				<option>Football</option>
-				<option>Athletics</option>
-			</select>
-		</div>
-		<div class="selected-date">
-			<p>Date: 10 Mar 2015</p>
-			<!-- <img src="/images/calendar-icon.png" alt="calendar"/> -->
-		</div>
+		<form action="/searchAdvance" method="POST" id="resultSearch">
+			<div class="location-criteria" title="Click here to change">
+				<select name="area">
+					<option value="Bangalore">Bangalore</option>
+					<option value="Sarjapur">Sarjapur Road</option>
+					<option value="WhiteField">WhiteField</option>
+					<option value="Bannerghatta">Bannerghatta</option>
+					<option value="Mysore Road">Mysore Road</option>
+					<option value="Hosur Road">Hosur Road</option>
+					<option value="Bellari Road">New Airport Road</option>
+				</select>
+			</div>
+			<div class="sport-criteria" title="Click here to change">
+				<select name="sport">
+					<option value="Cricket">Cricket</option>
+					<option value="Football">Football</option>
+					<option value="Volleyball">Volleyball</option>
+					<option value="Swimming">Swimming</option>
+					<option value="Tennis">Tennis</option>
+					<option value="Decathlon">Decathlon</option>
+				</select>
+			</div>
+			<div class="selected-date" title="Click here to change">
+				Date:&nbsp;&nbsp;<p id="selectedDate">10 Mar 2015</p>
+				<!-- <img src="images/calendar-icon.png" id="showCal" alt="calendar" title="Click here to change"/> -->
+			</div>
+			<input type="submit" style="position: absolute; left: -9999px"/>
+		</form>
 	</div>
 </div>
 <div class="ground-name">

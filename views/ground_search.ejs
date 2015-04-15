@@ -44,31 +44,34 @@
 </div>
 <div class="search-criteria">
 	<div class="criteria-container">
-		<div class="location-criteria" title="Click here to change">
-			<select>
-				<option value = "Bangalore">Bangalore</option>
-				<option value = "Sarjapur">Sarjapur Road</option>
-				<option value="WhiteField">WhiteField</option>
-				<option value="Bannerghatta">Bannerghatta</option>
-				<option value="Mysore Road">Mysore Road</option>
-				<option value="Hosur Road">Hosur Road</option>
-				<option value="Bellari Road">New Airport Road</option>
-			</select>
-		</div>
-		<div class="sport-criteria" title="Click here to change">
-			<select>
-				<option value="Cricket">Cricket</option>
-				<option value="Football">Football</option>
-				<option value="Volleyball">Volleyball</option>
-				<option value="Swimming">Swimming</option>
-				<option value="Tennis">Tennis</option>
-				<option value="Decathlon">Decathlon</option>
-			</select>
-		</div>
-		<div class="selected-date" title="Click here to change">
-			Date:&nbsp;&nbsp;<p id="selectedDate">10 Mar 2015</p>
-			<!-- <img src="images/calendar-icon.png" id="showCal" alt="calendar" title="Click here to change"/> -->
-		</div>
+		<form action="/searchAdvance" method="POST" id="resultSearch">
+			<div class="location-criteria" title="Click here to change">
+				<select name="area">
+					<option value="Bangalore">Bangalore</option>
+					<option value="Sarjapur">Sarjapur Road</option>
+					<option value="WhiteField">WhiteField</option>
+					<option value="Bannerghatta">Bannerghatta</option>
+					<option value="Mysore Road">Mysore Road</option>
+					<option value="Hosur Road">Hosur Road</option>
+					<option value="Bellari Road">New Airport Road</option>
+				</select>
+			</div>
+			<div class="sport-criteria" title="Click here to change">
+				<select name="sport">
+					<option value="Cricket">Cricket</option>
+					<option value="Football">Football</option>
+					<option value="Volleyball">Volleyball</option>
+					<option value="Swimming">Swimming</option>
+					<option value="Tennis">Tennis</option>
+					<option value="Decathlon">Decathlon</option>
+				</select>
+			</div>
+			<div class="selected-date" title="Click here to change">
+				Date:&nbsp;&nbsp;<p id="selectedDate">10 Mar 2015</p>
+				<!-- <img src="images/calendar-icon.png" id="showCal" alt="calendar" title="Click here to change"/> -->
+			</div>
+			<input type="submit" style="position: absolute; left: -9999px"/>
+		</form>
 	</div>
 </div>
 <div class="results-count">
@@ -80,9 +83,12 @@
 			<p>No results found</p>
 			<%}%>
 		</div>
-		<div class="search-box">
-			<input type="text" placeholder="Search"/>
-		</div>
+		<form action="/textSearch" method="POST">
+			<div class="search-box">
+				<input type="text" name="searchString" placeholder="Search"/>
+			</div>
+			<input type="submit" style="position: absolute; left: -9999px"/>
+		</form>
 	</div>
 </div>
 <%if(grounds.length>0){%>

@@ -10,12 +10,10 @@ $(document).ready(function(){
   	$('.alert-error-message').fadeOut(500);
   },5000);
 
+  if($('body').find('.search-criteria').length > 0){
+  	$('.footer-content').css("margin-top","0px");
+  }
 });
-
-//for getting all grounds on the click of search buttons without any criteria
-// $('.search-button').on('click',function(){
-// 	window.location.href="/grounds";
-// });
 
 $('#advancedSearch').click(function(){
 	$('#textSearch').removeAttr("name");
@@ -61,16 +59,6 @@ $('#normalSearch').click(function(){
 	});
 
 	$('#searchArea').attr("action","/textSearch");
-});
-
-$('.location-criteria').find('p').click(function(){
-	$('.location-criteria').find('p').addClass('hide');
-	$('.location-criteria').find('select').removeClass('hide');
-});
-
-$('.sport-criteria').find('p').click(function(){
-	$('.sport-criteria').find('p').addClass('hide');
-	$('.sport-criteria').find('select').removeClass('hide');
 });
 
 $('.fb-button').click(function(){
@@ -294,25 +282,115 @@ $('.close-popup').click(function(){
 	$('.modal-backdrop').remove();
 });
 
-$('#showGrounds').click(function(){
-	$('.admin-grounds').removeClass('hide');
-	$('.admin-users').addClass('hide');
-	$('.pending-data').addClass('hide');
-});
 
-$('#showUsers').click(function(){
-	$('.admin-grounds').addClass('hide');
-	$('.admin-users').removeClass('hide');
-	$('.pending-data').addClass('hide');
-});
+function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+    // The response object is returned with a status field that lets the
+    // app know the current login status of the person.
+    // Full docs on the response object can be found in the documentation
+    // for FB.getLoginStatus().
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+      testAPI();
+    } else if (response.status === 'not_authorized') {
+      // The person is logged into Facebook, but not your app.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into this app.';
+    } else {
+      // The person is not logged into Facebook, so we're not sure if
+      // they are logged into this app or not.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into Facebook.';
+    }
+  }
 
-$('#pending').click(function(){
-	$('.admin-grounds').addClass('hide');
-	$('.admin-users').addClass('hide');
-	$('.pending-data').removeClass('hide');
-});
+  // This function is called when someone finishes with the Login
+  // Button.  See the onlogin handler attached to it in the sample
+  // code below.
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
 
-$()
+  window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '1579003515650007',
+    cookie     : true,  // enable cookies to allow the server to access 
+                        // the session
+    xfbml      : true,  // parse social plugins on this page
+    version    : 'v2.2' // use version 2.2
+  });
+
+  // Now that we've initialized the JavaScript SDK, we call 
+  // FB.getLoginStatus().  This function gets the state of the
+  // person visiting this page and can return one of three states to
+  // the callback you provide.  They can be:
+  //
+  // 1. Logged into your app ('connected')
+  // 2. Logged into Facebook, but not your app ('not_authorized')
+  // 3. Not logged into Facebook and can't tell if they are logged into
+  //    your app or not.
+  //
+  // These three cases are handled in the callback function.
+
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+
+  };
+
+  // Load the SDK asynchronously
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  // Here we run a very simple test of the Graph API after login is
+  // successful.  See statusChangeCallback() for when this call is made.
+  function testAPI() {
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', function(response) {
+    	console.log(response);
+      console.log('Successful login for: ' + response.name);
+      document.getElementById('status').innerHTML =
+        'Thanks for logging in, ' + response.name + '!';
+    });
+  }
+
+// <!--
+//   Below we include the Login Button social plugin. This button uses
+//   the JavaScript SDK to present a graphical Login button that triggers
+//   the FB.login() function when clicked.
+// -->
+
+// <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+// </fb:login-button>
+
+// <div id="status">
+// </div>
+// $('#showGrounds').click(function(){
+// 	$('.admin-grounds').removeClass('hide');
+// 	$('.admin-users').addClass('hide');
+// 	$('.pending-data').addClass('hide');
+// });
+
+// $('#showUsers').click(function(){
+// 	$('.admin-grounds').addClass('hide');
+// 	$('.admin-users').removeClass('hide');
+// 	$('.pending-data').addClass('hide');
+// });
+
+// $('#pending').click(function(){
+// 	$('.admin-grounds').addClass('hide');
+// 	$('.admin-users').addClass('hide');
+// 	$('.pending-data').removeClass('hide');
+// });
+
 // $('#signIn').click(function(event){
 // 	$("#signInModal").addClass('in');
 // 	// $('#signInModal').css('display',"block !important");

@@ -303,9 +303,11 @@
 					<input type="submit" class="signup-button" value="Register"/>
 				</form>
 				<p class="paragraph-text">Or, Sign up with</p>
-				<div class="fb-button">
+				<!-- <div class="fb-button">
 					Facebook
-				</div>
+				</div> -->
+				<fb:login-button style="width:20px;" scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
+				<div id="status">
 		    </div>
     	</div><!-- /.modal-content -->
   	</div><!-- /.modal-dialog -->
