@@ -101,6 +101,18 @@ module.exports = {
 	  	});
   	},
 
+    fbLogin: function(opts, cb){
+      User.findOne({where: {email: opts.email}}).exec(function(err, user){
+        if(err)
+          cb(err);
+        else if(user){
+          cb(null, user);
+        }else{
+          cb("user doesnt exist");
+        }
+      });
+    },
+
   	updateProfile: function(opts, cb){
   		User.findOne({id: opts.fbUserId}).exec(function(err, user){
   			if(!err && user){
@@ -141,6 +153,24 @@ module.exports = {
 	      }		
 	  	});
   	},
+
+    signUpFacebook: function(opts,cb){
+      User.findOne({where:{email:opts.email}}).exec(function(err,user){
+        if(err)
+          cb(err);
+        else if(!user){
+          User.create(opts,function(err, user){
+            if(err)
+              cb(err);
+            else{
+              cb(null,user);
+            }
+          })
+        }else{
+          cb("User already exists",null);
+        }
+      });
+    },
 
     userDelete : function(opts,cb){
       User.findOne({ id : opts}).exec(function(err,user){

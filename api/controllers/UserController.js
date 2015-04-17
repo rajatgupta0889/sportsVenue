@@ -46,6 +46,25 @@ module.exports = {
 		}
 	},
 
+	fbSignIn: function(req, res){
+		var that = this;
+		if(!req.body || !req.body.email)
+			res.badRequest('Did not get email id to log you in');
+		else{
+			User.fbLogin(req.body, function(err, user){
+				if(err){
+					req.body.errorMessage = "some error here";
+					that.postSignUp(req,res);
+				}
+				else{
+					req.session.authenticated = true;
+					req.session.user = user;
+					res.redirect('/home');
+				}
+			});
+		}
+	},
+
 	list: function(req, res){
 		User.list(function(err, users){
 			if(err)
@@ -68,10 +87,26 @@ module.exports = {
 				if(err)
 					res.serverError(err);
 		      	else{
-		        	// req.session.authenticated = true;
-		           	// req.session.user = user;
 		           	sails.log.debug('signed up successfully!');
 		          	that.sendSignUpEmailToUser(req.body,res);
+		        }		
+			});
+		}
+	},
+
+	fbSignUp: function(req, res){
+		var that = this;
+		if(!req.body || !req.body.email || !req.body.username)
+			res.badRequest('Email or username missing in request');
+		else{
+			// req.body.password = that.generatePassword();
+			// req.body.userPwd = req.body.password;
+			User.signUpFacebook(req.body, function(err, user){
+				if(err)
+					res.serverError(err);
+		      	else{
+		           	sails.log.debug('signed up successfully!');
+		          	that.sendFacebookSignUpEmailToUser(req.body,res);
 		        }		
 			});
 		}
@@ -128,6 +163,22 @@ module.exports = {
 				// res.redirect('/postsignup');
 				req.successMessage = "It was our pleasure helping you. We have sent a new password to your email. Please use it to login.";
 				that.postSignUp(req, res);
+			}
+		});
+	},
+
+	sendFacebookSignUpEmailToUser: function(req, res){
+		var that = this;
+		mailService.sendFacebookSignUpEmail(req, function(err, response){
+			if(err)
+				sails.log.debig(err);
+			else{
+				sails.log.debug('mail sent successfully '+response);
+				req.successMessage = "Thank you for registering. Please sign in by clicking on the facebook log in button. We are waiting for you.";
+				// console.log(req.successMessage);
+				that.postSignUp(req, res);
+				// res.view('post_signup',{msg : req});
+				// res.redirect('/postsignup');
 			}
 		});
 	},
@@ -195,9 +246,9 @@ module.exports = {
 			res.badRequest('No logged in user found');
 		}else{
 			req.session.authenticated = false;
-		    // req.session = null;
 		    req.session.destroy();
-		    res.clearCookie('SV', { path: '/' });
+		    
+		    // res.clearCookie('SV', { path: '/' });
 		    res.redirect('/home');
 		}
 	},
@@ -207,6 +258,8 @@ module.exports = {
 	},
 
 	postSignUp: function(req, res){
+		// sails.log.debug(req);
 		res.view('post_signup',{msg : req});
+		// res.view('post_signup');
 	}
 };

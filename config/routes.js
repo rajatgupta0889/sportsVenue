@@ -42,6 +42,8 @@ module.exports.routes = {
   'post /loginUser' : 'UserController.login',
   'post /signUpUser' : 'UserController.signUp',
   'get /isLoggedIn' : 'UserController.isLoggedIn',
+  'post /signupfb' : 'UserController.fbSignUp',
+  'post /facebookSignIn' : 'UserController.fbSignIn',
 
   'patch /update/:groundId' : 'GroundController.updateGround',
   'get /grounds' : 'GroundController.listGrounds',

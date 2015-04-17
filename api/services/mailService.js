@@ -55,3 +55,25 @@ exports.sendResetMail = function(data, cb) {
 	    }
 	});
 }
+
+exports.sendFacebookSignUpEmail = function(data, cb){
+	var mailOptions = {
+	    // from: 'HR <demo@hr.com>', // sender address
+	    // to: 'harsh@mantralabsglobal.com', // list of receivers
+	    to: data.email, //'harsh@mantralabsglobal.com'
+	    subject: 'Sports Venue - Thank you for joining us!', // Subject line
+	    text: '', // plaintext body
+	    html: "<p style='margin:0;font-weight:bold;font-size:12pt;'>Dear "+ data.username +",</p><br><p style='margin:0;font-size:12pt;'>Thank you for reaching us.<br>You have successfully signed up with SportsVenue</p><br><p style='margin:0;font-size:10pt;'>Thanks,</p><p style='margin:0;font-size:10pt;'>SV Team</p>" // html body
+	};
+
+	// send mail with defined transport object
+	transporter.sendMail(mailOptions, function(error, info){
+	    if(error){
+	        console.log(error);
+	    }else{
+	    	// console.log(mailOptions);
+	        console.log('Message sent: ' + info.response);
+	        cb(null, info.response);
+	    }
+	});
+}
