@@ -9,30 +9,30 @@
 module.exports = {
   types: {
 	    point: function(latlng){
-	    	// sails.log.debug("latlng.x : "+latlng.x);
-	    	// sails.log.debug("latlng.y : "+latlng.y);
+	    	sails.log.debug("latlng.x : "+latlng.x);
+	    	sails.log.debug("latlng.y : "+latlng.y);
 	     return latlng.x && latlng.y
 	    }
 	},
   attributes: {
-	  	sport: {
-	  		type:'string',
-			required : true
-	  	},
-	  	groundName: {
-	  		type:'string',
-		    required:true
-	  	},
-	  	groundInfo: {
-	  		type:'string'
-	  	},
-	  	address: {
-	  		type:'text'
-	  	},
-	  	rating: {
-	  		type:'float',
-	  		defaultsTo : 0
-	  	},
+  	sport: {
+  		type:'string',
+		  required : true
+  	},
+  	groundName: {
+  		type:'string',
+	    required:true
+  	},
+  	groundInfo: {
+  		type:'string'
+  	},
+  	address: {
+  		type:'text'
+  	},
+  	rating: {
+  		type:'float',
+  		defaultsTo : 0
+  	},
 		city: {
 		    type: 'string'
 		},
@@ -68,11 +68,17 @@ module.exports = {
   		});
   	},
   	groundCreate : function(opts, cb){
+      console.log(opts);
   		Ground.findOne({groundName: opts.groundName, sport: opts.sports, area: opts.area}).exec(function(err, ground){
 	  		if(err){
 	  			cb(err);
 	  		}
 	  		else if(!ground){
+          var xLat = opts.x;
+          var yLong = opts.y;
+          opts.location = { x : xLat, y: yLong };
+          delete opts.x;
+          delete opts.y;
 	  			Ground.create(opts, function(err, ground){
 					if(err){
 						cb(err);
@@ -89,17 +95,18 @@ module.exports = {
   	},
   	searchGroundAdvanced : function(opts,cb){
   		var sportToSearch = new RegExp(opts.sport,"i");
-
-		Ground.find({area : opts.area, sport : sportToSearch }).exec(function(err, grounds){
-	  			grounds = _.map(grounds, function(ground){
-	  				return ground;
-	  			});
-	  			if(err)
-	  				cb(err);
-	  			else{
-	  				cb(null, grounds);
-	  			}
-	  		});
+  		// var cityToSearch = new RegExp(opts.city,"i");
+		Ground.find({area : opts.area, sport : sportToSearch}) //city : cityToSearch, 
+		.exec(function(err, grounds){
+  			grounds = _.map(grounds, function(ground){
+  				return ground;
+  			});
+  			if(err)
+  				cb(err);
+  			else{
+  				cb(null, grounds);
+  			}
+  		});
   	},
   	groundAvgRating : function(opts,cb){
   		Ground.findOne({ id: opts.groundId}).exec(function(err, ground){
@@ -209,8 +216,6 @@ module.exports = {
   	searchGround: function(opts, cb){
   		var arrSearch = opts.searchString.split(" ");
 		var searchRegEx = new RegExp(arrSearch.join("|"),"gi"); 
-
-  		// {area : opts.area, sport : sportToSearch }
 
   		Ground.find(
   			{$and : [

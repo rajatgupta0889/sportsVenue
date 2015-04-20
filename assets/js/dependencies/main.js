@@ -10,13 +10,14 @@ $(document).ready(function(){
   	$('.alert-error-message').fadeOut(500);
   },5000);
 
-  if($('body').find('.search-criteria').length > 0 || $('body').find('.signup-container').length > 0){
+  if(($('body').find('.search-criteria').length > 0) || ($('body').find('.signup-container').length > 0) || ($('body').find('.create-ground').length > 0)){
   	$('.footer-content').css("margin-top","0px");
   }
 });
 
 $('#advancedSearch').click(function(){
 	$('#textSearch').removeAttr("name");
+	// $('.city-select').attr("name","city");
 	$('.location-select').attr("name","area");
 	$('.sport-select').attr("name","sport");
 
@@ -40,8 +41,9 @@ $('#advancedSearch').click(function(){
 
 $('#normalSearch').click(function(){
 	$('#textSearch').attr("name","searchString");
-	$('.location-select').removeAttr("name","area");
-	$('.sport-select').removeAttr("name","sport");
+	$('.location-select').removeAttr("name");
+	$('.sport-select').removeAttr("name");
+	// $('.city-select').removeAttr("name");
 
 	$('.search-bar').css('padding','24% 0');
 	$('#advancedSearch').removeClass('hide');
@@ -229,17 +231,19 @@ $('#signUpForm').submit(function(event){
 
 $('#searchArea').submit(function(event){
 	if(!$('.locations').hasClass('hide')){
+		var selectedCity = $.trim($('.city-select option:selected').val());
 		var selectedArea = $.trim($('.location-select option:selected').val());
 		var selectedSport = $.trim($('.sport-select option:selected').val());
 
-		if($.trim($('.location-select option:selected').val()) === "location"){
+		if($.trim($('.location-select option:selected').val()) === "area"){
 			event.preventDefault();	
 		}else if($.trim($('.sport-select option:selected').val()) === "sports"){
+			event.preventDefault();
+		}else if($.trim($('.city-select option:selected').val()) === "city"){
 			event.preventDefault();
 		}
 	}
 	if($('.locations').hasClass('hide')){
-
 		if($.trim($('#textSearch').val()) === ""){
 			alert('cannot be empty');
 			event.preventDefault();
@@ -366,7 +370,6 @@ function userSignUp() {
 }
 
 function userSignIn(){
-	console.log(window.location.href);
 	FB.api("/me", function(response){
 		$('<form action="/facebookSignIn" method="POST">'+
 			'<input type="hidden" name="email" value="'+response.email+'"/>'+
@@ -374,7 +377,132 @@ function userSignIn(){
 	});
 }
 
+// $("#crtGrnd").submit(function(event){
+// 	var sport = $.trim($("#gSport").val());
+// 	var name = $.trim($("#gName").val());
+// 	var info = $.trim($("#gInfo").val());
+// 	var address = $.trim($("#gAddress").val());
+// 	var area = $.trim($("#gArea").val());
+// 	var city = $.trim($("#gCity").val());
+// 	var x = $.trim($("#latX").val());
+// 	var y = $.trim($("#longY").val());
+// 	var num = $.trim($("#gNum").val());
 
+// 	if(sport === "" || sport === undefined || sport === null){
+// 		event.preventDefault();
+// 		$("#gSport").css("border","1px solid red");
+// 	}else if(name === "" || name === undefined || name === null){
+// 		event.preventDefault();
+// 	}else if(info === "" || info === undefined || info === null){
+// 		event.preventDefault();
+// 	}else if(address === "" || address === undefined || address === null){
+// 		event.preventDefault();
+// 	}else if(area === "" || area === undefined || area === null){
+// 		event.preventDefault();
+// 	}
+
+// 	// if (!isNaN(x) && x.indexOf('.') != -1)
+// 	if(x && isNaN(x) && x.indexOf('.')>= -1){
+// 		event.preventDefault();
+// 	}else{
+
+// 	}
+
+// 	if(y && isNaN(y) && y.indexOf('.')>= -1){
+// 		event.preventDefault();
+// 	}else{
+
+// 	}
+// });
+
+$('#makeGround').click(function(){
+	$('input').css('border','');
+	$('textarea').css("border",'');
+	var gndSport = $.trim($("#gSport").val());
+	var gndName = $.trim($("#gName").val());
+	var gndInfo = $.trim($("#gInfo").val());
+	var gndAddress = $.trim($("#gAddress").val());
+	var gndArea = $.trim($("#gArea").val());
+	var gndCity = $.trim($("#gCity").val());
+	var gndX = $.trim($("#latX").val());
+	var gndY = $.trim($("#longY").val());
+	var gndNum = $.trim($("#gNum").val());
+
+	var errorFlag = false;
+	
+	gndX = parseFloat(gndX);
+	gndY = parseFloat(gndY);
+
+	if(gndSport === "" || gndSport === undefined || gndSport === null){
+		// event.preventDefault();
+		$("#gSport").css("border","2px solid red");
+		errorFlag = true;
+	}
+	if(gndName === "" || gndName === undefined || gndName === null){
+		// event.preventDefault();
+		$("#gName").css("border","2px solid red");
+		errorFlag = true;
+	}
+	if(gndInfo === "" || gndInfo === undefined || gndInfo === null){
+		// event.preventDefault();
+		$("#gInfo").css("border","2px solid red");
+		errorFlag = true;
+	}
+	if(gndAddress === "" || gndAddress === undefined || gndAddress === null){
+		// event.preventDefault();
+		$("#gAddress").css("border","2px solid red");
+		errorFlag = true;
+	}
+	if(gndArea === "" || gndArea === undefined || gndArea === null){
+		// event.preventDefault();
+		$("#gArea").css("border","2px solid red");
+		errorFlag = true;
+	}
+	if(gndCity === "" || gndCity === undefined || gndCity ===null){
+		$("#gCity").css("border","2px solid red");
+		errorFlag = true;
+	}
+
+	if(gndX.length>0 && !isNaN(gndX) && gndX.indexOf('.') != -1){
+		$('#latX').css("border","2px solid red");
+		errorFlag = true;
+	}else if(gndX === null || gndX === undefined || gndX === "" || isNaN(gndX)){
+		gndX = null;
+	}
+
+	if(gndY.length>0 && !isNaN(gndY) && gndY.indexOf('.') != -1){
+		$('#longY').css("border","2px solid red");
+		errorFlag = true;
+	}else if(gndY === null || gndY === undefined || gndY === "" || isNaN(gndY)){
+		gndY = null;
+	}
+
+	if(gndNum && !isNaN(gndNum)){
+		$('#gNum').css("border","2px solid red");	
+		errorFlag = true;
+	}else if(gndNum === null || gndNum === undefined || gndNum === "" || isNaN(gndNum)){
+		gndNum = 0;
+	}
+
+	if(errorFlag === false){
+		$.post("/create",{
+			sport : gndSport,
+			groundName : gndName,
+			groundInfo : gndInfo,
+			address : gndAddress,
+			area : gndArea,
+			city : gndCity,
+			phoneNum : gndNum,
+			x : parseFloat(gndX),
+			y : parseFloat(gndY)
+		}).success(function(ground){
+			// console.log(message);
+			$('#crtGrnd').addClass('hide');
+			$('.create-success').removeClass('hide');
+			$('#viewGround').attr("href","/ground/"+ground.id);
+		});
+	}
+});
 // $('#showGrounds').click(function(){
 // 	$('.admin-grounds').removeClass('hide');
 // 	$('.admin-users').addClass('hide');

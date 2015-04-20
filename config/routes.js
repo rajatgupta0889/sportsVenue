@@ -67,6 +67,10 @@ module.exports.routes = {
 
   '/admin':{
     view:'admin/adminHome'
+  },
+
+  '/createGround':{
+    view : 'create_ground'
   }
 
   // '/': {

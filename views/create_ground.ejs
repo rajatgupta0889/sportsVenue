@@ -1,0 +1,118 @@
+<div class="header">
+	<div class="nav-bar">
+		<span class="glyphicon glyphicon-menu-hamburger"></span>
+		<div class="logo-name">
+			<div class="logo-image">
+				<a href="/home">
+					<img src="images/logo.png" alt="SportsVenue"/>
+				</a>
+			</div>
+			<div class="logo-text">
+				<a href="/home">
+					<p>sports venue</p>
+				</a>
+			</div>
+		</div>
+		<div class="social-contact">
+			<%if(req.session.user){%>
+			<div class="user-name">
+				<p><%=req.session.user.username%></p>
+			</div>
+			<div class="user-options" id="userOptions">
+				<a href="#" class="menu-option">Edit My Profile</a>
+				<a href="#" class="menu-option">Show My Reviews</a>
+				<!-- <a href="#" class="menu-option">Add a Ground</a> -->
+				<a href="/logout" class="menu-option">Logout</a>
+			</div>
+			<%}else{%>
+			<div class="sign-in">
+				<a href="#" id="signIn" data-controls-modal="modal-from-dom" data-backdrop="static" data-keyboard="true" data-toggle="modal" data-target="#signInModal">Sign In</a>&nbsp;|
+				<a href="#" id="signUp" data-toggle="modal" data-target="#signUpModal">Sign Up</a>
+			</div>
+			<%}%>
+			<div class="fb-link">
+				<a href="https://www.facebook.com/mantralabs">
+					<img src="images/fb-link-icon.png" alt="Fb Icon"/>
+				</a>
+			</div>
+			<div class="tw-link">
+				<a href="https://www.twitter.com">
+					<img src="images/tw-link-icon.png" alt="Tw Icon"/>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="create-ground">
+	<div class="ground-container">
+		<p>Create a ground!</p>
+		<!-- <form action="/create" method="POST" id="crtGrnd"> -->
+		<div id="crtGrnd">
+			<div class="inputs">
+				<label for="sportName">The sports this ground can handle - </label>
+				<input type="text" name="sport" placeholder="Sports" id="gSport" required></input>
+			</div>
+			<div class="inputs">
+				<label for="gName">Name of this ground - </label>
+				<input type="text" name="groundName" placeholder="Name" id="gName" required></input>
+			</div>
+			<div class="inputs">
+				<label for="gInfo">A short description about this ground - </label>
+				<div>
+					<textarea name="groundInfo" placeholder="Short Description" id="gInfo" rows="4" required></textarea>
+				</div>
+			</div>
+			<div class="inputs">
+				<label for="gAddress">Address of this ground - </label>
+				<input type="text" name="address" placeholder="Address" id="gAddress" required></input>
+			</div>
+			<div class="inputs">
+				<label for="gArea">Area in which the ground is situated - </label>
+				<input type="text" name="area" placeholder="Area" id="gArea" required></input>
+			</div>
+			<div class="inputs">
+				<label for="gCity">City in which the ground is situated - </label>
+				<input type="text" name="city" placeholder="City" id="gCity" required></input>
+			</div>
+			<div class="inputs" style="margin-bottom:70px;">
+				<label for="gLocation">Map coordinates of this ground - </label>
+				<input type="text" name="x" placeholder="Latitude" id="latX"></input>
+				<div style="clear:both;">
+					<input type="text" name="y" placeholder="Longitude" id="longY"></input>
+				</div>
+			</div>
+			<div class="inputs">
+				<label for="gNumber">Contact number of the ground's officials - </label>
+				<input type="text" name="phoneNum" placeholder="Contact number" id="gNum"></input>
+			</div>
+			<div class="submit-section">
+				<input type="submit" value="Create this Ground" class="search-button" id="makeGround"/>
+				<input type="reset" value="Clear all" class="search-button"/>
+			</div>
+		</div>
+		<div class="create-success hide">
+			<p>You have successfully created this ground! Thank you for your contribution.</p>
+			<div class="button-section">
+				<!-- <div class="ground-button"> -->
+					<a href="" id="viewGround">See your creation!</a>
+				<!-- </div> -->
+				<!-- <div class="ground-button"> -->
+					<a href="/createground" id="createNew">Create a new one!</a>
+				<!-- </div> -->
+			</div>
+		</div>
+		<!-- </form> -->
+	</div>
+</div>
+<div class="footer">
+	<div class="footer-content">
+		<div class="foot-text">
+			&copy; 2014 All Rights Reserved.
+		</div>
+		<div class="footer-nav">
+			<a href="javascript:">About</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="javascript:">Blog</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="javascript:">Contact Us</a>
+		</div>
+	</div>
+</div>

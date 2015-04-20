@@ -31,6 +31,7 @@ module.exports = {
 				if(err)
 					res.serverError(err);
 				else{
+					// var successMessage = "You have successfully created this ground."; 
 					res.send(ground);
 					console.log("Ground Created");
 				}		
@@ -38,7 +39,7 @@ module.exports = {
 		}
 	},
 	groundSearchAdvance : function(req,res){
-		if(!req.body || !req.body.sport || !req.body.area){
+		if(!req.body || !req.body.sport || !req.body.area){ //|| !req.body.city
 			res.badRequest("No data");
 		}else{
 			Ground.searchGroundAdvanced(req.body, function(err, grounds){

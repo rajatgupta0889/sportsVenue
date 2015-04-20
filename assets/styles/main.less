@@ -191,7 +191,7 @@ span{
 //
 //----------------------------------------------------//
 
-.search-section{
+.search-section, .create-ground{
 	background: url('../images/background-banner.png') no-repeat;
 	background-size: cover;
 	font-family: BloggerSansRegular;
@@ -206,7 +206,7 @@ span{
 		.locations, .sports, .search-button{
 			display: inline-block;
 			text-align: center;
-			width: 33%;
+			width: 33%; //22% when city is included
 
 			.select-heading{
 				.selectHeadingText;
@@ -215,7 +215,7 @@ span{
 
 			.selection-divs{
 				
-				.location-select, .sport-select{
+				.location-select, .sport-select, .city-select{
 					.appearanceClear;
 					cursor : pointer;
 					width: 90%;
@@ -1478,3 +1478,95 @@ h3{
 	width: 22%;
 	margin: 0 auto;
 }
+
+//----------------------------------------------------//
+//
+//------Styles for ground-creation page start here----//
+//
+//----------------------------------------------------//
+.create-ground{
+	.ground-container{
+		width: 70%;
+		margin: 0 auto;
+		background: rgba(255,255,255,0.7);
+		
+		p{
+			font-size: 28pt;
+			text-align: center;
+			padding: 30px;
+		}
+
+		#crtGrnd{
+			font-family: BloggerSansLight;
+			font-size: 17pt;
+			width: 65%;
+			margin: 10px auto 0px;
+			padding-bottom: 20px;
+			
+			.inputs{
+				margin: 25px 0;
+
+				input{
+					float: right;
+				}
+
+				textarea{
+					width: 100%;
+					resize:none;
+				}
+			}
+
+			.submit-section{
+				text-align: center;
+
+				input{
+					margin-right: 30px;
+					.appearanceClear;
+					background:#b2c54e;
+					color: white;
+					border-radius: 5px;
+					border-top: 1px solid grey;
+					border-left: 1px solid grey;
+					padding: 10px 20px;
+				}
+			}
+		}
+
+		.create-success{
+			p{
+				.MsgProperties;
+				font-size: 20pt;
+				width: 70%;
+				margin: 0 auto;
+				color: green;
+				border: 1px solid green;
+				background: #CFF0D2;
+			}
+
+			.button-section{
+				padding: 10% 0% 30%;
+			  	width: 80%;
+			  	margin: 0 auto;
+			  	text-align: center;
+
+			  	a{
+			  		font-size: 15pt;
+			  		margin: 5%;
+					// .appearanceClear;
+					background:#b2c54e;
+					color: white;
+					border-radius: 5px;
+					border: 1px solid grey;
+					padding: 10px 30px;
+					text-decoration: none;
+			  	}
+			}
+		}
+	}
+}
+
+//----------------------------------------------------//
+//
+//------Styles for ground-creation page end here------//
+//
+//----------------------------------------------------//

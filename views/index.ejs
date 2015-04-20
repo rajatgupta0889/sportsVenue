@@ -21,7 +21,7 @@
 			<div class="user-options" id="userOptions">
 				<a href="#" class="menu-option">Edit My Profile</a>
 				<a href="#" class="menu-option">Show My Reviews</a>
-				<a href="#" class="menu-option">Add a Ground</a>
+				<a href="/createGround" class="menu-option">Add a Ground</a>
 				<a href="/logout" class="menu-option">Logout</a>
 			</div>
 			<%}else{%>
@@ -46,19 +46,26 @@
 <div class="search-section">
 	<div class="search-bar">
 		<form action="/textSearch" method="POST" id="searchArea" enctype="application/x-www-form-urlencoded">
+			<!-- <div class="locations hide">
+				<p class="select-heading">Which city ?</p>
+				<div class="selection-divs">
+					<select class="city-select">
+						<option selected="selected" value="city">City</option>
+						<option value = "Bangalore">Bangalore</option>
+					</select>
+				</div>
+			</div> -->
 			<div class="locations hide">
-				<p class="select-heading">Where you want to be ?</p>
+				<p class="select-heading">Which area ?</p>
 				<div class="selection-divs">
 					<select class="location-select">
-						<option selected="selected" value="location">Location</option>
-						<option value = "Bangalore">Bangalore</option>
+						<option selected="selected" value="area">Area</option>
 						<option value = "Sarjapur">Sarjapur Road</option>
 						<option value="WhiteField">WhiteField</option>
 						<option value="Bannerghatta">Bannerghatta</option>
 						<option value="Mysore Road">Mysore Road</option>
 						<option value="Hosur Road">Hosur Road</option>
 						<option value="Bellari Road">New Airport Road</option>
-						<!-- <option value = "Store">Store</option> -->
 					</select>
 				</div>
 			</div>
