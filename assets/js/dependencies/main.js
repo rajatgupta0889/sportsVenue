@@ -424,14 +424,14 @@ $('#makeGround').click(function(){
 	var gndAddress = $.trim($("#gAddress").val());
 	var gndArea = $.trim($("#gArea").val());
 	var gndCity = $.trim($("#gCity").val());
-	var gndX = $.trim($("#latX").val());
-	var gndY = $.trim($("#longY").val());
+	var gndX, gndY;
 	var gndNum = $.trim($("#gNum").val());
 
 	var errorFlag = false;
 	
 	gndX = parseFloat(gndX);
 	gndY = parseFloat(gndY);
+	gndNum = parseInt(gndNum);
 
 	if(gndSport === "" || gndSport === undefined || gndSport === null){
 		// event.preventDefault();
@@ -463,43 +463,43 @@ $('#makeGround').click(function(){
 		errorFlag = true;
 	}
 
-	if(gndX.length>0 && !isNaN(gndX) && gndX.indexOf('.') != -1){
-		$('#latX').css("border","2px solid red");
-		errorFlag = true;
-	}else if(gndX === null || gndX === undefined || gndX === "" || isNaN(gndX)){
-		gndX = null;
-	}
+	var numReg = /^\d+$/;
 
-	if(gndY.length>0 && !isNaN(gndY) && gndY.indexOf('.') != -1){
-		$('#longY').css("border","2px solid red");
+	//check if the gndNum(if given) is in valid format.
+	if(gndNum && gndNum.length>10 && numReg.test(gndNum))
+	{	
+		//this means no error in number validation	
+	}else{
+		$('#gNum').css("border","2px solid red");
 		errorFlag = true;
-	}else if(gndY === null || gndY === undefined || gndY === "" || isNaN(gndY)){
-		gndY = null;
-	}
-
-	if(gndNum && !isNaN(gndNum)){
-		$('#gNum').css("border","2px solid red");	
-		errorFlag = true;
-	}else if(gndNum === null || gndNum === undefined || gndNum === "" || isNaN(gndNum)){
-		gndNum = 0;
 	}
 
 	if(errorFlag === false){
-		$.post("/create",{
-			sport : gndSport,
-			groundName : gndName,
-			groundInfo : gndInfo,
-			address : gndAddress,
-			area : gndArea,
-			city : gndCity,
-			phoneNum : gndNum,
-			x : parseFloat(gndX),
-			y : parseFloat(gndY)
-		}).success(function(ground){
-			// console.log(message);
-			$('#crtGrnd').addClass('hide');
-			$('.create-success').removeClass('hide');
-			$('#viewGround').attr("href","/ground/"+ground.id);
+		$.ajax({
+			url: "http://maps.googleapis.com/maps/api/geocode/json?address="+gndAddress+"&sensor=false",
+			type: "POST",
+			success: function(res){
+				// console.log(res.results[0].geometry.location.lat);
+				gndX = res.results[0].geometry.location.lat;
+				// console.log(res.results[0].geometry.location.lng);
+				gndY = res.results[0].geometry.location.lng;
+				$.post("/create",{
+					sport : gndSport,
+					groundName : gndName,
+					groundInfo : gndInfo,
+					address : gndAddress,
+					area : gndArea,
+					city : gndCity,
+					phoneNum : gndNum,
+					x : parseFloat(gndX),
+					y : parseFloat(gndY)
+				}).success(function(ground){
+					// console.log(message);
+					$('#crtGrnd').addClass('hide');
+					$('.create-success').removeClass('hide');
+					$('#viewGround').attr("href","/ground/"+ground.id);
+				});
+			}
 		});
 	}
 });
