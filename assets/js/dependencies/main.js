@@ -10,7 +10,7 @@ $(document).ready(function(){
   	$('.alert-error-message').fadeOut(500);
   },5000);
 
-  if(($('body').find('.search-criteria').length > 0) || ($('body').find('.signup-container').length > 0) || ($('body').find('.create-ground').length > 0)){
+  if(($('body').find('.search-criteria').length > 0) || ($('body').find('.signup-container').length > 0) || ($('body').find('.create-ground').length > 0) || ($('body').find('.create-feedback').length > 0)){
   	$('.footer-content').css("margin-top","0px");
   }
 });
@@ -434,27 +434,22 @@ $('#makeGround').click(function(){
 	gndNum = parseInt(gndNum);
 
 	if(gndSport === "" || gndSport === undefined || gndSport === null){
-		// event.preventDefault();
 		$("#gSport").css("border","2px solid red");
 		errorFlag = true;
 	}
 	if(gndName === "" || gndName === undefined || gndName === null){
-		// event.preventDefault();
 		$("#gName").css("border","2px solid red");
 		errorFlag = true;
 	}
 	if(gndInfo === "" || gndInfo === undefined || gndInfo === null){
-		// event.preventDefault();
 		$("#gInfo").css("border","2px solid red");
 		errorFlag = true;
 	}
 	if(gndAddress === "" || gndAddress === undefined || gndAddress === null){
-		// event.preventDefault();
 		$("#gAddress").css("border","2px solid red");
 		errorFlag = true;
 	}
 	if(gndArea === "" || gndArea === undefined || gndArea === null){
-		// event.preventDefault();
 		$("#gArea").css("border","2px solid red");
 		errorFlag = true;
 	}
@@ -502,6 +497,72 @@ $('#makeGround').click(function(){
 			}
 		});
 	}
+});
+
+$('#sendFeedback').click(function(){
+	$('input').css('border','');
+	$('textarea').css("border",'');
+
+	var userName = $.trim($('#uName').val());
+	var userMailId = $.trim($('#uEmail').val());
+	var userSubject  = $.trim($('#uSubject').val());
+	var infoStr = $.trim($('#uInfo').val());
+	var userNumber = $.trim($('#uNum').val());
+
+	var submitValue = true;
+
+	var emailRegEx = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+	if(userMailId === '' || userMailId === null || userMailId === undefined || emailRegEx.test(userMailId) === false){
+		$('#uEmail').css('border','2px solid red');
+		submitValue = false;
+	}
+
+	if(userName === "" || userName === undefined || userName === null){
+		$("#uName").css("border","2px solid red");
+		submitValue = false;
+	}
+
+	if(userSubject === "" || userSubject === undefined || userSubject === null){
+		$("#uSubject").css("border","2px solid red");
+		submitValue = false;
+	}
+
+	if(infoStr === "" || infoStr === undefined || infoStr === null){
+		$("#uInfo").css("border","2px solid red");
+		submitValue = false;
+	}
+
+	if(userNumber === "" || userNumber === undefined || userNumber === null){
+		$("#uNum").css("border","2px solid red");
+		submitValue = false;
+	}
+
+	var numReg = /^\d+$/;
+	
+	if(userNumber.length === 10 && numReg.test(userNumber))
+	{	
+		//this means no error in number validation	
+	}else{
+		$('#uNum').css("border","2px solid red");
+		submitValue = false;
+	}
+
+	if(submitValue === true){
+		$.post("/send_feedback",{
+			user_name : userName,
+			user_mail : userMailId,
+			user_subject : userSubject,
+			user_content : infoStr,
+			user_number : userNumber
+		}).success(function(message){
+			console.log(message);
+			$('#feedbackForm').addClass('hide');
+			$('.feedback-container h3:first').addClass('hide');
+			$('.resp-success').removeClass('hide');
+		});
+	}
+
 });
 // $('#showGrounds').click(function(){
 // 	$('.admin-grounds').removeClass('hide');

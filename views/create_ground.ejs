@@ -25,10 +25,6 @@
 				<a href="/logout" class="menu-option">Logout</a>
 			</div>
 			<%}else{%>
-			<div class="sign-in">
-				<a href="#" id="signIn" data-controls-modal="modal-from-dom" data-backdrop="static" data-keyboard="true" data-toggle="modal" data-target="#signInModal">Sign In</a>&nbsp;|
-				<a href="#" id="signUp" data-toggle="modal" data-target="#signUpModal">Sign Up</a>
-			</div>
 			<%}%>
 			<div class="fb-link">
 				<a href="https://www.facebook.com/mantralabs">
@@ -112,7 +108,126 @@
 		<div class="footer-nav">
 			<a href="javascript:">About</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<a href="javascript:">Blog</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<a href="javascript:">Contact Us</a>
+			<a href="/contact_us">Contact Us</a>
 		</div>
 	</div>
+</div>
+<div class="modal hide" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="signInModalLabel" aria-hidden="true">
+  	<div class="modal-dialog">
+    	<div class="modal-content signup-popup">
+	      	<div class="modal-header header">
+	       		<!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+	        	<img src="images/close-icon.png" data-dismiss="modal" aria-label="Close" alt="close" class="close-popup"/>
+	        	<!-- <h4 class="modal-title">Modal title</h4> -->
+	      	</div>
+	      	<div class="modal-body content">
+	      		<p class="heading-big">Sign In</p>
+	      		<form action="/loginUser" method="post" id="loginForm">
+			      	<div class="emailid-input">
+						<input type="text" name="email" id="eId" placeholder="Email address:"/>
+					</div>
+					<div class="password-input">
+						<input type="password" name="password" id="pwd" placeholder="Password:"/>
+					</div>
+					<!-- <div class="signup-button">
+						Sign In
+					</div> -->
+					<input type="submit" class="signup-button" value="Sign In"/>
+				</form>
+				<div class="paragraph-text">
+					<a href="#" id="resetPwd" data-toggle="modal" data-target="#resetModal">Forgot Password??</a>
+				</div>
+				<p class="paragraph-text">Or, Sign in with</p>
+				<!-- <div class="fb-button">
+					Facebook
+				</div> -->
+				<div id="fb-root"></div>
+				<div class="fb-section">
+					<fb:login-button style="width:20px;" data-max-rows="1" data-size="xlarge" scope="public_profile,email" onlogin="checkLoginStateOnLogin();"></fb:login-button>
+				</div>
+	        	<!-- <p>One fine body&hellip;</p> -->
+		    </div>
+    	</div><!-- /.modal-content -->
+  	</div><!-- /.modal-dialog -->
+</div>
+
+<div class="modal hide" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModalLabel" aria-hidden="true"> <!-- fade class can be added but gives problems in opening-->
+  	<div class="modal-dialog">
+    	<div class="modal-content signup-popup">
+	      	<div class="modal-header header">
+	        	<img src="images/close-icon.png" class="close-popup" data-dismiss="modal" aria-label="Close" alt="close"/>
+	      	</div>
+	      	<div class="modal-body content">
+	      		<p class="heading-big">Sign Up</p>
+	      		<form action="/signUpUser" method="post" id="signUpForm">
+			      	<div class="email-input inputs">
+						<input type="text" name="email" id="emId" placeholder="Email address:"/>
+					</div>
+					<div class="name-input inputs">
+						<input type="text" name="username" id="uName" placeholder="Full Name:"/>
+					</div>
+					<!-- <div class="dob-input inputs">
+						<p>Date of Birth</p>
+						<div class="select-boxes">
+							<select name="day" id="dayDob"></select>
+							<select name="month" id="monthDob"></select>
+							<select name="year" id="yearDob"></select>
+						</div>
+					</div> -->
+					<!-- <div class="gender-input inputs">
+						<p>Gender</p>
+						<div class="gender-radio">
+							<input type="radio" name="gender" value="male">Male</input>
+							<input type="radio" name="gender" value="female">Female</input>
+						</div>
+					</div> -->
+					<!-- <div class="city-input inputs">
+						<p>City: </p>
+						<div class="city-select">
+							<select name="city">
+								<option value="NCR">NCR</option>
+								<option value="Bangalore">Bangalore</option>
+								<option value="Mumbai">Mumbai</option>
+								<option value="Pune">Pune</option>
+								<option value="Chennai">Chennai</option>
+							</select>
+						</div>
+					</div> -->
+					<!-- <div class="contact-input inputs">
+						<input type="text" name="contactNumber" id="contactNum" placeholder="Phone Number:"/>
+					</div> -->
+					<!-- <div class="input-password inputs">
+						<input type="password" name="password" id="pwdOrig" placeholder="Password:"/>
+						<input type="password" id="pwdCopy" placeholder="Reenter Password:"/>
+					</div> -->
+					<input type="submit" class="signup-button" value="Register"/>
+				</form>
+				<p class="paragraph-text">Or, Sign up with</p>
+				<div id="fb-root"></div>
+				<div class="fb-section">
+					<fb:login-button style="width:20px;" data-max-rows="1" data-size="xlarge" scope="public_profile,email" onlogin="checkLoginStateOnSignUp();"></fb:login-button>
+				</div>
+		    </div>
+    	</div><!-- /.modal-content -->
+  	</div><!-- /.modal-dialog -->
+</div>
+
+<div class="modal hide" id="resetModal" tabindex="-1" role="dialog" aria-labelledby="resetModalLabel" aria-hidden="true">
+  	<div class="modal-dialog">
+    	<div class="modal-content signup-popup">
+	      	<div class="modal-header header">
+	        	<img src="images/close-icon.png" class="close-popup" data-dismiss="modal" aria-label="Close" alt="close"/>
+	      	</div>
+	      	<div class="modal-body content">
+	      		<p class="heading-big">Reset Password</p>
+	      		<p class="paragraph-text">Enter your registered email id and we will send you a new password!</p>
+	      		<form action="/passwordreset" method="post" id="resetForm">
+			      	<div class="emailid-input">
+						<input type="text" name="email" id="eId" placeholder="Email address:"/>
+					</div>
+					<input type="submit" class="signup-button" value="Reset Password"/>
+				</form>
+		    </div>
+    	</div><!-- /.modal-content -->
+  	</div><!-- /.modal-dialog -->
 </div>

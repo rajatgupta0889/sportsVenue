@@ -65,12 +65,18 @@ module.exports.routes = {
 
   'post /passwordreset' : 'UserController.resetPassword',
 
+  'post /send_feedback' : 'UserController.sendFeedbackMailToAdmin',
+
   '/admin':{
     view:'admin/adminHome'
   },
 
   '/createGround':{
     view : 'create_ground'
+  },
+
+  '/contact_us':{
+    view : 'contact_us'
   }
 
   // '/': {

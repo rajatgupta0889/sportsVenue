@@ -77,3 +77,25 @@ exports.sendFacebookSignUpEmail = function(data, cb){
 	    }
 	});
 }
+
+exports.sendFeedbackMail = function(data ,cb){
+	var mailOptions = {
+	    // from: 'HR <demo@hr.com>', // sender address
+	    // to: 'harsh@mantralabsglobal.com', // list of receivers
+	    to: 'harsh@mantralabsglobal.com',
+	    subject: 'Sports Venue - User feedback/complaint', // Subject line
+	    text: '', // plaintext body
+	    html: "<p style='margin:0;font-weight:bold;font-size:12pt;'>Dear Sports Venue Administrator,</p><br><p style='margin:0;font-size:10pt;'>The following feedback/complaint has been recieved from a user</p><br><p style='margin:0;font-size:12pt;'>user-name: "+data.user_name+"<br>user-email-id: "+data.user_mail+"<br>Subject: "+data.user_subject+"<br>Content: "+data.user_content+"<br>Contact Number: "+data.user_number+"</p>"
+	};
+
+	// send mail with defined transport object
+	transporter.sendMail(mailOptions, function(error, info){
+	    if(error){
+	        console.log(error);
+	    }else{
+	    	// console.log(mailOptions);
+	        console.log('Message sent: ' + info.response);
+	        cb(null, info.response);
+	    }
+	});
+}

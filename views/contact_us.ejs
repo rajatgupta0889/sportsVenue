@@ -1,5 +1,6 @@
 <div class="header">
 	<div class="nav-bar">
+		<span class="glyphicon glyphicon-menu-hamburger"></span>
 		<div class="logo-name">
 			<div class="logo-image">
 				<a href="/home">
@@ -13,10 +14,22 @@
 			</div>
 		</div>
 		<div class="social-contact">
+			<%if(req.session.user){%>
+			<div class="user-name">
+				<p><%=req.session.user.username%></p>
+			</div>
+			<div class="user-options" id="userOptions">
+				<a href="#" class="menu-option">Edit My Profile</a>
+				<a href="#" class="menu-option">Show My Reviews</a>
+				<a href="/createGround" class="menu-option">Add a Ground</a>
+				<a href="/logout" class="menu-option">Logout</a>
+			</div>
+			<%}else{%>
 			<div class="sign-in">
-				<a href="#" id="signIn" data-toggle="modal" data-target="#signInModal">Sign In</a>&nbsp;|
+				<a href="#" id="signIn" data-controls-modal="modal-from-dom" data-backdrop="static" data-keyboard="true" data-toggle="modal" data-target="#signInModal">Sign In</a>&nbsp;|
 				<a href="#" id="signUp" data-toggle="modal" data-target="#signUpModal">Sign Up</a>
 			</div>
+			<%}%>
 			<div class="fb-link">
 				<a href="https://www.facebook.com/mantralabs">
 					<img src="images/fb-link-icon.png" alt="Fb Icon"/>
@@ -30,45 +43,47 @@
 		</div>
 	</div>
 </div>
-<!-- <div class="post-signup">
-	<div class="signup-container">
-		<img src="images/thumbsup.png" alt="thumbs_up"/>
-		<div class="signup-desc">
-			<p class="heading-big">Sign up Successfull!</p>
-			<p class="heading-small">Thank you for signing up and accepting to help us improve ourselves further!</p>
-			<p class="desc-text">We have sent you an email containing the necessary information about your account activation. Please check your mail inbox and connect with us as soon as possible.</p>
-			<p class="heading-small">We will be waiting for you!</p>
+<div class="create-feedback">
+	<div class="feedback-container">
+		<p>Contact us!</p>
+		<h3> The SportsVenue&trade; team believes strongly in unmatchable high standards when it comes to product develpoment. And so, we always crave for user's feedback so that we can improve ourselves and take SportsVenue&trade; to another level.</h3>
+		<!-- <form action="/create" method="POST" id="crtGrnd"> -->
+		<div id="feedbackForm">
+			<div class="inputs">
+				<label for="uName">Your name</label>
+				<input type="text" size="30" placeholder="Your name" id="uName" required></input>
+			</div>
+			<div class="inputs">
+				<label for="uEmail">Your email-id</label>
+				<input type="text" size="30" placeholder="Your Email id" id="uEmail" required></input>
+			</div>
+			<div class="inputs">
+				<label for="uSubject">Subject of feedback/complaint - </label>
+				<input type="text" size="30" placeholder="Subject" id="uSubject" required></input>
+			</div>
+			<div class="inputs">
+				<label for="uInfo">Detailed feedback/complaint - </label>
+				<div>
+					<textarea placeholder="Your feedback/complaint" id="uInfo" rows="4" required></textarea>
+				</div>
+			</div>
+			<div class="inputs">
+				<label for="uNum">Your contact number - </label>
+				<input type="text" placeholder="Contact number" id="uNum" required></input>
+			</div>
+			<div class="submit-section">
+				<input type="submit" value="Send your feedback/complaint" class="search-button" id="sendFeedback"/>
+				<input type="reset" value="Clear all" class="search-button"/>
+			</div>
+		</div>
+		<div class="resp-success hide">
+			<p>Thank you for your response!</p>
+			<h3>Thank you for showing interest in us. Your response is sent to the administrator successfully. SportsVenue&trade; team will make sure that action is taken appropriately based on your response!</h3>
+			<div class="button-section">
+					<a href="/contact_us" id="createNew">Another feedback?!</a>
+			</div>
 		</div>
 	</div>
-</div> -->
-<div class="post-signup-content">
-	<div class="signup-container">
-		<%if(msg.successMessage){%>
-		<p class="success-message"><%=msg.successMessage%></p>
-		<%}else if(msg.errorMessage){%>
-		<p class="error-message"><%=msg.errorMessage%></p>
-		<%}else{%>
-		<%}%>
-		<form action="/loginUser" method="post" id="loginForm">
-			<p class="heading-big">Sign In</p>
-		  	<div class="emailid-input">
-				<input type="text" name="email" id="eId" placeholder="Email address:"/>
-			</div>
-			<div class="password-input">
-				<input type="password" name="password" id="pwd" placeholder="Password:"/>
-			</div>
-			<!-- <div class="signup-button">
-				Sign In
-			</div> -->
-			<input type="submit" class="signup-button" value="Login"/>
-		</form>
-		<p class="paragraph-text">Or, Sign in with</p>
-		<div id="fb-root"></div>
-		<div class="fb-section" style="width:15%;">
-			<fb:login-button data-max-rows="1" data-size="xlarge" scope="public_profile,email" onlogin="checkLoginStateOnLogin();"></fb:login-button>
-		</div>
-	</div>
-	<!-- <p>One fine body&hellip;</p> -->
 </div>
 <div class="footer">
 	<div class="footer-content">
@@ -82,14 +97,11 @@
 		</div>
 	</div>
 </div>
-
-<div class="modal fade hide" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="signInModalLabel" aria-hidden="true">
+<div class="modal hide" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="signInModalLabel" aria-hidden="true">
   	<div class="modal-dialog">
     	<div class="modal-content signup-popup">
 	      	<div class="modal-header header">
-	       		<!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
-	        	<img src="images/close-icon.png" data-dismiss="modal" aria-label="Close" alt="close"/>
-	        	<!-- <h4 class="modal-title">Modal title</h4> -->
+	        	<img src="images/close-icon.png" data-dismiss="modal" aria-label="Close" alt="close" class="close-popup"/>
 	      	</div>
 	      	<div class="modal-body content">
 	      		<p class="heading-big">Sign In</p>
@@ -100,9 +112,6 @@
 					<div class="password-input">
 						<input type="password" name="password" id="pwd" placeholder="Password:"/>
 					</div>
-					<!-- <div class="signup-button">
-						Sign In
-					</div> -->
 					<input type="submit" class="signup-button" value="Sign In"/>
 				</form>
 				<div class="paragraph-text">
@@ -113,17 +122,16 @@
 				<div class="fb-section">
 					<fb:login-button style="width:20px;" data-max-rows="1" data-size="xlarge" scope="public_profile,email" onlogin="checkLoginStateOnLogin();"></fb:login-button>
 				</div>
-	        	<!-- <p>One fine body&hellip;</p> -->
 		    </div>
     	</div><!-- /.modal-content -->
   	</div><!-- /.modal-dialog -->
 </div>
 
-<div class="modal fade hide" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModalLabel" aria-hidden="true">
+<div class="modal hide" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModalLabel" aria-hidden="true"> <!-- fade class can be added but gives problems in opening-->
   	<div class="modal-dialog">
     	<div class="modal-content signup-popup">
 	      	<div class="modal-header header">
-	        	<img src="images/close-icon.png" data-dismiss="modal" aria-label="Close" alt="close"/>
+	        	<img src="images/close-icon.png" class="close-popup" data-dismiss="modal" aria-label="Close" alt="close"/>
 	      	</div>
 	      	<div class="modal-body content">
 	      		<p class="heading-big">Sign Up</p>
@@ -145,11 +153,12 @@
     	</div><!-- /.modal-content -->
   	</div><!-- /.modal-dialog -->
 </div>
-<div class="modal fade hide" id="resetModal" tabindex="-1" role="dialog" aria-labelledby="resetModalLabel" aria-hidden="true">
+
+<div class="modal hide" id="resetModal" tabindex="-1" role="dialog" aria-labelledby="resetModalLabel" aria-hidden="true">
   	<div class="modal-dialog">
     	<div class="modal-content signup-popup">
 	      	<div class="modal-header header">
-	        	<img src="images/close-icon.png" data-dismiss="modal" aria-label="Close" alt="close"/>
+	        	<img src="images/close-icon.png" class="close-popup" data-dismiss="modal" aria-label="Close" alt="close"/>
 	      	</div>
 	      	<div class="modal-body content">
 	      		<p class="heading-big">Reset Password</p>

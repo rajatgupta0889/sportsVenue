@@ -183,6 +183,23 @@ module.exports = {
 		});
 	},
 
+	sendFeedbackMailToAdmin: function(req, res){
+		var that = this;
+		if(!req.body && !req.body.user_name && !req.body.user_mail && !req.body.user_subject && !req.body.user_content && !req.body.user_number){
+			res.badRequest("please provide all details!");
+		}else{
+			mailService.sendFeedbackMail(req.body,function(err, response){
+				if(err)
+					sails.log.debug(err);
+				else{
+					sails.log.debug('mail sent successfully'+response);
+					var message = "Thank you for contacting us. The administrator has been notified of your feedback/complaint.";
+					res.send(message);
+				}
+			});
+		}
+	},
+
 	deleteUser: function(req, res){
 		var userId = req.param('userId');
 		if(!userId){
@@ -247,11 +264,9 @@ module.exports = {
 		}else{
 			req.session.authenticated = false;
 		    req.session.destroy();
-		    
-		    // res.clearCookie('SV', { path: '/' });
 		    res.redirect('/home');
 		}
-	},
+ 	},
 
 	showHomePage: function(req, res){		
 		res.view('index', {grounds : null});

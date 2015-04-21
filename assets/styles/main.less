@@ -191,7 +191,7 @@ span{
 //
 //----------------------------------------------------//
 
-.search-section, .create-ground{
+.search-section, .create-ground, .create-feedback{
 	background: url('../images/background-banner.png') no-repeat;
 	background-size: cover;
 	font-family: BloggerSansRegular;
@@ -1484,19 +1484,25 @@ h3{
 //------Styles for ground-creation page start here----//
 //
 //----------------------------------------------------//
-.create-ground{
-	.ground-container{
+.create-ground, .create-feedback{
+	.ground-container, .feedback-container{
 		width: 70%;
 		margin: 0 auto;
-		background: rgba(255,255,255,0.7);
-		
+		background: linear-gradient(to right,rgba(255,255,255,0), rgba(0,0,0,1), rgba(255,255,255,0));
+		color: white;
+
 		p{
 			font-size: 28pt;
 			text-align: center;
-			padding: 30px;
+			padding: 30px 0 10px;
 		}
 
-		#crtGrnd{
+		h3{
+			text-align: center;
+			padding-bottom: 40px;
+		}
+
+		#crtGrnd, #feedbackForm{
 			font-family: BloggerSansLight;
 			font-size: 17pt;
 			width: 65%;
@@ -1507,10 +1513,12 @@ h3{
 				margin: 25px 0;
 
 				input{
+					color: black;
 					float: right;
 				}
 
 				textarea{
+					color: black;
 					width: 100%;
 					resize:none;
 				}
@@ -1532,7 +1540,7 @@ h3{
 			}
 		}
 
-		.create-success{
+		.create-success, .resp-success{
 			p{
 				.MsgProperties;
 				font-size: 20pt;
@@ -1541,6 +1549,11 @@ h3{
 				color: green;
 				border: 1px solid green;
 				background: #CFF0D2;
+				padding-top: 10px;
+			}
+
+			h3{
+				padding-top: 25px;
 			}
 
 			.button-section{
