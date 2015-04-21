@@ -82,7 +82,7 @@ exports.sendFeedbackMail = function(data ,cb){
 	var mailOptions = {
 	    // from: 'HR <demo@hr.com>', // sender address
 	    // to: 'harsh@mantralabsglobal.com', // list of receivers
-	    to: 'harsh@mantralabsglobal.com',
+	    to: 'harsh@mantralabsglobal.com, rekha.lokula@mantralabsglobal.com, kaushalendra@mantralabsglobal.com',
 	    subject: 'Sports Venue - User feedback/complaint', // Subject line
 	    text: '', // plaintext body
 	    html: "<p style='margin:0;font-weight:bold;font-size:12pt;'>Dear Sports Venue Administrator,</p><br><p style='margin:0;font-size:10pt;'>The following feedback/complaint has been recieved from a user</p><br><p style='margin:0;font-size:12pt;'>user-name: "+data.user_name+"<br>user-email-id: "+data.user_mail+"<br>Subject: "+data.user_subject+"<br>Content: "+data.user_content+"<br>Contact Number: "+data.user_number+"</p>"

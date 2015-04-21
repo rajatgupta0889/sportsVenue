@@ -556,7 +556,6 @@ $('#sendFeedback').click(function(){
 			user_content : infoStr,
 			user_number : userNumber
 		}).success(function(message){
-			console.log(message);
 			$('#feedbackForm').addClass('hide');
 			$('.feedback-container h3:first').addClass('hide');
 			$('.resp-success').removeClass('hide');
