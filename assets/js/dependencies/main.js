@@ -581,7 +581,7 @@ $('#reviewSlider').click(function(){
 				}
 			}
 		}else{
-			element.find('.review-list').append("<div class='single-review'><p class='individual-review'>No reviews found for this ground. You can add your own review by clicking on the 'Add your review' button above</p><p class='review-user-name'>- <span></span></p></div></div>");
+			element.find('.review-list').append("<div class='single-review'><p class='individual-review'>No reviews found for this ground. You can add your own review by clicking on the 'Add your review' button above</p><p class='review-user-name'><span></span></p></div></div>");
 		}
 		$(that).parents('.res-container').siblings('#groundReviews').slideToggle(200);
 	});
