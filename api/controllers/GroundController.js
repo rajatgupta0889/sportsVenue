@@ -122,7 +122,22 @@ module.exports = {
 					res.serverError(err);
 				}else{
 					// res.send(ground);
-					res.view('ground_details',{ground : ground});
+					Review.getReviewsByGround(groundId,function(err, reviews){
+						if(err)
+							res.serverError(err);
+						else{
+							if(req.session.user && req.session.user.id){
+		  						for(var i=0;i<reviews.length;i++){
+		  							if(req.session.user.id === reviews[i].userId){
+		  								reviews[i].ownReview = true;
+		  							}
+			  					}
+		  					}
+							//res.send(reviews);
+							res.view('ground_details',{ground : ground, reviews: reviews});
+
+						}
+					});
 					console.log('Found this ground successfully');
 				}
 			});

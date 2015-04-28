@@ -154,34 +154,74 @@
 		</div>
 		<div class="ground-reviews">
 			<div class="reviews-container">
-				<h3><span>Reviews</span></h3>
-				<div class="rating">
-						<h3>Rating : </h3>
-						<div class="rating-stars">
-							<%for(var i=0;i<ground[0].rating;i++){%>
-							<img src="/images/star-marked.png" alt="marked"/>
-							<%}%>
-							<!-- <img src="images/star-marked.png" alt="marked"/>
-							<img src="images/star-marked.png" alt="marked"/>
-							<img src="images/star-marked.png" alt="marked"/> -->
-							<!-- <img src="images/star-unmarked.png" alt="marked"/> -->
+				<div class="reviews-header">
+					<h3><span>Reviews</span></h3>
+					<div class="write-review" id="writeReview">Add your review</div>
+					<div class="write-review hide" id="givenReviews">Back to Reviews</div>
+				</div>
+				<div class="all-ground-reviews">
+				<%if(reviews.length > 0){%>
+					<%_.each(reviews,function(review){%>
+						<div class="individual-review">
+							<div class="individual-review-container">
+							<!-- <div class="user-pic">
+								<img src="/images/review-user-pic.png" alt="user"/>
+							</div> -->
+								<div class="review-detail">
+									<div class="review-detail-header">
+										<h4><%=review.userName%></h4>
+										<p><%=review.createdAt%></p>
+									</div>
+							<!-- userId:groundId:review:rating:userName:createdAt:updatedAt:id -->
+									<div class="review-desc">
+										<p><%=review.review%></p>
+									</div>
+									<div class="rating">
+										<h3>Rating : </h3>
+										<div class="rating-stars">
+											<%for(var i=0;i<ground[0].rating;i++){%>
+											<img src="/images/star-marked.png" alt="marked"/>
+											<%}%>
+										</div>
+									</div>
+									<%console.log(review)%>
+									<%if(review.ownReview && review.ownReview === true){%>
+									<div class='delete-review' id="deleteReview" data-delete-url="/review/<%=review.id%>">
+										Delete my review
+									</div>
+									<%}%>
+								</div>
+							</div>
 						</div>
-					</div>
+					<%});%>
+				<%}else{%>
 				<div class="individual-review">
 					<div class="individual-review-container">
-						<div class="user-pic">
-							<img src="/images/review-user-pic.png" alt="user"/>
-						</div>
 						<div class="review-detail">
-							<div class="review-detail-header">
-								<h4>Ajith</h4>
-								<p>2 days ago</p>
-							</div>
 							<div class="review-desc">
-								<p>One of the best stadiums. Exceptionally Beautiful</p>
+								<p>No reviews given for this ground. Add your own review by clicking on the button above!</p>
 							</div>
 						</div>
 					</div>
+				</div>
+				<%}%>
+				</div>
+				<div class="review-form hide">
+					<p>Your review for this ground-</p>
+					<textarea id="uReview" cols="30" rows="4" placeholder="Your review here..."></textarea>
+					<div class="rating-radios" style="float:left;">
+						Rating - 
+						<input type="radio" name="rating" value="1"> Disappointing &nbsp;</input>
+						<input type="radio" name="rating" value="2"> Not good &nbsp;</input>
+						<input type="radio" name="rating" value="3"> Average &nbsp;</input>
+						<input type="radio" name="rating" value="4"> Good &nbsp;</input>
+						<input type="radio" name="rating" value="5"> Excellent &nbsp;</input>
+					</div>
+					<%if(req.session.user){%>
+					<div class="review-submit" id="submitReview" data-user-id=<%=req.session.user.id%> data-ground-id=<%=ground[0].id%>>Post my review!</div>
+					<%}else{%>
+					<div class="review-submit" id="submitReview" data-ground-id=<%=ground.id%>>Post my review!</div>
+					<%}%>
 				</div>
 				<!-- <div class="individual-review">
 					<div class="individual-review-container">
