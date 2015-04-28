@@ -38,6 +38,8 @@ module.exports.routes = {
   'post /createReview' : 'ReviewController.createReview',
   'get /userReviews/:userId': 'ReviewController.listOfReviewsByUser',
   'get /groundReviews/:groundId': 'ReviewController.listOfReviewsOfGround',
+  'delete /review/:reviewId': 'ReviewController.deleteReview',
+  'get /reviews' : 'ReviewController.listReviews',
 
   'post /loginUser' : 'UserController.login',
   'post /signUpUser' : 'UserController.signUp',
@@ -54,6 +56,8 @@ module.exports.routes = {
   'get /user/:userId' : 'UserController.singleUser',
   'delete /user/:userId' : 'UserController.deleteUser',
   'patch /user/:userId' : 'UserController.updateUser',
+
+  'get /created_grounds/:userId' : 'GroundController.getCreatedGrounds',
 
   '/logout' : 'UserController.userLogout',
 

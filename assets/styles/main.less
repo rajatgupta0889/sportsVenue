@@ -660,6 +660,92 @@ span{
 				}
 			}
 		}
+
+		#groundReviews{
+			display: none;
+			border-top: 2px solid black;
+			// width: 70%;
+			// margin: 0 auto;
+
+			p{
+				margin: 0;
+			}
+			
+			.review-header{
+				overflow: hidden;
+				h3{
+					float: left;
+					width: 60%;
+					margin: 0 auto;
+					text-align: right;
+					padding: 20px 0;
+					font-family: BloggerSansRegular;
+					font-size: 20pt;
+					text-decoration: underline;
+				}
+
+				.write-review{
+					cursor: pointer;
+					text-align: center;
+					float: right;
+					background: #3588e5;
+					color: white;
+					border-radius: 5px;
+					width: 15%;
+					margin: 10px;
+					font-size: 14pt;
+					padding: 10px;
+					font-family: BloggerSansLight;
+				}
+			}
+
+			.review-list{
+				width: 70%;
+				text-align: center;
+				margin: 0 auto 30px; 
+				font-family: BloggerSansLight;
+				font-size: 15pt;
+				overflow: scroll;
+
+				.single-review{
+					border-bottom: 1px solid black;
+					padding: 15px;
+
+					.delete-review{
+					  	width: 20%;
+						background: red;
+						color: white;
+						border-radius: 5px;
+						cursor: pointer;
+						margin: 5px auto;
+					}
+				}
+			}
+		}
+
+		.review-form{
+			font-family: BloggerSansLight;
+			width: 70%;
+			margin: 0 auto;
+			font-size: 14pt;
+			overflow: hidden;
+			
+			textarea{
+				width: 100%;
+				resize: none;
+			}
+
+			.review-submit{
+				background: #2CC948;
+				color: white;
+				width: 20%;
+				padding: 10px;
+				text-align: center;
+				cursor: pointer;
+				border-radius: 5px;
+				float: right;
+			}
+		}
 	}
 }
 
@@ -868,6 +954,7 @@ span{
 		}
 
 		.ground-reviews{
+
 			.reviews-container{
 				width: 90%;
 				margin: 4% auto;

@@ -26,6 +26,7 @@ module.exports = {
 			res.badRequest(req.body.sport + req.body.groundName);	
 		}
 		else{
+			req.body.userId = req.session.user.id;
 			// console.log(req.body.sport + req.body.groundName);
 			Ground.groundCreate(req.body, function(err, ground){
 				if(err)
@@ -144,7 +145,29 @@ module.exports = {
 						req.errorMsg = "No results found with this search. Please use advanced search or redefine your text search."
 						res.view('index', {grounds : req});	
 					}
-					console.log('Found grounds using text search');
+					sails.log.debug('Found grounds using text search');
+				}
+			});
+		}
+	},
+
+	getCreatedGrounds: function(req, res){
+		var userId = req.param('userId');
+		if(!userId){
+			res.badRequest(userId);
+		}else{
+			Ground.searchGroundsByUser(userId,function(err, grounds){
+				if(err){
+					res.serverError(err);
+				}else{
+					if(grounds.length>0){
+						res.send(grounds);
+						sails.log.debug("Created grounds found successfully for this user!");
+					}else{
+						req.errorMsg = "You have not created any grounds yet."
+						res.view('index', {grounds : req});	
+						sails.log.debug("No grounds created by this user");
+					}
 				}
 			});
 		}

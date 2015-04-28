@@ -252,11 +252,11 @@ $('#searchArea').submit(function(event){
 });
 
 $('#toggleMap').click(function(){
-	var thisMap = $(this).parents('.individual-result').siblings('#googleMap');
-	console.log($(this).parents('.individual-result').siblings('#googleMap'));
-	var locX = $(this).parents('.individual-result').siblings('#googleMap').data('loc-x');
-	var locY = $(this).parents('.individual-result').siblings('#googleMap').data('loc-y');
-	$(this).parents('.individual-result').siblings('#googleMap').slideToggle(400);
+	var thisMap = $(this).parents('.res-container').siblings('#googleMap');
+	var locX = $(this).parents('.res-container').siblings('#googleMap').data('loc-x');
+	var locY = $(this).parents('.res-container').siblings('#googleMap').data('loc-y');
+	// $(this).parents('.individual-result').siblings('#googleMap').siblings().slideUp()
+	$(this).parents('.res-container').siblings('#googleMap').slideToggle(200);
 	initialize(locX,locY,thisMap);
 });
 
@@ -563,6 +563,94 @@ $('#sendFeedback').click(function(){
 	}
 
 });
+
+$('#reviewSlider').click(function(){
+	var getUrl = $(this).data('url');
+	var that = this;
+	var element = $(that).parents('.res-container').siblings('#groundReviews');
+	// element.find(".review-user-name").find('.delete-review').remove();
+	element.find('.review-list').empty();
+	element.find('.review-list').removeClass('hide');
+	element.find('.review-form').addClass('hide');
+	$.get(getUrl).success(function(data){
+		if(data.length > 0){
+			for(var i=0; i<data.length; i++){
+				element.find('.review-list').append("<div class='single-review'><p class='individual-review'>"+data[i].review+"</p><p class='review-user-name' id='"+data[i].userId+"'>- <span>"+ data[i].userName + " at " +data[i].createdAt.substr(0,10) + "</span></p></div></div>");
+				if(data[i].ownReview && (data[i].ownReview === true)){
+					element.find("#"+data[i].userId).append("<div class='delete-review' data-delete-url=/review/"+data[i].id+" onclick='deleteOwnReview(this)'>Delete my review</div>");
+				}
+			}
+		}else{
+			element.find('.review-list').append("<div class='single-review'><p class='individual-review'>No reviews found for this ground. You can add your own review by clicking on the 'Add your review' button above</p><p class='review-user-name'>- <span></span></p></div></div>");
+		}
+		$(that).parents('.res-container').siblings('#groundReviews').slideToggle(200);
+	});
+});
+
+$('.write-review').click(function(){
+	var that = this;
+	if($('.user-name').length > 0){
+		$(that).parent().siblings('.review-list').addClass('hide');
+		$(that).parent().siblings('.review-form').removeClass('hide');
+	}else{
+		window.location.href = "/postsignup";
+	}
+});
+
+$('#submitReview').click(function(){
+	var that = this;
+	var uReview = $.trim($('#uReview').val());
+	var uId = $('#submitReview').data('user-id');
+	var gId = $('#submitReview').data('ground-id');
+	var uName = $('#submitReview').data('user-name');
+	var uRating = $('input:radio[name=rating]:checked').val();
+
+	var errorFlag = false;
+
+	$('#groundReviews input').css("border","");
+
+	if(uReview === '' || uReview === null || uReview === undefined){
+		$('#uReview').css("border","2px solid red");
+		errorFlag = true;
+	}
+
+	if($('input:radio[name=rating]:checked').length === 0){
+		$('.rating-radios').css("border","1px solid red");
+		errorFlag = true;
+	}
+
+	if(errorFlag === false){
+		$.post("/createReview",{
+			userId : uId,
+			groundId : gId,
+			review : uReview,
+			rating : uRating,
+			userName : uName
+		}).success(function(data){
+			$(that).parent().siblings('.review-list').removeClass('hide');
+			$(that).parent().siblings('.review-list').append("<div class='single-review'><p class='individual-review'>"+data.review+"</p><p class='review-user-name'>- <span>"+ data.userName + " at " +data.createdAt.substr(0,10) + "</span></p></div></div>");
+			// $(that).parent().siblings('.review-list').find('.individual-review').html(data.review);
+			// $(that).parent().siblings('.review-list').find('.review-user-name span').html(uName + " at " +data.createdAt.substr(0,10));
+
+			$(that).parent().addClass('hide');
+		});
+	}
+});
+
+function deleteOwnReview(element){
+	var val = confirm("Are you sure you want to delete your review?");
+	var deleteUrl = $(element).data('delete-url');
+	if(val === true){
+		$.ajax({
+			method: "DELETE",
+			url: deleteUrl
+		}).success(function(msg){
+			$(element).parent().siblings('.individual-review').html(msg);
+			$(element).parent().html("");
+		});
+	}
+}
+
 // $('#showGrounds').click(function(){
 // 	$('.admin-grounds').removeClass('hide');
 // 	$('.admin-users').addClass('hide');

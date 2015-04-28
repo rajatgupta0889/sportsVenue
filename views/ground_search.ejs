@@ -151,17 +151,42 @@
 					</div>
 				</div>
 				<div class="res-ground-options">
-					<p><span class="change-cursor" id="reviewSlider">Reviews</span></p>|
+					<p id="reviewSlider" data-url="/groundReviews/<%=ground.id%>"><span class="change-cursor">Reviews</span></p>|
 					<p><span class="change-cursor">Share</span></p>|
 					<p id="toggleMap"><span class="change-cursor">Map</span></p>
 				</div>
 			</div>
 		</div>
+		<div id="groundReviews">
+			<div class="review-header">
+				<h3>Reviews for this ground!</h3>
+				<div class="write-review">Add your review</div>
+			</div>
+			<div class="review-list">
+				<!-- <div class="single-review">
+					<p class="individual-review"></p><p class="review-user-name"><span></span></p>
+				</div> -->
+			</div>
+			<div class="review-form hide">
+				<p>Your review for this ground-</p>
+				<textarea id="uReview" cols="30" rows="4" placeholder="Your review here..."></textarea>
+				<div class="rating-radios" style="float:left;">
+					Rating - 
+					<input type="radio" name="rating" value="1"> Disappointing &nbsp;</input>
+					<input type="radio" name="rating" value="2"> Not good &nbsp;</input>
+					<input type="radio" name="rating" value="3"> Average &nbsp;</input>
+					<input type="radio" name="rating" value="4"> Good &nbsp;</input>
+					<input type="radio" name="rating" value="5"> Excellent &nbsp;</input>
+				</div>
+				<%if(req.session.user){%>
+				<div class="review-submit" id="submitReview" data-user-id=<%=req.session.user.id%> data-user-name=<%=req.session.user.username%> data-ground-id=<%=ground.id%>>Post my review!</div>
+				<%}else{%>
+				<div class="review-submit" id="submitReview" data-ground-id=<%=ground.id%>>Post my review!</div>
+				<%}%>
+			</div>
+		</div>
+		<div id="googleMap" style="width:1375px;height:400px;border: 10px solid #f1f1f1;display:none;" data-loc-x=<%=ground.location.x%> data-loc-y=<%=ground.location.y%>></div>
 	</div>
-	<!-- <div id="groundReviews">
-		
-	</div> -->
-	<div id="googleMap" style="width:1375px;height:400px;border: 10px solid #f1f1f1;display:none;" data-loc-x=<%=ground.location.x%> data-loc-y=<%=ground.location.y%>></div>
 	<%});%>
 </div>
 <%}%>
