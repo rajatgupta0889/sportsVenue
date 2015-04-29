@@ -101,13 +101,30 @@ module.exports = {
 		else{
 			// req.body.password = that.generatePassword();
 			// req.body.userPwd = req.body.password;
-			User.signUpFacebook(req.body, function(err, user){
-				if(err)
-					res.serverError(err);
-		      	else{
-		           	sails.log.debug('signed up successfully!');
-		          	that.sendFacebookSignUpEmailToUser(req.body,res);
-		        }		
+			User.fbLogin(req.body, function(err, regUser){
+				if(err){
+					req.body.errorMessage = "We have encountered some error while signing you in through facebook. Please try again.";
+					that.postSignUp(req,res);
+				}
+				else{
+					if(regUser === null){
+						User.signUpFacebook(req.body, function(err, user){
+							if(err)
+								res.serverError(err);
+					      	else{
+					           	sails.log.debug('signed up successfully!');
+					           	that.sendFacebookSignUpEmailToUser(req.body,res);
+					           	req.session.authenticated = true;
+								req.session.user = user;
+								res.redirect('/home');
+					        }		
+						});
+					}else if(regUser){
+						req.session.authenticated = true;
+						req.session.user = regUser;
+						res.redirect('/home');
+					}
+				}
 			});
 		}
 	},
@@ -124,19 +141,10 @@ module.exports = {
 					res.serverError(err);
 				}else{
 					sails.log.debug('Password reset successfully');
-					that.sendPasswordResetEmailToUser(req.body,res);
+					that.b(req.body,res);
 				}
 			});
 		}
-	},
-
-	isLoggedIn : function(req,res){
-		sails.log.debug(req.session);
-	    if(req.session && req.session.authenticated && req.session.user){
-	        res.json(req.session.user);
-	    } else{
-	        res.json(false);
-	    }
 	},
 
 	sendSignUpEmailToUser: function(req,res){
@@ -171,12 +179,12 @@ module.exports = {
 		var that = this;
 		mailService.sendFacebookSignUpEmail(req, function(err, response){
 			if(err)
-				sails.log.debig(err);
+				sails.log.debug(err);
 			else{
 				sails.log.debug('mail sent successfully '+response);
-				req.successMessage = "Thank you for registering. Please sign in by clicking on the facebook log in button. We are waiting for you.";
+				// req.successMessage = "Thank you for registering. Please sign in by clicking on the facebook log in button. We are waiting for you.";
 				// console.log(req.successMessage);
-				that.postSignUp(req, res);
+				// that.postSignUp(req, res);
 				// res.view('post_signup',{msg : req});
 				// res.redirect('/postsignup');
 			}

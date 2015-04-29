@@ -30,7 +30,7 @@
 				.logo-text{
 					a{
 						p{
-							font-size:30pt;
+							font-size:27pt;
 							// display: block;
 							margin-left: 0px;
 						}
@@ -43,4 +43,117 @@
 			}
 		}
 	}
+
+	//----------------------------------------------------//
+	//
+	//------Styles for index page start here--------------//
+	//
+	//----------------------------------------------------//
+
+	.search-section{
+		background: url('../images/mobile-background.png') no-repeat;
+		background-size: 100% 100%;
+
+		.search-bar{
+			padding:80% 0 20%;
+
+			.venue-search{
+				width: 100%;
+
+				input{
+					width: 100%;
+					padding: 10px;
+					font-size: 20px;
+					border-radius: 4px;
+					border: 1px solid black;
+				}
+			}
+
+			.search-button{
+				font-size: 16pt;
+				margin-left: 30%;
+				width: 40%;
+				border-radius: 4px;
+				padding: 5px 0;
+				border: 1px solid black;
+				margin-top: 15%;
+				top: 0px;
+			}
+
+			.adv-search{
+				float: none;
+				width: 100% !important;
+				margin-top: 10%;
+				text-align: center;
+
+				a{
+					text-decoration: underline;
+				}
+			}
+
+			.select-heading{
+				font-size: 18pt !important;
+				color:white;
+				font-family: BloggerSansLight;
+			}
+
+			.locations, .sports{
+				width: 100%;
+
+				.selection-divs{
+					.location-select, .sport-select, .city-select{
+						margin-top: 10px;
+						margin-bottom: 10%;
+						height: 50px;
+					}
+				}
+			}
+		}
+	}
+
+	.intro-section, .user-speaks, .footer{
+		display: none;
+	}
+	//----------------------------------------------------//
+	//
+	//------Styles for index page end here----------------//
+	//
+	//----------------------------------------------------//
+
+
+	//----------------------------------------------------//
+	//
+	//------Styles for search-results start here----------//
+	//
+	//----------------------------------------------------//
+	
+	.search-criteria{
+		.criteria-container{
+			width: 95%;
+
+			.location-criteria, .sport-criteria{
+				width: 49%;
+			}
+
+			.sport-criteria{
+				margin-left: 0%;
+			}	
+
+			.selected-date{
+				display: none;
+			}
+		}
+	}
+
+	.results-count{
+		.count-container{
+			p{
+				margin: 0;
+			}
+			form{
+				display: none;
+			}
+		}
+	}
+
 }

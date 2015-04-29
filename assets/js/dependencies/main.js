@@ -21,20 +21,27 @@ $('#advancedSearch').click(function(){
 	$('.location-select').attr("name","area");
 	$('.sport-select').attr("name","sport");
 
-	$('.search-bar').css('padding','20% 0 24%');
 	$('#advancedSearch').addClass('hide');
 	$('#normalSearch').removeClass('hide');
 	$('.locations').removeClass('hide');
 	$('.sports').removeClass('hide');
 	$('.venue-search').addClass('hide');
-	$('.adv-search').css({
-		'width':'17%',
-		'margin-right':'7%'
-		// 'padding':'22% 0'
-	});
-	$('.search-button').css({
-		'top':'-2px'
-	});
+	if(window.innerWidth > 480){
+		$('.adv-search').css({
+			'width':'17%',
+			'margin-right':'7%'
+			// 'padding':'22% 0'
+		});
+
+		$('.search-button').css({
+			'top':'-2px'
+		});
+
+		$('.search-bar').css('padding','20% 0 24%');
+	}else{
+		$('.search-bar').css('padding','35% 0 20%');
+		$('.adv-search').css('width','100%');
+	}
 
 	$('#searchArea').attr("action","/searchAdvance");
 });
@@ -45,20 +52,26 @@ $('#normalSearch').click(function(){
 	$('.sport-select').removeAttr("name");
 	// $('.city-select').removeAttr("name");
 
-	$('.search-bar').css('padding','24% 0');
+	
 	$('#advancedSearch').removeClass('hide');
 	$('#normalSearch').addClass('hide');
 	$('.locations').addClass('hide');
 	$('.sports').addClass('hide');
 	$('.venue-search').removeClass('hide');
-	$('.adv-search').css({
-		'width':'14%',
-		'margin-right':'8%'
-		// 'padding':'24% 0'
-	});
-	$('.search-button').css({
-		'top':'-4px'
-	});
+
+	if(window.innerWidth > 480){
+		$('.adv-search').css({
+			'width':'14%',
+			'margin-right':'8%'
+			// 'padding':'24% 0'
+		});
+		$('.search-button').css({
+			'top':'-4px'
+		});
+		$('.search-bar').css('padding','24% 0');
+	}else{
+		$('.search-bar').css('padding','80% 0 20%');
+	}
 
 	$('#searchArea').attr("action","/textSearch");
 });
@@ -287,43 +300,33 @@ $('.close-popup').click(function(){
 });
 
 
-function statusChangeCallback(response,from) {
+function statusChangeCallback(response) {
 	//the response we get here contains the access token
 	// The response object is returned with a status field that lets the
 	// app know the current login status of the person.
 	// Full docs on the response object can be found in the documentation
 	// for FB.getLoginStatus().
 	if (response.status === 'connected') {
-		if(from == "signup"){
-			userSignUp();
-		}else if(from == "login"){
-			userSignIn();
-		}
-		  // Logged into your app and Facebook.
-		  // console.log('both yes');
-	} else if (response.status === 'not_authorized') {
-		  // The person is logged into Facebook, but not your app.
-		  console.log("The person is logged into Facebook, but not your app.");
-		  // document.getElementById('status').innerHTML = 'Please log ' +'into this app.';
-	} else {
-		// The person is not logged into Facebook, so we're not sure if
-		// they are logged into this app or not.
-		console.log('The person is not logged into Facebook.')
+		// Logged into your app and Facebook.
+		userSignIn();
 	}
+	//  else if (response.status === 'not_authorized') {
+	// 	  // The person is logged into Facebook, but not your app.
+	// 	  console.log("The person is logged into Facebook, but not your app.");
+	// } else {
+	// 	// The person is not logged into Facebook, so we're not sure if
+	// 	// they are logged into this app or not.
+	// 	console.log('The person is not logged into Facebook.')
+	// }
 }
 
 // This function is called when someone finishes with the Login
 // Button.  See the onlogin handler attached to it in the sample
 // code below.
-function checkLoginStateOnSignUp() {
-	FB.getLoginStatus(function(response) {
-	  	statusChangeCallback(response,"signup");
-	});
-}
 
 function checkLoginStateOnLogin() {
 	FB.getLoginStatus(function(response) {
-	  	statusChangeCallback(response,"login");
+	  	statusChangeCallback(response);
 	});
 }
 
@@ -349,30 +352,14 @@ window.fbAsyncInit = function() {
 	fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
-  // Here we run a very simple test of the Graph API after login is
-  // successful.  See statusChangeCallback() for when this call is made.
-function userSignUp() {
-	FB.api('/me', function(response) {
-		//sign up
-		//store email in DB
-		//login 
-		//check email exist or not
-		// exist- allow
-		// not exist - then redirect to sign up page 
-
+//we get the details from the facebook api and send the required data to our api
+function userSignIn() { //Up
+	FB.api('/me', function(response) { 
 		$('<form action="/signupfb" method="POST">'+
 			'<input type="hidden" name="username" value="'+response.name+'"/>'+
 			'<input type="hidden" name="email" value="'+response.email+'"/>'+
 			'<input type="hidden" name="gender" value="'+response.gender+'"/>'+
 			'<input type="hidden" name="fbUserId" value="'+response.id+'"/>'+
-			'</form>').submit();
-	});
-}
-
-function userSignIn(){
-	FB.api("/me", function(response){
-		$('<form action="/facebookSignIn" method="POST">'+
-			'<input type="hidden" name="email" value="'+response.email+'"/>'+
 			'</form>').submit();
 	});
 }

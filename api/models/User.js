@@ -108,7 +108,7 @@ module.exports = {
         else if(user){
           cb(null, user);
         }else{
-          cb("user doesnt exist");
+          cb(null,null);
         }
       });
     },
