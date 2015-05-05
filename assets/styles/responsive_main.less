@@ -50,7 +50,7 @@
 	//
 	//----------------------------------------------------//
 
-	.search-section{
+	.search-section,{
 		background: url('../images/mobile-background.png') no-repeat;
 		background-size: 100% 100%;
 
@@ -132,7 +132,7 @@
 			width: 95%;
 
 			.location-criteria, .sport-criteria{
-				width: 49%;
+				width: 35%;
 			}
 
 			.sport-criteria{
@@ -141,6 +141,10 @@
 
 			.selected-date{
 				display: none;
+			}
+
+			.submit-button{
+				width: 25%;
 			}
 		}
 	}
@@ -155,5 +159,264 @@
 			}
 		}
 	}
+
+	.results{
+		.individual-result{
+			.res-container{
+				.res-details{
+					.res-contact-details{
+						width: 100%;
+						margin-left: 0;
+					}
+				}
+
+				.res-footer{
+					margin-top: 0;
+
+					.res-ground-details{
+						display: block;
+						width: 100%;
+
+						.rating{
+							width: 40%;
+						}
+					}
+
+					.res-ground-options{
+						width: 100%;
+						margin-left: 0;
+						margin-bottom: 10px;
+
+						p{
+							margin: 0 10%;
+						}
+					}
+				}
+			}
+
+			#groundReviews{
+				.review-header{
+					.write-review{
+						width: 30%;
+					}
+				}
+
+				.review-list{
+					width: 85%;
+				}
+
+				.review-form{
+					.rating-radios{
+						float: none !important;
+						width: 90%;
+						text-align: center;
+						margin: 0 auto;
+					}
+
+					.review-submit{
+						width: 50%;
+						float: none;
+						margin: 15px auto;
+					}
+				}
+			}
+		}
+	}
+
+	//----------------------------------------------------//
+	//
+	//------Styles for single ground start here-----------//
+	//
+	//----------------------------------------------------//
+
+	.ground-name{
+		p{
+			font-size: 18pt;
+			padding: 10px 30px;
+			margin: 0;
+		}
+	}
+	
+	.ground-content{
+		.left-section{
+			width: 100%;
+
+			.ground-images{
+				.image-container{
+					text-align: center;
+
+					img{
+						margin: 4% 0;
+						// width: 95%;
+					}
+
+					img:last-child{
+						display: none;
+					}
+				}
+			}
+
+			.ground-sport-info{
+				.ground-sport-info-container{
+					p{
+						font-size: 13pt;
+						line-height: 20px;
+					}
+				}
+			}
+
+			.ground-location{
+				.ground-location-container{
+					overflow: hidden;
+
+					.ground-address{
+						display: block;
+						float: left;
+
+						p{
+							font-size: 13pt;
+							line-height: 20px;
+						}
+					}
+					.ground-contact{
+						display: block;
+						float: right;
+						font-size: 13pt;
+						width: 45%;
+						margin-left: 0;
+						line-height: 10px;
+
+						p:first-child{
+							font-size: 15pt;
+						}
+					}
+				}
+			}
+
+			.ground-share{
+				border-bottom: 2px solid #bebebe;
+				.ground-share-container{
+					padding-bottom:5%; 
+
+					.sharing-icons{
+						img{
+							margin-left: 0;
+						}
+					}
+				}
+			}
+		}
+
+		.right-section{
+			width: 100%;
+
+			.ground-desc{
+
+				.ground-desc-container{
+
+					p{
+						font-size:13pt;
+						line-height: 20px;
+					}
+				}
+			}
+
+			.ground-reviews{
+				.reviews-container{
+					.review-form{
+						.rating-radios{
+							text-align: center;
+							width: 90%;
+							margin: 0 auto;
+							float: none;
+
+						}
+
+						.review-submit{
+							float: none;
+							margin: 20px auto;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	//----------------------------------------------------//
+	//
+	//------Styles for single ground end here-------------//
+	//
+	//----------------------------------------------------//
+
+	//----------------------------------------------------//
+	//
+	//------Styles for contact us start here--------------//
+	//
+	//----------------------------------------------------//
+
+	.create-feedback, .create-ground{
+		background: url('../images/mobile-background.png') repeat-y;
+		background-size: 100% 70%;
+
+		.feedback-container, .ground-container{
+			background:none;
+			text-align: center;
+
+			#feedbackForm, #crtGrnd{
+				width: 100%;
+
+				.inputs{
+
+					label{
+						font-size: 14pt;
+					}
+
+					input{
+						float: none;
+						font-size: 14pt;
+						width: 100%;
+					}
+
+					textarea{
+						font-size: 14pt;
+					}
+				}
+
+				.submit-section{
+					input{
+						margin-right: 0;
+						margin-bottom: 20px;
+					}
+				}
+			}
+
+			.create-success, .resp-success{
+				p{
+					font-size: 14pt;
+					width: 100%;
+				}
+
+				.button-section{
+					a{
+						display: block;
+					}
+
+					a:first-child{
+						margin-bottom: 15%;
+					}
+
+					a:last-child{
+						margin-bottom: 95%;
+					}
+				}
+			}
+		}
+	}
+	
+	//----------------------------------------------------//
+	//
+	//------Styles for contact us end here----------------//
+	//
+	//----------------------------------------------------//
 
 }

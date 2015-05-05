@@ -482,6 +482,7 @@ span{
 		}
 
 		.selected-date{
+			display: none;
 			width: 18%;
 			margin-left: 20%;
 
@@ -490,6 +491,19 @@ span{
 				color:black;
 				cursor: pointer;
 			}
+		}
+
+		.submit-button{
+			float: right;
+			width: 15%;
+			padding: 8px 17px;
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			color: white;
+			background: #b2c54e;
+			border-radius: 5px;
+			font-size: 20px;
+			border: 1px solid black;
 		}
 	}
 }
@@ -787,8 +801,10 @@ span{
 		.ground-images{
 			border-bottom: @boxBorderGroundDetails;
 
-			img{
-				margin: 6% 0 6% 10%;
+			.image-container{
+				img{
+					margin: 6% 0 6% 10%;
+				}
 			}
 		}
 
@@ -902,6 +918,7 @@ span{
 		}
 
 		.ground-events{
+			display: none;
 			border-bottom: @boxBorderGroundDetails;
 
 			.ground-events-container{

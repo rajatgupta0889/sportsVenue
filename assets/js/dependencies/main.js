@@ -13,6 +13,14 @@ $(document).ready(function(){
   if(($('body').find('.search-criteria').length > 0) || ($('body').find('.signup-container').length > 0) || ($('body').find('.create-ground').length > 0) || ($('body').find('.create-feedback').length > 0)){
   	$('.footer-content').css("margin-top","0px");
   }
+
+  if(window.innerWidth > 480){
+  	$('#gt480').removeClass('hide');
+  }else{
+  	$('#lt480').removeClass('hide');
+  }
+
+  $('#googleMap').css('width',window.screenWidth);
 });
 
 $('#advancedSearch').click(function(){
@@ -312,11 +320,9 @@ function statusChangeCallback(response) {
 	}
 	//  else if (response.status === 'not_authorized') {
 	// 	  // The person is logged into Facebook, but not your app.
-	// 	  console.log("The person is logged into Facebook, but not your app.");
 	// } else {
 	// 	// The person is not logged into Facebook, so we're not sure if
 	// 	// they are logged into this app or not.
-	// 	console.log('The person is not logged into Facebook.')
 	// }
 }
 

@@ -71,7 +71,8 @@
 				Date:&nbsp;&nbsp;<p id="selectedDate">10 Mar 2015</p>
 				<!-- <img src="images/calendar-icon.png" id="showCal" alt="calendar" title="Click here to change"/> -->
 			</div>
-			<input type="submit" style="position: absolute; left: -9999px"/>
+			<input type="submit" class="submit-button"/ value="Search">
+			<!-- style="position: absolute; left: -9999px" -->
 		</form>
 	</div>
 </div>
@@ -107,7 +108,8 @@
 				<div class="res-desc-short">
 					<h3>Description :</h3>
 					<%if(ground.groundInfo.length > 90){%>
-					<p><%=ground.groundInfo.substring(0,90)%>...<span class="change-cursor"><a href="/ground/<%=ground.id%>"> Read More</a></span></p>
+							<p id="gt480" class="hide"><%=ground.groundInfo.substring(0,90)%>...<span class="change-cursor"><a href="/ground/<%=ground.id%>"> Read More</a></span></p>
+							<p id="lt480" class="hide"><%=ground.groundInfo.substring(0,35)%>...<span class="change-cursor"><a href="/ground/<%=ground.id%>"> Read More</a></span></p>
 					<%}else{%>
 					<p><%=ground.groundInfo%><span class="change-cursor"><a href="/ground/<%=ground.id%>"> Read More</a></span></p>
 					<%}%>
@@ -187,7 +189,7 @@
 				<%}%>
 			</div>
 		</div>
-		<div id="googleMap" style="width:1375px;height:400px;border: 10px solid #f1f1f1;display:none;" data-loc-x=<%=ground.location.x%> data-loc-y=<%=ground.location.y%>></div>
+		<div id="googleMap" style="height:400px;border: 10px solid #f1f1f1;display:none;" data-loc-x=<%=ground.location.x%> data-loc-y=<%=ground.location.y%>></div>
 	</div>
 	<%});%>
 </div>
