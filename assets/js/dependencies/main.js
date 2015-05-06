@@ -16,6 +16,7 @@ $(document).ready(function(){
 
   if(window.innerWidth > 480){
   	$('#gt480').removeClass('hide');
+  	$('.mobile-menu').addClass('hide');
   }else{
   	$('#lt480').removeClass('hide');
   }
