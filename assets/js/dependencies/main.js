@@ -674,6 +674,18 @@ $('#deleteReview').click(function(){
 	}
 });
 
+var menuActive = 1;
+
+$('#menuToggle').click(function(){
+	if(menuActive){
+		menuActive = 0;
+		$('.mobile-menu').animate({"margin-left":"0%"});	
+	}else{
+		menuActive = 1;
+		$('.mobile-menu').animate({"margin-left":"-100%"});
+	}
+});
+
 // $('#createReview').click(function(){
 // 	var that = this;
 // 	if($('.user-name').length > 0){

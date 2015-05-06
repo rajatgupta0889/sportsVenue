@@ -1,6 +1,6 @@
 <div class="header">
 	<div class="nav-bar">
-		<span class="glyphicon glyphicon-menu-hamburger"></span>
+		<span class="glyphicon glyphicon-menu-hamburger" id="menuToggle"></span>
 		<div class="logo-name">
 			<div class="logo-image">
 				<a href="/home">
@@ -348,3 +348,71 @@
 	<p><%=grounds.errorMsg%></p>
 	</div>
 <%}%>
+
+<div class="mobile-menu">
+	<div class="heading">
+		<div class="heading-container">
+			<img src="images/user-icon-mobile.png" alt="user-icon"/>
+			<%if(req.session.user){%>
+			<a href="/logout">Logout</a>
+			<%}else{%>
+			<a href="#" id="signUp" data-toggle="modal" data-target="#signUpModal">Log In or Sign Up</a>
+			<%}%>
+		</div>
+	</div>
+	<div class="menu">
+		<div class="menu-container">
+			<div class="menu-option">
+				<a href="/home">
+					<img src="images/home-icon-mobile.png" alt="home-icon"/>
+					<p>Home</p>
+				</a>
+			</div>
+			<%if(req.session.user){%>
+			<div class="menu-option">
+				<a href="/createGround">
+					<img src="images/help-icon-mobile.png" alt="home-icon"/>
+					<p>Add a Ground</p>
+				</a>
+			</div>
+			<div class="menu-option">
+				<a href="/user/<%=req.session.user.id%>">
+					<img src="images/user-icon-mobile.png" alt="home-icon"/>
+					<p>Edit my profile</p>
+				</a>
+			</div>
+			<div class="menu-option">
+				<a href="/userReviews/<%=req.session.user.id%>">
+					<img src="images/help-icon-mobile.png" alt="home-icon"/>
+					<p>Show My Reviews</p>
+				</a>
+			</div>
+			<div class="menu-option">
+				<a href="/created_grounds/<%=req.session.user.id%>">
+					<img src="images/help-icon-mobile.png" alt="home-icon"/>
+					<p>Show my created grounds</p>
+				</a>
+			</div>
+			<%}%>
+			<div class="menu-option">
+				<a href="#">
+					<img src="images/bulb-icon-mobile.png" alt="home-icon"/>
+					<p>About</p>
+				</a>
+			</div>
+			<div class="menu-option">
+				<a href="#">
+					<img src="images/flag-icon-mobile.png" alt="home-icon"/>
+					<p>Blog</p>
+				</a>
+			</div>
+			<div class="menu-option">
+				<a href="/contact_us">
+					<img src="images/mail-icon-mobile.png" alt="home-icon"/>
+					<p>Contact Us</p>
+				</a>
+			</div>
+		</div>
+	</div>
+	<p class="footer-text">&copy; 2014 All Rights Reserved</p>
+</div>

@@ -2,6 +2,12 @@
 
 // @import url('bootstrap-responsive.min.css');
 
+.menuOptionStyle{
+	width: 80%;
+	margin: 0 auto;
+	padding: 25px 0;
+}
+
 @media screen and (max-width:480px){
 	.header{
 		.nav-bar{
@@ -418,5 +424,72 @@
 	//------Styles for contact us end here----------------//
 	//
 	//----------------------------------------------------//
+
+	.mobile-menu{
+		position: absolute;
+		width: 100%;
+		border-top: 1px solid #ddd;
+		top: 10%;
+		background: white;
+		margin-left: -100%;
+		
+		p{
+			margin: 0;
+			font-family: BloggerSansLight;
+		}
+
+		.heading{
+			background: black;
+
+			.heading-container{
+				.menuOptionStyle;
+
+				a{
+						color: #b2c45e;
+						font-family: BloggerSansLight;
+						font-size: 16pt;
+						vertical-align: middle;
+						margin-left: 10%;
+						text-decoration: none;
+				}
+			}
+		}
+
+		.menu{
+			background: white;
+
+			.menu-container{
+				.menu-option{
+					.menuOptionStyle;
+					padding: 20px 0;
+					a{
+						width: 100%;
+
+						img{
+							vertical-align: middle;
+							display: inline-block;
+							width: 5%;
+						}
+
+						p{
+							color: black;
+							display: inline-block;
+							font-family: BloggerSansLight;
+							font-size: 16pt;
+							vertical-align: middle;
+							margin-left: 10%;
+							text-decoration: none;
+						}
+					}
+				}
+			}
+		}
+
+		.footer-text{
+			text-align: center;
+			font-size: 13pt;
+			margin: 15% 0;
+		}
+	}
 
 }
