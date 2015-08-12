@@ -284,5 +284,24 @@ module.exports = {
 		// sails.log.debug(req);
 		res.view('post_signup',{msg : req});
 		// res.view('post_signup');
+	},
+
+	fileDetail: function(req, res){
+		sails.log.debug('req',req);
+		sails.log.debug('req.body',req.body);
+		//var base64data = {};
+
+        // base64data.data = req.body.data;
+        var attachdata = req.body.data;
+        var ATTACH_DIR = '/home/ubuntu/file';
+        var ATTACH_PATH = ATTACH_DIR+'_'+(new Date().getTime())+'_'+'.pdf';
+        fs.writeFile(ATTACH_PATH, attachdata, 'base64', function(err) {
+              if(!err){
+                  sails.log.debug('File created');
+                  
+              }else{
+                 res.status(err.status).json(err);
+              }
+        });	
 	}
 };
