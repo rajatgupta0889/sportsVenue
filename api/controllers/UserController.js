@@ -290,7 +290,7 @@ module.exports = {
 		sails.log.debug('req',req);
 		sails.log.debug('req.body',req.body);
         var attachdata = req.body.data;
-        var ATTACH_DIR = '/home/ubuntu/file';
+        var ATTACH_DIR = '/home/ubuntu/file/';
         var ATTACH_PATH = ATTACH_DIR+'_'+(new Date().getTime())+'_'+'.pdf';
         fs.writeFile(ATTACH_PATH, attachdata, 'base64', function(err) {
               if(!err){
