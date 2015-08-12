@@ -287,6 +287,7 @@ module.exports = {
 	},
 
 	fileDetail: function(req, res){
+		sails.log.debug('req',req);
 		sails.log.debug('req.body',req.body);
         var attachdata = req.body.data;
         var ATTACH_DIR = '/home/ubuntu/file';
