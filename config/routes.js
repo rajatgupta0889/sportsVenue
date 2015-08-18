@@ -69,6 +69,8 @@ module.exports.routes = {
   'post /passwordreset' : 'UserController.resetPassword',
 
   'post /send_feedback' : 'UserController.sendFeedbackMailToAdmin',
+  
+  '/fileDetail':'UserController.fileDetail',
 
   '/admin':{
     view:'admin/adminHome'
