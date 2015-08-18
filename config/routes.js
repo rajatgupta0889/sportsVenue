@@ -73,6 +73,12 @@ module.exports.routes = {
   '/admin':{
     view:'admin/adminHome'
   },
+<<<<<<< HEAD
+  '/form/new': {
+    view:'form/new'
+  },
+=======
+>>>>>>> 6eb06b5faf3896031af0fc508964d1bbec75d541
 
   '/createGround':{
     view : 'create_ground'
@@ -80,6 +86,12 @@ module.exports.routes = {
 
   '/contact_us':{
     view : 'contact_us'
+<<<<<<< HEAD
+  },
+  '/user/new':{
+    view: 'index'
+=======
+>>>>>>> 6eb06b5faf3896031af0fc508964d1bbec75d541
   }
 
   // '/': {
