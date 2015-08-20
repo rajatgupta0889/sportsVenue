@@ -63,51 +63,12 @@
 }
   </style>
 
-<script src="//code.jquery.com/jquery-1.9.1.js"></script>
-  <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
-</head>
-
-
-<script type="text/javascript">
-  $(function(){
-    $('#form-signup').validate({
-      rules:{
-        faculty_name:'required',
-        faculty_add:'required',
-        own_first_name:'required',
-        own_email:{
-          required:true,
-          email:true
-        },
-        sport_avail:{
-          required:true
-        }
-
-      },
-      messages:{
-        faculty_name:"Please Enter Faculty Name",
-        faculty_add:'Please Enter the Faculty Address',
-        own_first_name:'Please Enter Owner first name',
-        sport_avail:'Please Enter the available sports'
-
-      },
-      submit:function(form){
-        form.submit();
-      }
-    });
-  });
-</script>
 
 
 
+<body> 
 
-
-
-
-
-
-<body>
-<form class="form-signup" id="form-signup" action="/form/create" method="POST">   
+ <form action="/image/create" id="form-signup" enctype="multipart/form-data" method="post">
     <fieldset>
       <legend class="reg_form">Registration Form:</legend>
       <div class="name">
@@ -130,7 +91,7 @@
       </div>
 
       <div class="name">
-        Owner/Oweners emails:
+        Owner/Oweners contact numbers, emails:
         <input type="text"  name="own_email" class="registration_contents" placeholder="Contact No / Email">
         <span class="error">*</span>
 
@@ -196,15 +157,15 @@
          Any specific timings and if yes then what are those timings:
          <input type="radio" name="spec_time" value="yes">Yes
         <input type="radio" name="spec_time" value="no">No<br>
-         <input type="time"  step="1" name="specific_time" class="registration_contents" placeholder="Time">
+         <input type="time"  name="specific_time" class="registration_contents" placeholder="Time">
       </div>
       <div class="name">
          How old is the facility. i.e the founding date of the facility.
          <input type="date" name="found_date" class="registration_contents"> <br>
           Opening timings:
-          <input type="time" step="1" name="open_timing" class="registration_contents"> 
+          <input type="time" name="open_timing" class="registration_contents"> 
           Closing timings:
-          <input type="time" step="1" name="close_timing" class="registration_contents"> <br>
+          <input type="time" name="close_timing" class="registration_contents"> <br>
       </div>
       <div class="name">
           Does it has other branches. if yes then all the details of all the other branches in a new page:
@@ -266,14 +227,47 @@
           Fee structure for booking Ground:
           <input type="text" name="fee_ground" class="registration_contents" placeholder="Charges"><br>
       </div>
-      <div class="btn"><button class="btn btn-lg btn-success" value="submit" type="submit" name="submit" class="Reg_btn">Submit</button></div>
+      <div class="btn"><button name="submit" class="Reg_btn">Submit</button></div>
 
     </fieldset>
-  </form> 
+ </form>
+ </body>
+
+ </html>
+ <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
 
 
 
+<script type="text/javascript">
+  $(function(){$('#form-signup').validate({
+      rules:{
+        faculty_name:'required',
+        faculty_add:'required',
+        own_first_name:'required',
+        own_email:{
+          required:true,
+          email:true
+        },
+        sport_avail:{
+          required:true
+        },
+        avatar:{
+          required:true
+        }
 
+      },
+      messages:{
+        faculty_name:"Please Enter Faculty Name",
+        faculty_add:'Please Enter the Faculty Address',
+        own_first_name:'Please Enter Owner first name',
+        own_email:'Please Enter Owner email/cont',
+        sport_avail:'Please Enter the available sports'
 
-</body>
-</html>
+      },
+      submit:function(form){
+        form.submit();
+      }
+    });
+  });
+</script>

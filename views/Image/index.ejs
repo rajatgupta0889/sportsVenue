@@ -1,6 +1,80 @@
+<head>
+	<style>
+.zoom_img img{
+height:100px;
+width:100px;
+-moz-transition:-moz-transform 0.5s ease-in; 
+-webkit-transition:-webkit-transform 0.5s ease-in; 
+-o-transition:-o-transform 0.5s ease-in;
+}
+.zoom_img img:hover{
+-moz-transform:scale(2); 
+-webkit-transform:scale(2);
+-o-transform:scale(2);
+}
+
+figure { 
+  width: 120px; 
+  float: left; 
+  margin: 0 20px 0 0; 
+  background: white;
+  border: 10px solid white; 
+  -webkit-box-shadow: 0 3px 10px #ccc; 
+  -moz-box-shadow: 0 3px 10px #ccc;
+  -webkit-transform: rotate(5deg); 
+  -moz-transform: rotate(5deg);
+  -webkit-transition: all 0.7s ease; 
+  -moz-transition: all 1s ease;
+  position: relative;
+}
+
+figcaption { 
+  text-align: center; 
+  display: block; 
+  font-size: 12px; 
+  font-style: italic; 
+}
+
+figure img { 
+  width: 100%; /* Scale down */
+}
+
+figure:hover {
+  -webkit-transform: rotate(-1deg); -moz-transform: rotate(1deg);
+  -webkit-box-shadow: 0 3px 10px #666; -moz-box-shadow: 0 3px 10px #666;
+}
+
+figure:focus {
+  outline: none;
+  -webkit-transform: rotate(-3deg) scale(3.5); -moz-transform: rotate(-3deg) scale(2.5);
+   -webkit-box-shadow: 0 3px 10px #666; -moz-box-shadow: 0 3px 10px #666;
+  z-index: 9999;
+}
+
+
+	</style>
+
+<script>
+function load()
+{
+    if(!window.location.hash) {
+    window.location = window.location + '#loaded';
+    window.location.reload();
+
+    }
+}
+setTimeout(load,4000);
+</script>
+
+
+
+
+</head>
+
+
 <div class="container">
 	<h3>form</h3>
-	<h3><a href="/form/new" class="btn btn-lg btn-primary">Create New Data</a></h3>
+	<h3><a href="/Image/new" class="btn btn-lg btn-primary">Create New Data</a></h3>
 	<table class="table">
 		<tr  class="active">
 			<th>Id</th>
@@ -62,7 +136,12 @@
 			<td><%= form.own_email %></td>
 			<td><%= form.on_book_faci%></td>
 			<td><%= form.coll_mantra%></td>
-			<td>  </td>
+			<td>
+			<figure contenteditable="true">
+		  <img src="<%= form.avatar %>" alt="jump, matey" contenteditable="false" />
+		  <figcaption contenteditable="false">Click</figcaption>
+		</figure>
+			</td>
 			<td><%= form.reg_membr_email %></td>
 			<td><%= form.reg_membr_cont %></td>
 			<td><%= form.sport_avail %></td>
@@ -95,9 +174,10 @@
 			<td><%= form.branch_own_last_name %></td>
 			<td><%= form.ground_book %></td>
 			<td><%= form.fee_ground %></td>
+
 			
 			<td>
-				<form action="/form/destroy/<%= form.id %>" method="post">
+				<form action="/Image/destroy/<%= form.id %>" method="post">
 					<input type="hidden" name="method" value="delete"/>
 					<input type="submit" class="btn btn-sm btn-danger" value="Del"/>
 				</form>
@@ -107,3 +187,16 @@
 
 	</table>
 </div>
+</body>
+ <script src="/js/dependencies/jquery.min.js"></script>
+  <script src="/js/dependencies/bootstrap.min.js"></script>
+<script>
+  $(document).ready(function(){
+    $('.img-zoom').hover(function() {
+        $(this).addClass('transition');
+ 
+    }, function() {
+        $(this).removeClass('transition');
+    });
+  });
+</script>
