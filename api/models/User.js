@@ -131,11 +131,7 @@ module.exports = {
   	},
   	signUp : function(opts,cb){
   		User.findOne({where:{email:opts.email}}).exec(function(err, user){
-<<<<<<< HEAD
-	  		if(err)  
-=======
 	  		if(err)
->>>>>>> 6eb06b5faf3896031af0fc508964d1bbec75d541
 	  			cb(err);
 	  		else if(!user){
 	  			saltAndHash(opts.password,function(hash){

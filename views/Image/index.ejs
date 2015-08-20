@@ -1,0 +1,202 @@
+<head>
+	<style>
+.zoom_img img{
+height:100px;
+width:100px;
+-moz-transition:-moz-transform 0.5s ease-in; 
+-webkit-transition:-webkit-transform 0.5s ease-in; 
+-o-transition:-o-transform 0.5s ease-in;
+}
+.zoom_img img:hover{
+-moz-transform:scale(2); 
+-webkit-transform:scale(2);
+-o-transform:scale(2);
+}
+
+figure { 
+  width: 120px; 
+  float: left; 
+  margin: 0 20px 0 0; 
+  background: white;
+  border: 10px solid white; 
+  -webkit-box-shadow: 0 3px 10px #ccc; 
+  -moz-box-shadow: 0 3px 10px #ccc;
+  -webkit-transform: rotate(5deg); 
+  -moz-transform: rotate(5deg);
+  -webkit-transition: all 0.7s ease; 
+  -moz-transition: all 1s ease;
+  position: relative;
+}
+
+figcaption { 
+  text-align: center; 
+  display: block; 
+  font-size: 12px; 
+  font-style: italic; 
+}
+
+figure img { 
+  width: 100%; /* Scale down */
+}
+
+figure:hover {
+  -webkit-transform: rotate(-1deg); -moz-transform: rotate(1deg);
+  -webkit-box-shadow: 0 3px 10px #666; -moz-box-shadow: 0 3px 10px #666;
+}
+
+figure:focus {
+  outline: none;
+  -webkit-transform: rotate(-3deg) scale(3.5); -moz-transform: rotate(-3deg) scale(2.5);
+   -webkit-box-shadow: 0 3px 10px #666; -moz-box-shadow: 0 3px 10px #666;
+  z-index: 9999;
+}
+
+
+	</style>
+
+<script>
+function load()
+{
+    if(!window.location.hash) {
+    window.location = window.location + '#loaded';
+    window.location.reload();
+
+    }
+}
+setTimeout(load,4000);
+</script>
+
+
+
+
+</head>
+
+
+<div class="container">
+	<h3>form</h3>
+	<h3><a href="/Image/new" class="btn btn-lg btn-primary">Create New Data</a></h3>
+	<table class="table">
+		<tr  class="active">
+			<th>Id</th>
+			<th>Name</th>
+			<th>Facutly Address</th>
+			<th>Owner First Name </th>
+			<th>Owner Middle Name </th>
+			<th>Owner Last Name </th>
+			<th>Email</th>
+			<th>Online Booking facility</th>
+			<th>would they collaborate with mantra for online booking</th>
+			<th>Image</th>
+			<th>Regular Member email</th>
+			<th>Regular Member Cont</th>
+			<th>Sports Available</th>
+			<th>Coaching Provided for sports </th>
+			<th>Charges for Coching </th>
+			<th>Instructors Email/Contact </th>
+			<th>Sport require equipments</th>
+			<th>Equipments Charges</th>
+			<th>any Specific Timing</th>
+			<th>If Yes </th>
+			<th>Founding Facility 
+			date</th>
+			<th>Opening timing </th>
+			<th>Closing timing </th>
+			<th>Any Branches</th>
+			<th>Branch Detail </th>
+			<th>Does facility in other fields</th>
+			<th>If yes </th>
+			<th>if any multi field</th>
+			<th>Number of Coaches</th>
+			<th>Coach name</th>
+			<th>Coach age </th>
+			<th>Coach Exp </th>
+			<th>Fee Structure</th>
+			<th>Fee Structure 2</th>
+			<th>Fee Structure 3</th>
+			<th>any Other Requirements for Booking?</th>
+			<th>Summary Facility</th>
+			<th>Branch Own first name</th>
+			<th>Middle Name</th>
+			<th>Last Name </th>
+			<th>Can ground be booked (Y/N)</th>
+			<th>Fee for Ground Booking </th>
+
+			<th></th>
+			<th></th>
+		</tr>
+
+		<% _.each(form,function(form){%>
+		<tr class="success" data-id="<%= form.id %>" data-model="form">
+			<td><%= form.id %></td>
+			<td><%= form.faculty_name %></td>
+			<td><%= form.faculty_add %></td>
+			<td><%= form.own_first_name %></td>
+			<td><%= form.own_middle_name %></td>
+			<td><%= form.own_last_name %></td>
+			<td><%= form.own_email %></td>
+			<td><%= form.on_book_faci%></td>
+			<td><%= form.coll_mantra%></td>
+			<td>
+			<figure contenteditable="true">
+		  <img src="<%= form.avatar %>" alt="jump, matey" contenteditable="false" />
+		  <figcaption contenteditable="false">Click</figcaption>
+		</figure>
+			</td>
+			<td><%= form.reg_membr_email %></td>
+			<td><%= form.reg_membr_cont %></td>
+			<td><%= form.sport_avail %></td>
+			<td><%= form.coach_sport %></td>
+			<td><%= form.choch_charg %></td>
+			<td><%= form.instruc_email %></td>
+			<td><%= form.req_equp %></td>
+			<td><%= form.equp_charg %></td>
+			<td><%= form.spec_time %></td>
+			<td><%= form.specific_time %></td>
+			<td><%= form.found_date %></td>
+			<td><%= form.open_timing %></td>
+			<td><%= form.close_timing %></td>
+			<td><%= form.oth_branch %></td>
+			<td><%= form.branch_detail %></td>
+			<td><%= form.multi_field %></td>
+			<td><%= form.multi_field_name %></td>
+			<td><%= form.if_multi_field %></td>
+			<td><%= form.no_coach %></td>
+			<td><%= form.coach_name %> </td>
+			<td><%= form.coach_age %></td>
+			<td><%= form.coach_exp %></td>
+			<td><%= form.fee_col_1 %></td>
+			<td><%= form.fee_col_2 %></td>
+			<td><%= form.fee_col_3 %></td>
+			<td><%= form.oth_requir %></td>
+			<td><%= form.summ %></td>
+			<td><%= form.branch_own_first_name %></td>
+			<td><%= form.branch_own_middle_name %></td>
+			<td><%= form.branch_own_last_name %></td>
+			<td><%= form.ground_book %></td>
+			<td><%= form.fee_ground %></td>
+
+			
+			<td>
+				<form action="/Image/destroy/<%= form.id %>" method="post">
+					<input type="hidden" name="method" value="delete"/>
+					<input type="submit" class="btn btn-sm btn-danger" value="Del"/>
+				</form>
+			</td>
+		</tr>
+		<% }) %>	
+
+	</table>
+</div>
+</body>
+ <script src="/js/dependencies/jquery.min.js"></script>
+  <script src="/js/dependencies/bootstrap.min.js"></script>
+<script>
+  $(document).ready(function(){
+    $('.img-zoom').hover(function() {
+        $(this).addClass('transition');
+ 
+    }, function() {
+        $(this).removeClass('transition');
+    });
+  });
+</script>

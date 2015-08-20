@@ -89,9 +89,9 @@ $('#normalSearch').click(function(){
 // 	window.location.href='http://www.facebook.com/login';
 // });
 
-// $('#signIn').click(function(){
-// 	// $('#signInModal').removeClass('hide');
-// });
+$('#signIn').click(function(){
+	$('#signInModal').removeClass('hide');
+});
 
 $('.user-name').click(function(){
 	$('#userOptions').slideToggle(200);

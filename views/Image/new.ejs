@@ -1,0 +1,273 @@
+<html>
+<head>
+  <title>Form</title>
+
+  <style type="text/css">
+  body{
+  background-color:  rgba(241, 229, 229, 0.33)
+}
+.error{
+  color: red;
+}
+.reg_form{
+  font-size: 15px;
+}
+.name{
+  font-size: 18px;
+  color: rgba(11, 12, 11, 0.51);
+  margin-bottom: 5px;
+  margin: 20px;
+}
+.faculty_address_name{
+  font-size: 16px;
+  color: rgba(11, 12, 11, 0.51);
+  margin-bottom: 5px;
+  margin: 20px;
+  display: flex;
+
+}
+.registration_contents{
+      width: 170px;
+    height: 30px;
+    border-radius: 4px;
+    border: 1px solid #DCDCE8;
+    margin: 0 0 0 1em;
+    padding-left: 8px;
+  
+}
+.address{
+      width: 350px;
+    height: 100px;
+    border-radius: 4px;
+    border: 1px solid #DCDCE8;
+    margin: 0 0 0 2em;
+}
+.numbers{
+  width: 43px;
+    height: 24px;
+    border-radius: 4px;
+    border: 1px solid #DCDCE8;
+}
+.placeholder{
+  color: red;
+
+}
+.Reg_btn{
+  width: 100;
+    height: 33px;
+    font-size:16px;
+    color: black;
+}
+.btn{
+  padding-left: 20px;
+}
+  </style>
+
+
+
+
+<body> 
+
+ <form action="/image/create" id="form-signup" enctype="multipart/form-data" method="post">
+    <fieldset>
+      <legend class="reg_form">Registration Form:</legend>
+      <div class="name">
+        Name of the facility: 
+        <input type="text"  name="faculty_name" class="registration_contents" placeholder="Faculty Name">
+        <span class="error">*</span>
+        </div>
+      <div class="faculty_address_name">
+        Address of the facility:
+        <input type="text"  name="faculty_add" class="address">
+        <span class="error">* </span><br>
+      </div>
+      <div class="name">
+        Owner/Owners of the facility:
+        <input type="text"  name="own_first_name" class="registration_contents" placeholder="First Name">
+        <span class="error">*</span>
+        <input type="text" name="own_middle_name" class="registration_contents" placeholder="Middle Name">
+        <input type="text" name="own_last_name" class="registration_contents" placeholder="Last Name">
+      
+      </div>
+
+      <div class="name">
+        Owner/Oweners contact numbers, emails:
+        <input type="text"  name="own_email" class="registration_contents" placeholder="Contact No / Email">
+        <span class="error">*</span>
+
+        <br>
+      </div>
+      <div class="name1">
+        Whether they have online booking facility or not:
+        <input type="radio" name="on_book_faci" value="yes">Yes
+        <input type="radio" name="on_book_faci" value="no">No<br>
+         
+      </div>
+      <div class="name">
+
+        If not would they collaborate with Mantra Labs and allow us to do
+        online bookings for them:
+        <input type="radio" name="coll_mantra" value="yes">Yes
+        <input type="radio" name="coll_mantra" value="no">No<br>
+      </div>
+      <div class="name">
+         High resolution photos of the facility:
+         Upload File: <input type="file" name="avatar" /><br/>
+             
+      </div>
+      <div class="name">
+         Some regular members of those facilites: 
+         Emails:
+         <input type="text"  name="reg_membr_email" class="registration_contents" placeholder="Emails">
+         Contact Numbers:<input type="text"  name="reg_membr_cont" class="registration_contents" placeholder="Contact No">
+      </div>
+
+      <div class="name">   
+         What all sports are available in any facility and their description:
+         <input type="text"  name="sport_avail" class="address" placeholder="Sports Names">
+        <span class="error">*</span>
+
+      </div>
+      <div class="name">
+         Is there coaching provided for any sports:
+         <input type="radio" name="coach_sport" value="yes">Yes
+        <input type="radio" name="coach_sport" value="no">No<br>
+      </div>
+      <div class="name">
+
+
+         If coaching is provided then what are the charges:
+         <input type="text"  name="choch_charg" class="registration_contents" placeholder="Charges">
+      </div>
+      <div class="name">
+         Contact details ( phone/email) of instructors:
+         <input type="text" name="instruc_email" class="registration_contents" placeholder="Emails">
+      </div>
+      <div class="name">
+         Does the sport require any equipments:
+         <input type="radio" name="req_equp" value="yes">Yes
+        <input type="radio" name="req_equp" value="no">No<br>
+      </div>
+
+      <div class="name">
+         Is equipments provided by the ground, if yes then list of equipments, charges for equipments:
+         <input type="text"  name="equp_charg" class="address" placeholder="Equipments and Charges">
+      </div>
+      <div class="name">
+         Any specific timings and if yes then what are those timings:
+         <input type="radio" name="spec_time" value="yes">Yes
+        <input type="radio" name="spec_time" value="no">No<br>
+         <input type="time"  name="specific_time" class="registration_contents" placeholder="Time">
+      </div>
+      <div class="name">
+         How old is the facility. i.e the founding date of the facility.
+         <input type="date" name="found_date" class="registration_contents"> <br>
+          Opening timings:
+          <input type="time" name="open_timing" class="registration_contents"> 
+          Closing timings:
+          <input type="time" name="close_timing" class="registration_contents"> <br>
+      </div>
+      <div class="name">
+          Does it has other branches. if yes then all the details of all the other branches in a new page:
+          <input type="radio" name="oth_branch" value="yes">Yes
+          <input type="radio" name="oth_branch" value="no">No
+          <input type="text"  name="branch_detail" class="registration_contents" placeholder="Details"><br>
+      </div>
+      <div class="name">
+          Does the facility specialises in one field or multiple fields.
+          <input type="radio" name="multi_field" value="yes">Yes
+          <input type="radio" name="multi_field" value="no">No<br>
+          <input type="text" vaue="multiple" name="multi_field_name" class="registration_contents" placeholder="Multiple fields Names"><br>
+       </div> 
+
+       <div class="name">
+          If multiple fields:
+          <input type="radio" name="if_multi_field" value="yes">Yes
+          <input type="radio" name="if_multi_field" value="no">No
+           Then all the above questions for that specific field in a new page.
+      </div>
+      <div class="name">
+          Number of coaches the facility has:
+          <input type="number" name="no_coach" class="numbers"><br>
+          Their personal info like name, age, mobile no., qualification, years of experience:
+          <input type="text"  name="coach_name" class="registration_contents" placeholder="Faculty Name">
+          <input type="number" name="coach_age" class="numbers" placeholder="age">
+          Experience <input type="number" name="coach_exp" class="numbers" placeholder="Exp">
+      </div>
+      <div class="name">
+          Complete fee structure:
+          <input type="text"  name="fee_col_1" class="registration_contents" placeholder="Column-1"> 
+          <input type="text"  name="fee_col_2" class="registration_contents" placeholder="Column-2">
+          <input type="text"  name="fee_col_3" class="registration_contents" placeholder="Column-3"><br>
+      </div>
+      <div class="name">
+          For facilities with ground booking options-> fee structure and other requirements for booking ground:
+          <input type="text"  name="oth_requir" class="address" placeholder="fee structure and other requirement"><br>
+      </div>
+
+      <div class="name">
+          A summary column about the facility:
+          <input type="text"  name="summ" class="registration_contents" placeholder="Summry"><br>
+      </div>
+      
+      <div class="name">
+
+          Name of the branch owner(head of the branch):
+          <input type="text"  name="branch_own_first_name" class="registration_contents" placeholder="First Name">
+        <input type="text"  name="branch_own_middle_name" class="registration_contents" placeholder="Middle Name">
+        <input type="text"  name="branch_own_last_name" class="registration_contents" placeholder="Last Name"><br>
+      </div>
+
+      <div class="name">
+          Can the ground be booked? (Y/N):
+          <input type="radio" name="ground_book" value="yes">Yes
+          <input type="radio" name="ground_book" value="no">No<br>
+      </div>
+      <div class="name">
+          Fee structure for booking Ground:
+          <input type="text" name="fee_ground" class="registration_contents" placeholder="Charges"><br>
+      </div>
+      <div class="btn"><button name="submit" class="Reg_btn">Submit</button></div>
+
+    </fieldset>
+ </form>
+ </body>
+
+ </html>
+ <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+
+
+
+<script type="text/javascript">
+  $(function(){$('#form-signup').validate({
+      rules:{
+        faculty_name:'required',
+        faculty_add:'required',
+        own_first_name:'required',
+        own_email:{
+          required:true,
+          email:true
+        },
+        sport_avail:{
+          required:true
+        },
+        avatar:{
+          required:true
+        }
+
+      },
+      messages:{
+        faculty_name:"Please Enter Faculty Name",
+        faculty_add:'Please Enter the Faculty Address',
+        own_first_name:'Please Enter Owner first name',
+        own_email:'Please Enter Owner email/cont',
+        sport_avail:'Please Enter the available sports'
+
+      },
+      submit:function(form){
+        form.submit();
+      }
+    });
+  });
+</script>

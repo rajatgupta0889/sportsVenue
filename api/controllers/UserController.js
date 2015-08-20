@@ -2,12 +2,7 @@
  * UserController
  *
  * @module      :: Controller
-<<<<<<< HEAD
- * @des
- iption	:: A set of functions called `actions`.
-=======
  * @description	:: A set of functions called `actions`.
->>>>>>> 6eb06b5faf3896031af0fc508964d1bbec75d541
  *
  *                 Actions contain code telling Sails how to respond to a certain type of request.
  *                 (i.e. do stuff, then send some JSON, show an HTML page, or redirect to another URL)
@@ -19,7 +14,7 @@
  *
  * @docs        :: http://sailsjs.org/#!documentation/controllers
  */
-var fs = require('fs');
+
 module.exports = {
     
   /**
@@ -81,12 +76,7 @@ module.exports = {
 		});
 	},
 
-<<<<<<< HEAD
-	signUp : function(req, res)
-	{
-=======
 	signUp : function(req, res){
->>>>>>> 6eb06b5faf3896031af0fc508964d1bbec75d541
 		var that= this;
 		if(!req.body || !req.body.email || !req.body.username)
 			res.badRequest('Email or username missing in request');
@@ -294,21 +284,5 @@ module.exports = {
 		// sails.log.debug(req);
 		res.view('post_signup',{msg : req});
 		// res.view('post_signup');
-	},
-
-	fileDetail: function(req, res){
-		sails.log.debug('req',req);
-		sails.log.debug('req.body',req.body);
-        var attachdata = req.body.data;
-        var ATTACH_DIR = '/home/ubuntu/file/';
-        var ATTACH_PATH = ATTACH_DIR+'_'+(new Date().getTime())+'_'+'.pdf';
-        fs.writeFile(ATTACH_PATH, attachdata, 'base64', function(err) {
-              if(!err){
-                  sails.log.debug('File created');
-                  
-              }else{
-                 res.status(err.status).json(err);
-              }
-        });	
 	}
 };
