@@ -17,7 +17,7 @@
  * CoffeeScript for the front-end.
  *
  * For more information on configuring custom routes, check out:
- * http://sailsjs.org/#!/documentation/concepts/Routes/RouteTargetSyntax.html
+ * http://sailsjs.org/#/documentation/concepts/Routes/RouteTargetSyntax.html
  */
 
 module.exports.routes = {
@@ -31,6 +31,56 @@ module.exports.routes = {
   * `assets` directory)                                                      *
   *                                                                          *
   ***************************************************************************/
+  'post /create' : 'GroundController.createGround',
+  '/searchAdvance' : 'GroundController.groundSearchAdvance',
+  '/textSearch' : 'GroundController.groundSearch',
+
+  'post /createReview' : 'ReviewController.createReview',
+  'get /userReviews/:userId': 'ReviewController.listOfReviewsByUser',
+  'get /groundReviews/:groundId': 'ReviewController.listOfReviewsOfGround',
+  'delete /review/:reviewId': 'ReviewController.deleteReview',
+  'get /reviews' : 'ReviewController.listReviews',
+
+  'post /loginUser' : 'UserController.login',
+  'post /signUpUser' : 'UserController.signUp',
+  'post /signupfb' : 'UserController.fbSignUp',
+  'post /facebookSignIn' : 'UserController.fbSignIn',
+
+  'patch /update/:groundId' : 'GroundController.updateGround',
+  'get /grounds' : 'GroundController.listGrounds',
+  'get /ground/:groundId' : 'GroundController.singleGround',
+  'delete /ground/:groundId' : 'GroundController.deleteGround',
+
+  'get /users' : 'UserController.list',
+  'get /user/:userId' : 'UserController.singleUser',
+  'delete /user/:userId' : 'UserController.deleteUser',
+  'patch /user/:userId' : 'UserController.updateUser',
+
+  'get /created_grounds/:userId' : 'GroundController.getCreatedGrounds',
+
+  '/logout' : 'UserController.userLogout',
+
+  '/home' : 'UserController.showHomePage',
+
+  '/' : 'UserController.showHomePage',
+
+  '/postsignup' : 'UserController.postSignUp',
+
+  'post /passwordreset' : 'UserController.resetPassword',
+
+  'post /send_feedback' : 'UserController.sendFeedbackMailToAdmin',
+
+  '/admin':{
+    view:'admin/adminHome'
+  },
+
+  '/createGround':{
+    view : 'create_ground'
+  },
+
+  '/contact_us':{
+    view : 'contact_us'
+  },
 
   '/add/data': {
     view: 'Image/new'
@@ -39,11 +89,31 @@ module.exports.routes = {
   'GET /index':'AppController.index',
   'POST App/destroy':'AppController.destroy'
 
+  // '/': {
+  //   view: 'index'
+  // },
+  
+  // '/home': {
+  //   view: 'index'
+  // },
+
+  // '/ground_details': {
+  //   view: 'ground_details'
+  // },
+
+  // '/postsignup': {
+  //   view: 'post_signup'
+  // }
+
+  // '/': {
+  //   view: 'homepage'
+  // }
+
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *
   *                                                                          *
-  * If a request to a URL doesn't match any of the custom routes above, it   *
+  *  If a request to a URL doesn't match any of the custom routes above, it  *
   * is matched against Sails route blueprints. See `config/blueprints.js`    *
   * for configuration options and examples.                                  *
   *                                                                          *
