@@ -74,7 +74,7 @@ setTimeout(load,4000);
 
 <div class="container">
 	<h3>form</h3>
-	<h3><a href="/Image/new" class="btn btn-lg btn-primary">Create New Data</a></h3>
+	<h3><a href="/add/data" class="btn btn-lg btn-primary">Create New Data</a></h3>
 	<table class="table">
 		<tr  class="active">
 			<th>Id</th>
@@ -126,7 +126,7 @@ setTimeout(load,4000);
 		</tr>
 
 		<% _.each(form,function(form){%>
-		<tr class="success" data-id="<%= form.id %>" data-model="form">
+		<tr class="success" data-id="<%=form.id%>" data-model="form">
 			<td><%= form.id %></td>
 			<td><%= form.faculty_name %></td>
 			<td><%= form.faculty_add %></td>
@@ -138,7 +138,7 @@ setTimeout(load,4000);
 			<td><%= form.coll_mantra%></td>
 			<td>
 			<figure contenteditable="true">
-		  <img src="<%= form.avatar %>" alt="jump, matey" contenteditable="false" />
+		  <img src="https://s3-ap-southeast-1.amazonaws.com/sportimage/<%= form.img %>" alt="jump, matey" contenteditable="false" />
 		  <figcaption contenteditable="false">Click</figcaption>
 		</figure>
 			</td>
@@ -177,7 +177,7 @@ setTimeout(load,4000);
 
 			
 			<td>
-				<form action="/Image/destroy/<%= form.id %>" method="post">
+				<form action="App/destroy/<%=form.id%>" method="post">
 					<input type="hidden" name="method" value="delete"/>
 					<input type="submit" class="btn btn-sm btn-danger" value="Del"/>
 				</form>
@@ -186,11 +186,13 @@ setTimeout(load,4000);
 		<% }) %>	
 
 	</table>
+	
 </div>
 </body>
  <script src="/js/dependencies/jquery.min.js"></script>
   <script src="/js/dependencies/bootstrap.min.js"></script>
 <script>
+
   $(document).ready(function(){
     $('.img-zoom').hover(function() {
         $(this).addClass('transition');
