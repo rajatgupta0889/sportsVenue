@@ -85,9 +85,12 @@ module.exports.routes = {
   '/add/data': {
     view: 'Image/new'
   },
+
+  // Added by Anup
   'POST /create':'AppController.create',
   'GET /index':'AppController.index',
-  'POST App/destroy':'AppController.destroy'
+  'POST App/destroy':'AppController.destroy',
+  'GET /data':'DataController.GetComponentList'
 
   // '/': {
   //   view: 'index'
