@@ -31,7 +31,7 @@ module.exports.routes = {
   * `assets` directory)                                                      *
   *                                                                          *
   ***************************************************************************/
-  'post /create' : 'GroundController.createGround',
+  'post /ground_create' : 'GroundController.createGround',
   '/searchAdvance' : 'GroundController.groundSearchAdvance',
   '/textSearch' : 'GroundController.groundSearch',
 

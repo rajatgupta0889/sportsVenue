@@ -472,7 +472,7 @@ $('#makeGround').click(function(){
 				gndX = res.results[0].geometry.location.lat;
 				// console.log(res.results[0].geometry.location.lng);
 				gndY = res.results[0].geometry.location.lng;
-				$.post("/create",{
+				$.post("/ground_create",{
 					sport : gndSport,
 					groundName : gndName,
 					groundInfo : gndInfo,
