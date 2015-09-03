@@ -86,9 +86,9 @@ module.exports.routes = {
     view: 'Image/new'
   },
 
-  '/api/getSearchResults' : 'GroundController.getSearchedGrounds',
-  '/api/getsearchAdvanced': 'GroundController.getAdvancedSearchGrounds',
-  '/api/ground/:id'       : 'GroundController.getGround',
+  'POST /api/getSearchResults' : 'GroundController.getSearchedGrounds',
+  'POST /api/getsearchAdvanced': 'GroundController.getAdvancedSearchGrounds',
+  'GET /api/ground/:id'       : 'GroundController.getGround',
 
   // Added by Anup
   'POST /create':'AppController.create',
