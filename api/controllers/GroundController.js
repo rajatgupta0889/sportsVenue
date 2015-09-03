@@ -186,5 +186,78 @@ module.exports = {
 				}
 			});
 		}
+	},
+
+	getSearchedGrounds: function(req, res){
+		if(!req.body && !req.body.searchString){
+			res.badRequest('No search string provided');
+		}else{
+			Ground.searchGround(req.body, function(err, grounds){
+				if(err){
+					res.serverError(err);
+				}else{
+					// res.send(grounds);
+					if(grounds.length > 0)
+						res.json({grounds: grounds});
+					else{
+						res.json({grounds:[]);
+					}
+					sails.log.debug('Found grounds using text search');
+				}
+			});
+		}
+	},
+
+	getAdvancedSearchGrounds: function(req, res){
+		if(!req.body || !req.body.sport || !req.body.area){ //|| !req.body.city
+			res.badRequest("No data");
+		}else{
+			Ground.searchGroundAdvanced(req.body, function(err, grounds){
+				if(err){
+					res.serverError(err);
+				}
+				else{
+					console.log("Grounds searched successfully");
+					if(grounds.length > 0)
+						res.json({grounds: grounds});
+					else{
+						res.json({grounds: []});
+					}
+				}		
+			});
+		}
+	},
+
+	getGround: function(req, res){
+		var groundId = req.param('groundId');
+		if(!groundId){
+			res.badRequest(groundId);
+		}else{
+			Ground.getSingleGround(groundId, function(err, ground){
+				if(err){
+					res.serverError(err);
+				}else{
+					Review.getReviewsByGround(groundId,function(err, reviews){
+						if(err)
+							res.serverError(err);
+						else{
+							if(reviews.length>0){
+								if(req.session.user && req.session.user.id){
+			  						for(var i=0;i<reviews.length;i++){
+			  							if(req.session.user.id === reviews[i].userId){
+			  								reviews[i].ownReview = true;
+			  							}
+				  					}
+			  					}
+			  					res.json({ground : ground, reviews: reviews});
+							}else{
+								res.json({ground : ground, reviews: []});
+							}
+						}
+					});
+					console.log('Found this ground successfully');
+				}
+			});
+		}
 	}
 };
