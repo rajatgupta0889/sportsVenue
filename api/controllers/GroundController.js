@@ -26,7 +26,7 @@ module.exports = {
 			res.badRequest(req.body.sport + req.body.groundName);	
 		}
 		else{
-			req.body.userId = req.session.user.id;
+			// req.body.userId = req.session.user.id;
 			// console.log(req.body.sport + req.body.groundName);
 			Ground.groundCreate(req.body, function(err, ground){
 				if(err)
