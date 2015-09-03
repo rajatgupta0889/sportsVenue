@@ -200,7 +200,7 @@ module.exports = {
 					if(grounds.length > 0)
 						res.json({grounds: grounds});
 					else{
-						res.json({grounds:[]);
+						res.json({grounds:[]});
 					}
 					sails.log.debug('Found grounds using text search');
 				}
