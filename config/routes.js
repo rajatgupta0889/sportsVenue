@@ -88,6 +88,7 @@ module.exports.routes = {
 
   '/api/getSearchResults' : 'GroundController.getSearchedGrounds',
   '/api/getsearchAdvanced': 'GroundController.getAdvancedSearchGrounds',
+  '/api/ground/:id'       : 'GroundController.getGround',
 
   // Added by Anup
   'POST /create':'AppController.create',
