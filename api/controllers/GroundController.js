@@ -229,7 +229,7 @@ module.exports = {
 	},
 
 	getGround: function(req, res){
-		var groundId = req.param('groundId');
+		var groundId = req.param('id');
 		if(!groundId){
 			res.badRequest(groundId);
 		}else{
