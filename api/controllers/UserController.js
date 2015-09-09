@@ -284,5 +284,22 @@ module.exports = {
 		// sails.log.debug(req);
 		res.view('post_signup',{msg : req});
 		// res.view('post_signup');
+	},
+
+	testLogin: function(req, res){
+		if(!req.body && !req.body.email && !req.body.password){
+			res.badRequest('Please provide username and password');
+		}else{
+			User.login(req.body, function(err, user){
+				if(err){
+					res.serverError(err);
+				}
+		      	else{
+		        	req.session.authenticated = true;
+		          	req.session.user = user;
+		          	res.json(user);
+		        }		
+			});
+		}
 	}
 };

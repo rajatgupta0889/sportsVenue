@@ -198,28 +198,28 @@ module.exports = {
 	},
 	groundCreate : function(opts, cb){
 		Ground.findOne({groundName: opts.groundName, sport: opts.sports, area: opts.area}).exec(function(err, ground){
-  		if(err){
-  			cb(err);
-  		}
-  		else if(!ground){
-        var xLat = opts.x;
-        var yLong = opts.y;
-        opts.location = { x : xLat, y: yLong };
-        delete opts.x;
-        delete opts.y;
-  			Ground.create(opts, function(err, ground){
-				if(err){
-					cb(err);
-				}
-  				else{
-  					cb(null, ground);
-  				}
-  			});
-  		}
-      else{
-        cb(null, ground);
-      }		
-  	});
+	  		if(err){
+	  			cb(err);
+	  		}
+	  		else if(!ground){
+		        var xLat = opts.x;
+		        var yLong = opts.y;
+		        opts.location = { x : xLat, y: yLong };
+		        delete opts.x;
+		        delete opts.y;
+	  			Ground.create(opts, function(err, ground){
+					if(err){
+						cb(err);
+					}
+	  				else{
+	  					cb(null, ground);
+	  				}
+	  			});
+	  		}
+	  		else{
+	    		cb(null, ground);
+	  		}		
+  		});
 	},
 	searchGroundAdvanced : function(opts,cb){
 		var sportToSearch = new RegExp(opts.sport,"i");
@@ -264,10 +264,8 @@ module.exports = {
   	});
 	},
 	groundUpdate:function(opts,cb){
-		console.log(opts);
 		Ground.findOne({ id: opts.groundId }).exec(function(err,ground){
 			if(err){
-				console.log(err);
 				cb(err);
 			}else if(ground){
 				var newSports = opts.sport || ground.sport;

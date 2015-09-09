@@ -187,7 +187,7 @@ module.exports = {
 	},
 
 	getSearchedGrounds: function(req, res){
-		if(!req.body && !req.body.searchString){
+		if(!req.body && !req.body.searchString && !req.body.searchCity){
 			res.badRequest('No search string provided');
 		}else{
 			Ground.searchGround(req.body, function(err, grounds){

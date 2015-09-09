@@ -90,6 +90,7 @@ module.exports.routes = {
   'POST /api/getsearchAdvanced': 'GroundController.getAdvancedSearchGrounds',
   'GET /api/ground/:id'        : 'GroundController.getGround',
   'GET /api/fetchCityDetails'  : 'GroundController.getCityDetails',
+  'POST /api/testlogin'        : 'UserController.testLogin',
 
   // Added by Anup
   'POST /create':'AppController.create',
