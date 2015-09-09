@@ -240,19 +240,23 @@ module.exports = {
 	},
 
 	singleUser: function(req, res){
-		var userId = req.param('userId');
-		if(userId === '' || userId === null || userId === undefined){
-			res.badRequest('please specify a userid to update');
+		if(!req.session.user){
+			res.status('403').send('You are not permitted');
 		}else{
-			req.body.userId = userId;
-			User.getSingleUser(req.body, function(err, user){
-				if(err)
-					res.serverError(err);
-				else{
-					res.send(user);
-					sails.log.debug('Found this user successfully');
-				}
-			});
+			var userId = req.param('userId');
+			if(userId === '' || userId === null || userId === undefined){
+				res.badRequest('please specify a userid to update');
+			}else{
+				req.body.userId = userId;
+				User.getSingleUser(req.body, function(err, user){
+					if(err)
+						res.serverError(err);
+					else{
+						res.send(user);
+						sails.log.debug('Found this user successfully');
+					}
+				});
+			}
 		}
 	},
 
