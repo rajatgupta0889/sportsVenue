@@ -145,22 +145,20 @@ module.exports = {
 	},
 
 	groundSearch: function(req, res){
-		if(!req.body || !req.body.searchString){
+		if(!req.body && !req.body.searchString && !req.body.searchCity){
 			res.redirect("/home");
 		}else{
 			Ground.searchGround(req.body, function(err, grounds){
 				if(err){
 					res.serverError(err);
 				}else{
-					// res.send(grounds);
-					if(grounds.length > 0)
-						// res.view('ground_search', {grounds: grounds});
+					if(grounds.length > 0){
+						sails.log.debug('Found grounds using text search');
 						res.view('ground_search', {grounds: grounds});
-					else{
+					}else{
 						req.errorMsg = "No results found with this search. Please use advanced search or redefine your text search."
 						res.view('index', {grounds : req});	
 					}
-					sails.log.debug('Found grounds using text search');
 				}
 			});
 		}
@@ -259,5 +257,27 @@ module.exports = {
 				}
 			});
 		}
+	},
+
+	getCityDetails: function(req, res){
+		Ground.findCities(function(err, cities){
+			if(err){
+				res.serverError(err);
+			}else{
+				Ground.findAreas(function(err, areas){
+					if(err){
+						res.serverError(err);
+					}else{
+						Ground.findSports(function(err, sports){
+							if(err){
+								res.serverError(err);
+							}else{
+								res.json({cityList: cities, areaList: areas, sportList: sports});
+							}
+						});
+					}
+				});
+			}
+		});
 	}
 };
