@@ -249,12 +249,11 @@ module.exports = {
 		}else{
 			var userId = req.params['userId'];
 			console.log(req.params['userId']);
-			console.log(req.params[0]);
-			console.log(req.param[0].userId);
 			if(userId === '' || userId === null || userId === undefined){
 				res.badRequest('please specify a userid to update');
 			}else{
 				req.body.userId = userId;
+				console.log(userId);
 				User.getSingleUser(req.body, function(err, user){
 					if(err)
 						res.serverError(err);
