@@ -92,6 +92,7 @@ module.exports.routes = {
   'GET /api/fetchCityDetails'  : 'GroundController.getCityDetails',
   'POST /api/testlogin'        : 'UserController.testLogin',
   'POST /api/testsignup'       : 'UserController.testSignUp',
+  'GET /showusers'             : 'UserController.list',
 
   // Added by Anup
   'POST /create':'AppController.create',
