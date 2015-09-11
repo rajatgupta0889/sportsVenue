@@ -312,6 +312,7 @@ module.exports = {
 	},
 
 	testSignUp: function(req, res){
+		var that = this;
 		if(!req.body && !req.body.email && !req.body.username){
 			res.badRequest('Please provide email and username');
 		}else{
