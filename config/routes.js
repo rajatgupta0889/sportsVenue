@@ -52,7 +52,7 @@ module.exports.routes = {
   'delete /ground/:groundId' : 'GroundController.deleteGround',
 
   'get /users' : 'UserController.list',
-  'get /user/:userId' : 'UserController.singleUser',
+  '/user/:userId' : 'UserController.singleUser',
   'delete /user/:userId' : 'UserController.deleteUser',
   'patch /user/:userId' : 'UserController.updateUser',
 
