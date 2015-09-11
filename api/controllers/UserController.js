@@ -247,7 +247,10 @@ module.exports = {
 		if(!req.session.user){
 			res.status('403').send('You are not permitted');
 		}else{
-			var userId = req.params('userId');
+			var userId = req.params['userId'];
+			console.log(req.params['userId']);
+			console.log(req.params[0]);
+			console.log(req.param[0].userId);
 			if(userId === '' || userId === null || userId === undefined){
 				res.badRequest('please specify a userid to update');
 			}else{
