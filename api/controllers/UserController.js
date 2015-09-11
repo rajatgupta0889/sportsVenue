@@ -248,13 +248,13 @@ module.exports = {
 			res.status('403').send('You are not permitted');
 		}else{
 			var userId = req.params['userId'];
-			console.log(req.params['userId']);
 			if(userId === '' || userId === null || userId === undefined){
 				res.badRequest('please specify a userid to update');
 			}else{
-				req.body.userId = userId;
-				console.log(userId);
-				User.getSingleUser(req.body, function(err, user){
+				var obj = {
+					userId: userId
+				};
+				User.getSingleUser(obj, function(err, user){
 					if(err)
 						res.serverError(err);
 					else{
