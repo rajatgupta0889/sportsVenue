@@ -156,7 +156,11 @@ module.exports = {
 				sails.log.debug('mail sent successfully'+response);
 				// res.redirect('/postsignup');
 				req.successMessage = "Thank you for registering. We have sent you a mail containing your account information. Please sign in using that information. We are waiting for you.";
-				that.postSignUp(req, res);
+				if(!req.body.from){
+					that.postSignUp(req, res);
+				}else{
+					res.json(response);
+				}
 			}
 		});
 	},
@@ -302,6 +306,24 @@ module.exports = {
 		        	req.session.authenticated = true;
 		          	req.session.user = user;
 		          	res.json(user);
+		        }		
+			});
+		}
+	},
+
+	testSignUp: function(req, res){
+		if(!req.body && !req.body.email && !req.body.username){
+			res.badRequest('Please provide email and username');
+		}else{
+			req.body.password = that.generatePassword();
+			req.body.userPwd = req.body.password;
+			User.signUp(req.body, function(err, user){
+				if(err)
+					res.serverError(err);
+		      	else{
+		           	sails.log.debug('signed up successfully!');
+		           	req.body.from = "android";
+		          	that.sendSignUpEmailToUser(req.body,res);
 		        }		
 			});
 		}
