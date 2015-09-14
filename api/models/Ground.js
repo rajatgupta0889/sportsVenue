@@ -238,29 +238,28 @@ module.exports = {
 	},
 	groundAvgRating : function(opts,cb){
 		Ground.findOne({ id: opts.groundId}).exec(function(err, ground){
-  		if(err){
-  			console.log(err)
-  			cb(err);
-  		}
-  		else if(ground){
-  			var currentRating = ground.rating;
-  			var ratingCount = ground.ratingCount;
-  			var newRating = (parseInt(currentRating) * parseInt(ratingCount) + parseInt(opts.rating))/(ratingCount + 1);
-  			Ground.update({ id: opts.groundId},{rating : newRating, ratingCount : ratingCount+1}).exec(function(err,ground){
-  				if(err){
-		  			console.log(err);
-		  			cb(err);
-		  		}
-		  		else{
-		  			cb(null,ground);
-		  		}
-  			});
-
-  			// cb(null,newRating);
-  		}
-      else{
-        cb("Ground detail is not available");
-      }		
+	  		if(err){
+	  			console.log(err)
+	  			cb(err);
+	  		}
+	  		else if(ground){
+	  			var currentRating = ground.rating;
+	  			var ratingCount = ground.ratingCount;
+	  			var newRating = (parseInt(currentRating) * parseInt(ratingCount) + parseInt(opts.rating))/(ratingCount + 1);
+	  			Ground.update({ id: opts.groundId},{rating : newRating, ratingCount : ratingCount+1}).exec(function(err,updatedGround){
+	  				if(err){
+			  			console.log(err);
+			  			cb(err);
+			  		}
+			  		else{
+			  			cb(null,updatedGround);
+			  		}
+	  			});
+	  			// cb(null,newRating);
+	  		}
+      	else{
+        	cb("Ground detail is not available");
+      	}		
   	});
 	},
 	groundUpdate:function(opts,cb){

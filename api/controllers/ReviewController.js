@@ -9,7 +9,8 @@ module.exports = {
 
 	createReview: function(req, res){
 		req.body.userName = req.session.user.username;
-		if(!req.body || !req.body.userId || !req.body.groundId){
+		req.body.userId = req.session.user.id;
+		if(!req.body || !req.body.groundId){
 			res.badRequest("User and ground id are not present");	
 		}
 		else{
@@ -18,13 +19,13 @@ module.exports = {
 				if(err)
 					res.serverError(err);
 				else{
-					res.send(review);
-					Ground.groundAvgRating(req.body,function(err,res){
+					Ground.groundAvgRating(req.body,function(err,updatedData){
 						if(err){
 							res.serverError(err);
 						}
 						else{
-							console.log("Updated rating",res);
+							console.log("Updated rating",updatedData);
+							res.send("true");
 						}
 					});
 					console.log("Review Created");
